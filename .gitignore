@@ -1,0 +1,39 @@
+# --- OS / filesystem cruft ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# --- Editor / IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- Logs & temp ---
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+
+# --- Local exports & build artefacts ---
+# Rendered/static exports produced locally should not be committed here;
+# the site is published via Claude Design → Netlify.
+dist/
+build/
+out/
+export/
+exports/
+*.zip
+
+# --- Dependencies (in case tooling is added later) ---
+node_modules/
+
+# --- Local environment / secrets (never commit) ---
+.env
+.env.*
+*.pem
+*.key
