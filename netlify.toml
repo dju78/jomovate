@@ -1,0 +1,11 @@
+# Netlify configuration for the Jomovate site.
+# The site files live in the "Jomovate design system" folder, so publish that
+# folder as the site root. No build step — these are pre-exported files.
+[build]
+  publish = "Jomovate design system"
+
+# Serve the home page at the root URL without changing the address bar.
+[[redirects]]
+  from = "/"
+  to = "/Home.dc.html"
+  status = 200
