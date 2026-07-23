@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-95994641-e423-4271-b7f1-7d83110eab40/styles.css">
+<script src="_ds/organic-95994641-e423-4271-b7f1-7d83110eab40/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<title>Products — Jomovate</title>
+<style>
+a { color: var(--color-accent-700); }
+a:hover { color: var(--color-accent-800, var(--color-accent-700)); }
+@media (max-width: 900px) {
+  .dc-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 640px) {
+  .dc-grid-3 { grid-template-columns: 1fr !important; }
+  .dc-two-col { grid-template-columns: 1fr !important; }
+  .dc-form-2 { grid-template-columns: 1fr !important; }
+  .dc-inline-form { flex-wrap: wrap !important; }
+  .dc-inline-form > * { flex: 1 1 100% !important; }
+}
+</style>
+</helmet>
+<dc-import name="NavHeader" active="products" hint-size="100%,72px"></dc-import>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px);">
+
+  <section style="padding:calc(3 * 28px) 0 calc(2 * 28px);max-width:64ch;">
+    <span style="display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 14px;">Products</span>
+    <h1 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(36px,5vw,56px);line-height:1.1;margin:0;">Tools built from real engagements</h1>
+    <p style="font-size:17px;line-height:28px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:24px 0 0;">Jomovate develops practical digital products designed around real operational challenges and user needs.</p>
+  </section>
+
+  <section class="dc-grid-3" style="padding:0 0 calc(2.5 * 28px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);">
+    <div class="card elev-sm">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-carephrase" shape="rect" src="./assets/prod-carephrase.png" placeholder="CarePhrase" style="width:100%;aspect-ratio:16/10;"></image-slot>
+      </figure>
+      <div class="card-kicker">Care · Writing</div>
+      <div class="card-title">CarePhrase</div>
+      <p class="card-body">Training support for writing clear, factual and professional care notes.</p>
+    </div>
+    <div class="card elev-sm">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-cqi" shape="rect" src="./assets/prod-cqi.png" placeholder="Care Quality Intelligence" style="width:100%;aspect-ratio:16/10;"></image-slot>
+      </figure>
+      <div class="card-kicker">Care · Quality</div>
+      <div class="card-title">Care Quality Intelligence</div>
+      <p class="card-body">Quality monitoring, supervision evidence and operational insights for adult social care providers.</p>
+    </div>
+    <div class="card elev-sm">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-taxmate" shape="rect" src="./assets/prod-taxmate.png" placeholder="TaxMate UK" style="width:100%;aspect-ratio:16/10;"></image-slot>
+      </figure>
+      <div class="card-kicker">Finance</div>
+      <div class="card-title">TaxMate UK</div>
+      <p class="card-body">Simple bookkeeping tools for UK sole traders managing income, expenses and business performance.</p>
+    </div>
+    <div class="card elev-sm">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-garageproof" shape="rect" src="./assets/product-garageproof.png" placeholder="GarageProof UK" style="width:100%;aspect-ratio:16/10;"></image-slot>
+      </figure>
+      <div class="card-kicker">Automotive</div>
+      <div class="card-title">GarageProof UK</div>
+      <p class="card-body">A transparent digital repair workflow from vehicle check-in to customer approval and completion.</p>
+    </div>
+    <div class="card elev-sm">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-autodamage" shape="rect" src="./assets/prod-autodamage.png" placeholder="AutoDamage Quote" style="width:100%;aspect-ratio:16/10;"></image-slot>
+      </figure>
+      <div class="card-kicker">Automotive</div>
+      <div class="card-title">AutoDamage Quote</div>
+      <p class="card-body">Visual vehicle-damage assessment and quotation technology.</p>
+    </div>
+    <div class="card elev-sm">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-speaking" shape="rect" src="./assets/prod-speaking.png" placeholder="Speaking Trainer" style="width:100%;aspect-ratio:16/10;"></image-slot>
+      </figure>
+      <div class="card-kicker">Communication</div>
+      <div class="card-title">Speaking Trainer</div>
+      <p class="card-body">Speaking practice that improves clarity, pronunciation and confidence.</p>
+    </div>
+    <div class="card elev-sm">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-academy" shape="rect" src="./assets/prod-academy.png" placeholder="CarePhrase Communication Academy" style="width:100%;aspect-ratio:16/10;"></image-slot>
+      </figure>
+      <div class="card-kicker">Care · Training</div>
+      <div class="card-title">CarePhrase Communication Academy</div>
+      <p class="card-body">Structured training for handovers, escalation, safeguarding and care English.</p>
+    </div>
+    <div class="card elev-sm">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-kogiquest" shape="rect" src="./assets/prod-kogiquest.png" placeholder="KogiQuest" style="width:100%;aspect-ratio:16/10;"></image-slot>
+      </figure>
+      <div class="card-kicker">Education</div>
+      <div class="card-title">KogiQuest</div>
+      <p class="card-body">An interactive educational game exploring Kogi State history, culture and traditions.</p>
+    </div>
+  </section>
+
+  <section style="padding:calc(1 * 28px) 0 calc(3 * 28px);">
+    <div style="background:var(--color-accent-2-100);border-radius:calc(2 * var(--radius-lg));padding:calc(2 * 28px) clamp(24px,4vw,64px);display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);flex-wrap:wrap;">
+      <div>
+        <h3 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:26px;line-height:28px;margin:0;">We'll help you pick, or build something new</h3>
+        <p style="font-size:15.5px;line-height:28px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:14px 0 0;max-width:52ch;">Most engagements start with a services conversation, not a product pitch. If nothing here fits, that's useful information too.</p>
+      </div>
+      <a href="./Services.dc.html" class="btn btn-primary" style="text-decoration:none;white-space:nowrap;">See how we work</a>
+    </div>
+  </section>
+
+</div>
+
+<dc-import name="Footer" hint-size="100%,220px"></dc-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1600}}"></script>
+</body>
+</html>

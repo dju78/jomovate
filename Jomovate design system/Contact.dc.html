@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-95994641-e423-4271-b7f1-7d83110eab40/styles.css">
+<script src="_ds/organic-95994641-e423-4271-b7f1-7d83110eab40/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<title>Start a Conversation — Jomovate</title>
+<style>
+a { color: var(--color-accent-700); }
+a:hover { color: var(--color-accent-800, var(--color-accent-700)); }
+@media (max-width: 900px) {
+  .dc-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 640px) {
+  .dc-grid-3 { grid-template-columns: 1fr !important; }
+  .dc-two-col { grid-template-columns: 1fr !important; }
+  .dc-form-2 { grid-template-columns: 1fr !important; }
+  .dc-inline-form { flex-wrap: wrap !important; }
+  .dc-inline-form > * { flex: 1 1 100% !important; }
+}
+</style>
+</helmet>
+<dc-import name="NavHeader" active="contact" hint-size="100%,72px"></dc-import>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px);">
+
+  <section class="dc-two-col" style="padding:calc(3 * 28px) 0 calc(2 * 28px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px clamp(24px,5vw,96px);">
+    <div>
+      <span style="display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 14px;">Start a Conversation</span>
+      <h1 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(32px,4.4vw,48px);line-height:1.15;margin:0;">Tell us what you're working on</h1>
+      <p style="font-size:16px;line-height:28px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:24px 0 0;max-width:40ch;">A few details help us route this to the right person. We reply within two business days.</p>
+      <div style="display:grid;gap:var(--space-2);margin-top:calc(2 * 28px);">
+        <span style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:color-mix(in srgb, var(--color-text) 55%, transparent);">Direct</span>
+        <span style="font-size:15px;">dju78@jomovate.com</span>
+        <span style="font-size:15px;color:color-mix(in srgb, var(--color-text) 78%, transparent);">United Kingdom</span>
+      </div>
+    </div>
+
+    <div style="max-width:560px;">
+      <form name="jomovate-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="jomovate-enquiry" />
+        <p style="display:none;"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
+        <div class="dc-form-2" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+          <div class="field"><label for="c-name">Name</label><input class="input" id="c-name" name="name" placeholder="Your name" required /></div>
+          <div class="field"><label for="c-email">Email</label><input class="input" id="c-email" name="email" type="email" placeholder="you@company.com" required /></div>
+        </div>
+        <div class="field"><label for="c-company">Organisation</label><input class="input" id="c-company" name="organisation" placeholder="Where you work (optional)" /></div>
+        <div class="field"><label id="c-interest-label">I'm interested in</label>
+          <div class="seg" role="radiogroup" aria-labelledby="c-interest-label">
+            <label class="seg-opt"><input type="radio" name="enquiry-type" value="Services" checked />Services</label>
+            <label class="seg-opt"><input type="radio" name="enquiry-type" value="Products" />Products</label>
+            <label class="seg-opt"><input type="radio" name="enquiry-type" value="Something else" />Something else</label>
+          </div>
+        </div>
+        <div class="field"><label for="c-message">What's going on</label><textarea class="input" id="c-message" name="message" rows="4" placeholder="A sentence or two is plenty to start." required></textarea></div>
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:var(--space-2);">Send message</button>
+        <p style="font-size:12.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin:var(--space-3) 0 0;">Your information will only be used to review and respond to your enquiry. Please do not submit confidential, sensitive or personal service-user information.</p>
+      </form>
+      <div id="form-success" role="status" style="display:none;background:var(--color-accent-2-100);border-radius:var(--radius-lg);padding:var(--space-6);">
+        <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:22px;line-height:1.2;margin:0;">Thank you — your enquiry has been received</h2>
+        <p style="font-size:15px;line-height:28px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:var(--space-2) 0 0;">We'll review it and reply within two business days.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  var form = document.querySelector('form[name="jomovate-enquiry"]');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var body = new URLSearchParams(new FormData(form)).toString();
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body })
+      .then(function () {
+        form.style.display = 'none';
+        var ok = document.getElementById('form-success');
+        if (ok) ok.style.display = 'block';
+      })
+      .catch(function () { form.submit(); });
+  });
+})();
+</script>
+
+<dc-import name="Footer" hint-size="100%,220px"></dc-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}"></script>
+</body>
+</html>

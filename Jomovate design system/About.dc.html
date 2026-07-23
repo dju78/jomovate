@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-95994641-e423-4271-b7f1-7d83110eab40/styles.css">
+<script src="_ds/organic-95994641-e423-4271-b7f1-7d83110eab40/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<title>About — Jomovate</title>
+<style>
+a { color: var(--color-accent-700); }
+a:hover { color: var(--color-accent-800, var(--color-accent-700)); }
+@media (max-width: 900px) {
+  .dc-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 640px) {
+  .dc-grid-3 { grid-template-columns: 1fr !important; }
+  .dc-two-col { grid-template-columns: 1fr !important; }
+  .dc-form-2 { grid-template-columns: 1fr !important; }
+  .dc-inline-form { flex-wrap: wrap !important; }
+  .dc-inline-form > * { flex: 1 1 100% !important; }
+}
+</style>
+</helmet>
+<dc-import name="NavHeader" active="about" hint-size="100%,72px"></dc-import>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px);">
+
+  <section class="dc-two-col" style="padding:calc(3 * 28px) 0 calc(2 * 28px);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:28px clamp(24px,5vw,96px);align-items:center;">
+    <div>
+      <span style="display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 14px;">About Jomovate</span>
+      <h1 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(36px,5vw,56px);line-height:1.1;margin:0;">We work in the gap between idea and outcome</h1>
+      <p style="font-size:17px;line-height:28px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:24px 0 0;max-width:52ch;">Jomovate started from a simple observation: most organizations don't lack good ideas, they lack the hands-on capacity to carry one from a whiteboard to something customers actually use. We built the firm to be that capacity — for enterprises, small businesses and the people they serve.</p>
+    </div>
+    <figure class="washed" style="margin:0;border-radius:calc(2 * var(--radius-lg));overflow:hidden;">
+      <image-slot id="about-hero" shape="rect" src="./assets/about-office.jpg" placeholder="Team photograph" style="width:100%;aspect-ratio:4/3;"></image-slot>
+    </figure>
+  </section>
+
+  <section style="padding:calc(1 * 28px) 0 calc(2.5 * 28px);">
+    <span style="display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 14px;">How we operate</span>
+    <div class="dc-grid-3" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);">
+      <div class="card"><div class="card-kicker">Innovate</div><div class="card-title">Small teams, close to the work</div><p class="card-body">We staff engagements with people who build, not just advise — strategists sit next to the people writing code and running campaigns.</p></div>
+      <div class="card"><div class="card-kicker">Grow</div><div class="card-title">Measured against outcomes</div><p class="card-body">Every engagement is scoped against a business result, not a deliverable — so success looks the same to us as it does to you.</p></div>
+      <div class="card"><div class="card-kicker">Elevate</div><div class="card-title">Built to hand off</div><p class="card-body">We document and train as we go, so the work is still improving the business long after our part of it ends.</p></div>
+    </div>
+  </section>
+
+  <section class="dc-two-col" style="padding:0 0 calc(2.5 * 28px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px clamp(24px,5vw,72px);align-items:center;">
+    <figure style="margin:0;border-radius:calc(2 * var(--radius-lg));overflow:hidden;">
+      <image-slot id="about-founder" shape="rect" src="./assets/founder.png" placeholder="Founder portrait" style="width:100%;aspect-ratio:4/3;"></image-slot>
+    </figure>
+    <div>
+      <span style="display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 14px;">Meet the Founder</span>
+      <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(28px,3vw,38px);line-height:1.2;margin:0;">Daramola Joseph Omoyele</h2>
+      <p style="font-size:16px;line-height:28px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:24px 0 0;max-width:56ch;">Jomovate was founded by Daramola Joseph Omoyele, a data analyst, researcher and digital product developer with experience in statistical analysis, business intelligence, automation and service improvement.</p>
+      <p style="font-size:16px;line-height:28px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:16px 0 0;max-width:56ch;">His work focuses on transforming complex operational challenges into practical digital tools that improve communication, performance and decision-making.</p>
+      <a href="https://daramolajo.co.uk" target="_blank" rel="noopener" class="btn btn-secondary" style="text-decoration:none;display:inline-block;margin-top:24px;">View portfolio ↗</a>
+    </div>
+  </section>
+
+  <section style="padding:0 0 calc(3 * 28px);">
+    <div style="background:var(--color-accent-2-100);border-radius:calc(2 * var(--radius-lg));padding:calc(2 * 28px) clamp(24px,4vw,64px);display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);flex-wrap:wrap;">
+      <div>
+        <h3 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:26px;line-height:28px;margin:0;">Want to know if we're a fit?</h3>
+        <p style="font-size:15.5px;line-height:28px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:14px 0 0;max-width:52ch;">Tell us about your team and what you're working on. We're direct about where we help and where we don't.</p>
+      </div>
+      <a href="./Contact.dc.html" class="btn btn-primary" style="text-decoration:none;white-space:nowrap;">Start a conversation</a>
+    </div>
+  </section>
+
+</div>
+
+<dc-import name="Footer" hint-size="100%,220px"></dc-import>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1400}}"></script>
+</body>
+</html>
