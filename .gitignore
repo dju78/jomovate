@@ -37,3 +37,9 @@ node_modules/
 .env.*
 *.pem
 *.key
+
+# --- Image conversion tooling (temporary) ---
+Jomovate design system/node_modules/
+Jomovate design system/package.json
+Jomovate design system/package-lock.json
+Jomovate design system/convert-images.mjs
