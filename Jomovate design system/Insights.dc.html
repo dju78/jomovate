@@ -54,32 +54,41 @@ a:hover { color: var(--color-accent-800, var(--color-accent-700)); }
   </section>
 
   <section class="dc-grid-3" style="padding:0 0 calc(2.5 * 28px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);">
-    <div style="color:inherit;">
-      <figure class="washed" style="margin:0 0 var(--space-3);border-radius:var(--radius-lg);overflow:hidden;">
-        <image-slot id="insight-1" shape="rect" src="./assets/insight-modernize.webp" placeholder="Article image" style="width:100%;aspect-ratio:3/2;" loading="lazy"></image-slot>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <figure class="washed" style="margin:0;">
+        <image-slot id="insight-1" shape="rect" src="./assets/insight-fdi.jpg" placeholder="Article image" style="width:100%;aspect-ratio:3/2;display:block;" loading="lazy"></image-slot>
       </figure>
-      <span class="tag tag-accent">Data &amp; Analytics</span>
-      <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:20px;line-height:1.3;margin:var(--space-2) 0 0;">Dynamics of Foreign Direct Investment and Economic Growth in SADC Countries: A Panel Data Analysis</h2>
-      <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin:var(--space-2) 0 0;">A panel-data econometric study examining the relationship between foreign direct investment and economic growth across SADC countries.</p>
-      <a href="https://doi.org/10.64753/jcasc.v11i2.4875" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);">Read Insight ↗</a>
+      <div style="padding:var(--space-3);display:flex;flex-direction:column;flex:1;">
+        <div><span class="tag tag-accent" style="margin-bottom:var(--space-2);">Data &amp; Analytics</span></div>
+        <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:20px;line-height:1.3;margin:0 0 var(--space-2);">Dynamics of Foreign Direct Investment and Economic Growth in SADC Countries: A Panel Data Analysis</h2>
+        <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin:0;">A panel-data econometric study examining the relationship between foreign direct investment and economic growth across SADC countries.</p>
+        <div style="flex:1;"></div>
+        <a href="https://doi.org/10.64753/jcasc.v11i2.4875" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);align-self:flex-start;">Read Insight ↗</a>
+      </div>
     </div>
-    <div style="color:inherit;">
-      <figure class="washed" style="margin:0 0 var(--space-3);border-radius:var(--radius-lg);overflow:hidden;">
-        <image-slot id="insight-2" shape="rect" src="./assets/insight-cx.webp" placeholder="Article image" style="width:100%;aspect-ratio:3/2;" loading="lazy"></image-slot>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <figure class="washed" style="margin:0;">
+        <image-slot id="insight-2" shape="rect" src="./assets/insight-gdpr.jpg" placeholder="Article image" style="width:100%;aspect-ratio:3/2;display:block;" loading="lazy"></image-slot>
       </figure>
-      <span class="tag tag-accent-2">Responsible Technology</span>
-      <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:20px;line-height:1.3;margin:var(--space-2) 0 0;">ICO — Automated Decision-Making and Profiling Guidance under UK GDPR Article 22</h2>
-      <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin:var(--space-2) 0 0;">A consultation response to the ICO on guidance for automated decision-making and profiling under Article 22 of the UK GDPR.</p>
-      <a href="https://daramolajo.co.uk/papers/ico-adm-article22-consultation-response.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);">Read Insight ↗</a>
+      <div style="padding:var(--space-3);display:flex;flex-direction:column;flex:1;">
+        <div><span class="tag tag-accent-2" style="margin-bottom:var(--space-2);">Responsible Technology</span></div>
+        <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:20px;line-height:1.3;margin:0 0 var(--space-2);">ICO — Automated Decision-Making and Profiling Guidance under UK GDPR Article 22</h2>
+        <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin:0;">A consultation response to the ICO on guidance for automated decision-making and profiling under Article 22 of the UK GDPR.</p>
+        <div style="flex:1;"></div>
+        <a href="https://daramolajo.co.uk/papers/ico-adm-article22-consultation-response.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);align-self:flex-start;">Read Insight ↗</a>
+      </div>
     </div>
-    <div style="color:inherit;">
-      <figure class="washed" style="margin:0 0 var(--space-3);border-radius:var(--radius-lg);overflow:hidden;">
-        <image-slot id="insight-3" shape="rect" src="./assets/insight-mindset.webp" placeholder="Article image" style="width:100%;aspect-ratio:3/2;" loading="lazy"></image-slot>
+    <div class="card" style="padding:0;overflow:hidden;">
+      <figure class="washed" style="margin:0;">
+        <image-slot id="insight-3" shape="rect" src="./assets/insight-hmrc.jpg" placeholder="Article image" style="width:100%;aspect-ratio:3/2;display:block;" loading="lazy"></image-slot>
       </figure>
-      <span class="tag tag-neutral">Compliance</span>
-      <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:20px;line-height:1.3;margin:var(--space-2) 0 0;">HMRC — Making Tax Digital for Income Tax</h2>
-      <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin:var(--space-2) 0 0;">A submission to HMRC on Making Tax Digital for Income Tax and digital compliance for self-employed workers and landlords.</p>
-      <a href="https://daramolajo.co.uk/papers/hmrc-making-tax-digital-submission.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);">Read Insight ↗</a>
+      <div style="padding:var(--space-3);display:flex;flex-direction:column;flex:1;">
+        <div><span class="tag tag-neutral" style="margin-bottom:var(--space-2);">Compliance</span></div>
+        <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:20px;line-height:1.3;margin:0 0 var(--space-2);">HMRC — Making Tax Digital for Income Tax</h2>
+        <p style="font-size:14.5px;line-height:1.6;color:color-mix(in srgb, var(--color-text) 70%, transparent);margin:0;">A submission to HMRC on Making Tax Digital for Income Tax and digital compliance for self-employed workers and landlords.</p>
+        <div style="flex:1;"></div>
+        <a href="https://daramolajo.co.uk/papers/hmrc-making-tax-digital-submission.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);align-self:flex-start;">Read Insight ↗</a>
+      </div>
     </div>
   </section>
 
