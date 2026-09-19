@@ -14,7 +14,7 @@ through **Claude Design → Netlify**, which renders the pages and serves the re
 ```
 Jomovate design system/
 ├─ Home.dc.html          # Landing page
-├─ Products.dc.html      # 8 real products with screenshots
+├─ Products.dc.html      # Full product portfolio, filterable by category
 ├─ Services.dc.html      # Data Analytics · Digital Product Development ·
 │                        #   Workflow Automation · Research & Business Intelligence
 ├─ About.dc.html         # Company + founder profile
@@ -44,9 +44,10 @@ deploy time. The public contact address is `dju78@jomovate.com`.
 
 ## Deployment
 
-Publish from Claude Design using **Send to Netlify**, then connect the custom domains
-`jomovate.com` and `www.jomovate.com` in Netlify. See the project deployment notes for the
-full DNS and verification checklist.
+The `jomovate` Netlify project is connected to this repository's `main` branch: every push
+triggers a production build (publishing the `Jomovate design system` folder per
+`netlify.toml`) and deploys straight to `jomovate.com`, usually within about a minute. There
+is no manual "Send to Netlify" step — commit to `main` and Netlify takes it from there.
 
 ---
 © 2026 Jomovate. All rights reserved.

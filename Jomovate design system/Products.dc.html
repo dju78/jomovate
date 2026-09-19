@@ -15,19 +15,33 @@
 <script src="_ds/organic-95994641-e423-4271-b7f1-7d83110eab40/_ds_bundle.js"></script>
 <script src="./image-slot.js"></script>
 <title>Products — Jomovate</title>
-<meta name="description" content="Practical digital products from Jomovate, built from real operational challenges — CarePhrase, Care Quality Intelligence, TaxMate UK, GarageProof UK and more.">
+<meta name="description" content="Practical digital products from Jomovate across analytics, health &amp; care, finance, automotive workflows and community technology — Care Quality Intelligence, UKCalc, Performance Insight Explorer, CarePhrase, GarageProof UK and more.">
 <link rel="canonical" href="https://jomovate.com/Products.dc.html">
 <link rel="icon" type="image/png" href="./assets/jomovate-icon.webp">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Jomovate">
 <meta property="og:title" content="Products — Jomovate">
-<meta property="og:description" content="Practical digital products from Jomovate, built from real operational challenges — CarePhrase, Care Quality Intelligence, TaxMate UK, GarageProof UK and more.">
+<meta property="og:description" content="Practical digital products from Jomovate across analytics, health &amp; care, finance, automotive workflows and community technology — Care Quality Intelligence, UKCalc, Performance Insight Explorer, CarePhrase, GarageProof UK and more.">
 <meta property="og:url" content="https://jomovate.com/Products.dc.html">
 <meta property="og:image" content="https://jomovate.com/assets/jomovate-logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Products — Jomovate">
-<meta name="twitter:description" content="Practical digital products from Jomovate, built from real operational challenges — CarePhrase, Care Quality Intelligence, TaxMate UK, GarageProof UK and more.">
+<meta name="twitter:description" content="Practical digital products from Jomovate across analytics, health &amp; care, finance, automotive workflows and community technology.">
 <meta name="twitter:image" content="https://jomovate.com/assets/jomovate-logo.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ItemList","name":"Jomovate Products","itemListElement":[
+{"@type":"ListItem","position":1,"url":"https://cqi.carephrase.com","name":"Care Quality Intelligence"},
+{"@type":"ListItem","position":2,"url":"https://ukcalc.jomovate.com/","name":"UKCalc"},
+{"@type":"ListItem","position":3,"url":"https://performance-insight-explorer.streamlit.app/performance_overview","name":"Performance Insight Explorer"},
+{"@type":"ListItem","position":4,"url":"https://carephrase.com","name":"CarePhrase"},
+{"@type":"ListItem","position":5,"url":"https://car.jomovate.com/","name":"GarageProof UK"},
+{"@type":"ListItem","position":6,"url":"https://taxmate.omoyelejd.co.uk/","name":"TaxMate UK"},
+{"@type":"ListItem","position":7,"url":"https://comms.carephrase.com","name":"CarePhrase Communication Academy"},
+{"@type":"ListItem","position":8,"url":"https://speech.omoyelejd.co.uk","name":"Professional Speaking Trainer"},
+{"@type":"ListItem","position":9,"url":"https://www.takete-ide.org/","name":"Takete-Ide Community Platform"},
+{"@type":"ListItem","position":10,"url":"https://dju78.github.io/kogiqest/","name":"Kogi Quest"}
+]}
+</script>
 <style>
 a { color: var(--color-accent-700); }
 a:hover { color: var(--color-accent-800, var(--color-accent-700)); }
@@ -41,91 +55,298 @@ a:hover { color: var(--color-accent-800, var(--color-accent-700)); }
   .dc-inline-form { flex-wrap: wrap !important; }
   .dc-inline-form > * { flex: 1 1 100% !important; }
 }
+.filter-pill { position: relative; cursor: pointer; font-size: 12.5px; font-weight: 600; border: 1px solid var(--color-divider); background: transparent; color: var(--color-text); }
+.filter-pill input { position: absolute; opacity: 0; width: 0; height: 0; }
+.filter-pill:has(input:checked) { background: var(--color-accent-700); border-color: var(--color-accent-700); color: #fff; }
+.filter-pill:hover:not(:has(input:checked)) { background: color-mix(in srgb, var(--color-text) 6%, transparent); }
+.feat-chip { font-size: 10.5px; opacity: 0.85; }
+.status-note { display: inline-flex; align-items: center; margin-top: var(--space-2); }
+body:has(#f-analytics:checked) #product-grid .product-card:not([data-cat~="analytics"]) { display: none; }
+body:has(#f-health:checked) #product-grid .product-card:not([data-cat~="health"]) { display: none; }
+body:has(#f-finance:checked) #product-grid .product-card:not([data-cat~="finance"]) { display: none; }
+body:has(#f-automotive:checked) #product-grid .product-card:not([data-cat~="automotive"]) { display: none; }
+body:has(#f-learning:checked) #product-grid .product-card:not([data-cat~="learning"]) { display: none; }
+body:has(#f-community:checked) #product-grid .product-card:not([data-cat~="community"]) { display: none; }
 </style>
 </helmet>
 <dc-import name="NavHeader" active="products" hint-size="100%,72px"></dc-import>
 
 <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px);">
 
-  <section style="padding:calc(3 * 28px) 0 calc(2 * 28px);max-width:64ch;">
+  <section style="padding:calc(3 * 28px) 0 calc(1.5 * 28px);max-width:68ch;">
     <span style="display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 14px;">Products</span>
-    <h1 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(36px,5vw,56px);line-height:1.1;margin:0;">Tools built from real engagements</h1>
-    <p style="font-size:17px;line-height:28px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:24px 0 0;">Jomovate develops practical digital products designed around real operational challenges and user needs.</p>
+    <h1 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(36px,5vw,56px);line-height:1.1;margin:0;">Practical products, built from real problems</h1>
+    <p style="font-size:17px;line-height:28px;color:color-mix(in srgb, var(--color-text) 78%, transparent);margin:24px 0 0;">Jomovate builds digital products across analytics, health &amp; care, finance, automotive workflows and community technology — each one built to turn a specific, complex problem into a simple, useful tool. This page reflects what's actually live today, including work still in pilot or early development.</p>
   </section>
 
-  <section class="dc-grid-3" style="padding:0 0 calc(2.5 * 28px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);">
-    <div class="card elev-sm">
-      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
-        <image-slot id="prod-carephrase" shape="rect" src="./assets/prod-carephrase.webp" placeholder="CarePhrase" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
-      </figure>
-      <div class="card-kicker">Care · Writing</div>
-      <div class="card-title">CarePhrase</div>
-      <p class="card-body">Training support for writing clear, factual and professional care notes.</p>
-      <a href="https://carephrase.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);">Explore ↗</a>
+  <section style="padding:0 0 calc(1.5 * 28px);">
+    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+      <label class="filter-pill tag"><input type="radio" name="product-filter" checked>All products</label>
+      <label class="filter-pill tag"><input type="radio" name="product-filter" id="f-analytics">Analytics &amp; Intelligence</label>
+      <label class="filter-pill tag"><input type="radio" name="product-filter" id="f-health">Health &amp; Care</label>
+      <label class="filter-pill tag"><input type="radio" name="product-filter" id="f-finance">Finance &amp; Calculators</label>
+      <label class="filter-pill tag"><input type="radio" name="product-filter" id="f-automotive">Automotive</label>
+      <label class="filter-pill tag"><input type="radio" name="product-filter" id="f-learning">Learning &amp; Communication</label>
+      <label class="filter-pill tag"><input type="radio" name="product-filter" id="f-community">Community Technology</label>
     </div>
-    <div class="card elev-sm">
+  </section>
+
+  <section id="product-grid" class="dc-grid-3" style="padding:0 0 calc(2.5 * 28px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);align-items:stretch;">
+
+    <div class="card elev-sm product-card" data-cat="analytics health">
       <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
         <image-slot id="prod-cqi" shape="rect" src="./assets/prod-cqi.webp" placeholder="Care Quality Intelligence" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
       </figure>
-      <div class="card-kicker">Care · Quality</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Health &amp; Care · Quality Intelligence</div>
+        <span class="tag tag-accent-2">Live</span>
+      </div>
       <div class="card-title">Care Quality Intelligence</div>
-      <p class="card-body">Quality monitoring, supervision evidence and operational insights for adult social care providers.</p>
-      <a href="https://cqi.carephrase.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);">Explore ↗</a>
+      <p class="card-body">Care providers often keep quality evidence, supervision records and risk information scattered across spreadsheets. CQI brings it into one place — role-based dashboards for directors, managers and team leaders that keep quality indicators and supervision evidence organised and easy to produce.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="tag tag-neutral feat-chip">Quality dashboards</span>
+        <span class="tag tag-neutral feat-chip">Risk monitoring</span>
+        <span class="tag tag-neutral feat-chip">Supervision evidence</span>
+        <span class="tag tag-neutral feat-chip">Workforce records</span>
+      </div>
+      <p class="card-meta">For registered managers, directors &amp; team leaders in adult social care</p>
+      <a href="https://cqi.carephrase.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View live product ↗</a>
     </div>
-    <div class="card elev-sm">
+
+    <div class="card elev-sm product-card" data-cat="finance">
       <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
-        <image-slot id="prod-taxmate" shape="rect" src="./assets/prod-taxmate.webp" placeholder="TaxMate UK" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
+        <image-slot id="prod-ukcalc" shape="rect" placeholder="UKCalc" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
       </figure>
-      <div class="card-kicker">Finance</div>
-      <div class="card-title">TaxMate UK</div>
-      <p class="card-body">Simple bookkeeping tools for UK sole traders managing income, expenses and business performance.</p>
-      <a href="https://taxmate.omoyelejd.co.uk/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);">Explore ↗</a>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Finance &amp; Calculators</div>
+        <span class="tag tag-accent-2">Live</span>
+      </div>
+      <div class="card-title">UKCalc</div>
+      <p class="card-body">253 free UK calculators across 19 categories, from income tax and mortgages to pensions, ISAs and everyday conversions — built so the math behind a financial decision is clear rather than hidden in a spreadsheet.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="tag tag-neutral feat-chip">UK tax &amp; salary</span>
+        <span class="tag tag-neutral feat-chip">Mortgages &amp; property</span>
+        <span class="tag tag-neutral feat-chip">Pensions &amp; ISAs</span>
+        <span class="tag tag-neutral feat-chip">Investing &amp; business</span>
+      </div>
+      <p class="card-meta">For individuals, sole traders, homebuyers &amp; analysts</p>
+      <a href="https://ukcalc.jomovate.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View live product ↗</a>
     </div>
-    <div class="card elev-sm">
+
+    <div class="card elev-sm product-card" data-cat="analytics">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-pie" shape="rect" placeholder="Performance Insight Explorer" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
+      </figure>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Analytics · Business Intelligence</div>
+        <span class="tag tag-accent-2">Live</span>
+      </div>
+      <div class="card-title">Performance Insight Explorer</div>
+      <p class="card-body">Upload operational data and it walks the rest of the way — data-quality checks, a KPI performance overview, trend and comparative analysis, root-cause exploration and export-ready reporting, so teams spend their time on the decision, not the spreadsheet.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="tag tag-neutral feat-chip">Upload-driven analysis</span>
+        <span class="tag tag-neutral feat-chip">KPI overview</span>
+        <span class="tag tag-neutral feat-chip">Trends &amp; comparisons</span>
+        <span class="tag tag-neutral feat-chip">Root cause &amp; export</span>
+      </div>
+      <p class="card-meta">For operational teams, analysts, managers &amp; public-sector teams</p>
+      <a href="https://performance-insight-explorer.streamlit.app/performance_overview" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View live product ↗</a>
+    </div>
+
+    <div class="card elev-sm product-card" data-cat="analytics">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-pqe" shape="rect" placeholder="Price Quality Explorer" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
+      </figure>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Analytics · Statistical Technology</div>
+        <span class="tag tag-neutral">In development</span>
+      </div>
+      <div class="card-title">Price Quality Explorer</div>
+      <p class="card-body">An interactive statistical workbench for price data — data-quality assessment, anomaly identification, matched-price analysis and index methodology (Jevons, Carli and Dutot comparisons), plus category trends and sensitivity analysis, all through a transparent, reproducible workflow.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="tag tag-neutral feat-chip">Data-quality assessment</span>
+        <span class="tag tag-neutral feat-chip">Index methodology</span>
+        <span class="tag tag-neutral feat-chip">Sensitivity analysis</span>
+      </div>
+      <p class="card-meta">For analysts and organisations working with price data</p>
+      <span class="tag tag-outline status-note">Live demo temporarily unavailable</span>
+    </div>
+
+    <div class="card elev-sm product-card" data-cat="health">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-carephrase" shape="rect" src="./assets/prod-carephrase.webp" placeholder="CarePhrase" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
+      </figure>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Health &amp; Care · Communication</div>
+        <span class="tag tag-accent-2">Live · free</span>
+      </div>
+      <div class="card-title">CarePhrase</div>
+      <p class="card-body">A free training coach for care notes. It never writes the note for you — it coaches clarity, professionalism, completeness and safeguarding language, and asks the reflective questions that turn a weak entry into one you'd stand behind.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="tag tag-neutral feat-chip">Care Note Coach</span>
+        <span class="tag tag-neutral feat-chip">Handover Practice</span>
+        <span class="tag tag-neutral feat-chip">Safeguarding Language</span>
+        <span class="tag tag-neutral feat-chip">Interview Practice</span>
+      </div>
+      <p class="card-meta">For UK healthcare assistants &amp; support workers — no sign-up</p>
+      <a href="https://carephrase.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View live product ↗</a>
+    </div>
+
+    <div class="card elev-sm product-card" data-cat="automotive">
       <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
         <image-slot id="prod-garageproof" shape="rect" src="./assets/product-garageproof.webp" placeholder="GarageProof UK" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
       </figure>
-      <div class="card-kicker">Automotive</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Automotive · Workflow</div>
+        <span class="tag tag-outline">Pilot</span>
+      </div>
       <div class="card-title">GarageProof UK</div>
-      <p class="card-body">A transparent digital repair workflow from vehicle check-in to customer approval and completion.</p>
-      <a href="https://auto.jomovate.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);">Explore ↗</a>
+      <p class="card-body">A transparent digital repair workflow for garages — from vehicle check-in through estimates, customer approval links and completion, with an audit trail that replaces paper and phone-call chasing. Onboarding pilot garages now.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="tag tag-neutral feat-chip">Estimates &amp; approvals</span>
+        <span class="tag tag-neutral feat-chip">Customer approval links</span>
+        <span class="tag tag-neutral feat-chip">Audit trail</span>
+        <span class="tag tag-neutral feat-chip">Invoicing</span>
+      </div>
+      <p class="card-meta">For independent garages &amp; repair workshops</p>
+      <a href="https://car.jomovate.com/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View live product ↗</a>
     </div>
-    <div class="card elev-sm">
+
+    <div class="card elev-sm product-card" data-cat="finance">
       <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
-        <image-slot id="prod-autodamage" shape="rect" src="./assets/prod-autodamage.webp" placeholder="AutoDamage Quote" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
+        <image-slot id="prod-taxmate" shape="rect" src="./assets/prod-taxmate.webp" placeholder="TaxMate UK" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
       </figure>
-      <div class="card-kicker">Automotive</div>
-      <div class="card-title">AutoDamage Quote</div>
-      <p class="card-body">Visual vehicle-damage assessment and quotation technology.</p>
-      <a href="https://car.jomovate.com/login" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);">Explore ↗</a>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Finance · Sole Trader Tools</div>
+        <span class="tag tag-accent-2">Live</span>
+      </div>
+      <div class="card-title">TaxMate UK</div>
+      <p class="card-body">Simple bookkeeping for UK sole traders — income and expense tracking, Self Assessment deadline reminders and invoicing, kept entirely in your browser with no cloud sign-up. General guidance only, not personal tax advice.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="tag tag-neutral feat-chip">Income &amp; expenses</span>
+        <span class="tag tag-neutral feat-chip">Tax-year deadlines</span>
+        <span class="tag tag-neutral feat-chip">Invoicing</span>
+        <span class="tag tag-neutral feat-chip">Local-only storage</span>
+      </div>
+      <p class="card-meta">For UK sole traders &amp; freelancers</p>
+      <a href="https://taxmate.omoyelejd.co.uk/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View live product ↗</a>
     </div>
-    <div class="card elev-sm">
-      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
-        <image-slot id="prod-speaking" shape="rect" src="./assets/prod-speaking.webp" placeholder="Speaking Trainer" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
-      </figure>
-      <div class="card-kicker">Communication</div>
-      <div class="card-title">Speaking Trainer</div>
-      <p class="card-body">Speaking practice that improves clarity, pronunciation and confidence.</p>
-      <a href="https://speech.omoyelejd.co.uk" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);">Explore ↗</a>
-    </div>
-    <div class="card elev-sm">
+
+    <div class="card elev-sm product-card" data-cat="health learning">
       <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
         <image-slot id="prod-academy" shape="rect" src="./assets/prod-academy.webp" placeholder="CarePhrase Communication Academy" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
       </figure>
-      <div class="card-kicker">Care · Training</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Health &amp; Care · Digital Learning</div>
+        <span class="tag tag-outline">Pilot</span>
+      </div>
       <div class="card-title">CarePhrase Communication Academy</div>
-      <p class="card-body">Structured training for handovers, escalation, safeguarding and care English.</p>
-      <a href="https://comms.carephrase.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);">Explore ↗</a>
+      <p class="card-body">Structured communication training for care teams — handovers, escalation, safeguarding conversations and everyday care English — rehearsed by voice and scored with structured feedback on clarity, completeness and professional language.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="tag tag-neutral feat-chip">Handover Academy</span>
+        <span class="tag tag-neutral feat-chip">Escalation Skills</span>
+        <span class="tag tag-neutral feat-chip">Safeguarding Communication</span>
+        <span class="tag tag-neutral feat-chip">Care English</span>
+      </div>
+      <p class="card-meta">For care homes, home care &amp; training providers</p>
+      <a href="https://comms.carephrase.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View live product ↗</a>
     </div>
-    <div class="card elev-sm">
+
+    <div class="card elev-sm product-card" data-cat="learning">
       <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
-        <image-slot id="prod-kogiquest" shape="rect" src="./assets/prod-kogiquest.webp" placeholder="KogiQuest" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
+        <image-slot id="prod-speaking" shape="rect" src="./assets/prod-speaking.webp" placeholder="Professional Speaking Trainer" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
       </figure>
-      <div class="card-kicker">Education</div>
-      <div class="card-title">KogiQuest</div>
-      <p class="card-body">An interactive educational game exploring Kogi State history, culture and traditions.</p>
-      <a href="https://dju78.github.io/kogiqest/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-3);">Explore ↗</a>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Learning &amp; Communication</div>
+        <span class="tag tag-accent-2">Live</span>
+      </div>
+      <div class="card-title">Professional Speaking Trainer</div>
+      <p class="card-body">Structured speaking drills — introductions, STAR interview answers, briefings and presentations — scored in real time on pace, filler words, clarity and delivery using your browser's own speech recognition.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="tag tag-neutral feat-chip">Structured drills</span>
+        <span class="tag tag-neutral feat-chip">Live transcript</span>
+        <span class="tag tag-neutral feat-chip">Pace &amp; filler tracking</span>
+      </div>
+      <p class="card-meta">For interview prep, presentations &amp; everyday workplace speaking</p>
+      <a href="https://speech.omoyelejd.co.uk" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View live product ↗</a>
     </div>
+
+    <div class="card elev-sm product-card" data-cat="community">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-takete" shape="rect" placeholder="Takete-Ide Community Platform" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
+      </figure>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Community Technology</div>
+        <span class="tag tag-accent-2">Live</span>
+      </div>
+      <div class="card-title">Takete-Ide Community Platform</div>
+      <p class="card-body">A full community platform for Takete-Ide, Kogi State, Nigeria — heritage and history, development-project tracking across roads, security, education and healthcare, culture galleries, a diaspora network and a newsroom. Jomovate's clearest example of civic and community technology, not just commercial tools.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">
+        <span class="tag tag-neutral feat-chip">Heritage &amp; history</span>
+        <span class="tag tag-neutral feat-chip">Development tracking</span>
+        <span class="tag tag-neutral feat-chip">Diaspora network</span>
+        <span class="tag tag-neutral feat-chip">Culture galleries</span>
+      </div>
+      <p class="card-meta">For the Takete-Ide community, at home and in the diaspora</p>
+      <a href="https://www.takete-ide.org/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View live product ↗</a>
+    </div>
+
+    <div class="card elev-sm product-card" data-cat="community">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-kogiquest" shape="rect" src="./assets/prod-kogiquest.webp" placeholder="Kogi Quest" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
+      </figure>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Community · Education</div>
+        <span class="tag tag-accent-2">Live</span>
+      </div>
+      <div class="card-title">Kogi Quest</div>
+      <p class="card-body">An interactive quiz game exploring Kogi State's history, culture and confluence heritage — a fun, shareable way to connect people with local knowledge, with its own leaderboard linked from the Takete-Ide community platform.</p>
+      <p class="card-meta">For the Kogi diaspora, students &amp; anyone curious about the region</p>
+      <a href="https://dju78.github.io/kogiqest/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View live product ↗</a>
+    </div>
+
+    <div class="card elev-sm product-card" data-cat="finance">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-nairaguard" shape="rect" placeholder="NairaGuard" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
+      </figure>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Financial Technology</div>
+        <span class="tag tag-neutral">Prototype · demo</span>
+      </div>
+      <div class="card-title">NairaGuard</div>
+      <p class="card-body">A prototype for spotting counterfeit Naira notes from a phone photo — camera capture, note preview and a learning section. The current build uses simulated analysis to demonstrate the workflow; real detection has not yet been integrated.</p>
+      <p class="card-meta">Aimed at everyday cash transactions in Nigeria</p>
+      <a href="https://daramol.netlify.app" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View prototype ↗</a>
+    </div>
+
+    <div class="card elev-sm product-card" data-cat="finance">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-deap" shape="rect" placeholder="DEAP Tax Compliance" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
+      </figure>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Compliance Technology</div>
+        <span class="tag tag-neutral">Early access</span>
+      </div>
+      <div class="card-title">DEAP Tax Compliance</div>
+      <p class="card-body">A compliance-support tool for tax record-keeping, currently accessible to pilot users behind sign-in. Not regulated tax advice and not a guarantee of compliance outcomes — further product detail will follow as the pilot progresses.</p>
+      <p class="card-meta">For pilot users during early development</p>
+      <a href="https://deaptaxcompliance.netlify.app" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View live product ↗</a>
+    </div>
+
+    <div class="card elev-sm product-card" data-cat="finance community">
+      <figure style="margin:0;border-radius:var(--radius-sm);overflow:hidden;background:var(--color-neutral-100);">
+        <image-slot id="prod-ubapulse" shape="rect" placeholder="UBA Pulse" style="width:100%;aspect-ratio:16/10;" loading="lazy"></image-slot>
+      </figure>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="card-kicker">Early-Stage Product</div>
+        <span class="tag tag-neutral">Early prototype</span>
+      </div>
+      <div class="card-title">UBA Pulse</div>
+      <p class="card-body">An early-stage mobile-first product currently at the account-setup stage of development. Full functionality is still being built out, so this listing will be updated as the product matures.</p>
+      <p class="card-meta">In development</p>
+      <a href="https://ubapulse.netlify.app" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="text-decoration:none;margin-top:var(--space-2);">View prototype ↗</a>
+    </div>
+
   </section>
 
   <section style="padding:0 0 calc(3 * 28px);">
@@ -143,6 +364,6 @@ a:hover { color: var(--color-accent-800, var(--color-accent-700)); }
 <dc-import name="Footer" hint-size="100%,220px"></dc-import>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1600}}"></script>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:3200}}"></script>
 </body>
 </html>
