@@ -22,7 +22,7 @@ if (form) {
   if (ref && /^[a-z0-9-]{1,80}$/.test(ref)) form.querySelector('[data-referring-project]').value = ref;
 
   // Campaign attribution: only allow-listed, sanitised values (see attribution.js).
-  const attribution = pickAttribution(location.search);
+  const attribution = pickAttribution(location.search, location.pathname);
   for (const input of form.querySelectorAll('[data-attribution]')) input.value = attribution[input.name] || '';
 
   const fieldsWithErrors = new Set();
