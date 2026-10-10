@@ -42,7 +42,7 @@ drafts/              ← gitignored: unpublished client case studies
 ```bash
 npm run build          # builds into _site/
 npm run serve          # http://localhost:8123 (form POSTs simulated as success)
-npm test               # 22 checks: links, metadata, form wiring, redirects, data rules
+npm test               # 42 checks: links, metadata, form, WhatsApp, attribution, data rules
 npm run check-links    # external link status report
 npm run build:drafts   # include drafts/ (noindex) for local review
 ```
@@ -51,7 +51,7 @@ Set `FORMS=fail` before `npm run serve` to see how the contact page behaves when
 
 ## Adding or updating a project
 
-1. Add an object to `content/projects.json` (copy an existing one). Required: `slug`, `title`, `status` (`live | pilot | prototype | in-development | archived`), `type`, `service`, `categories`, the text fields, and `published`.
+1. Add an object to `content/projects.json` (copy an existing one). Required: `slug`, `title`, `status` (`live | pilot | prototype | in-development | archived`), `access` (`open | demo-login | sign-in | invite-only | unavailable`), `type`, `service`, `categories`, the text fields, and `published`. Gated or unfinished entries automatically get a "Request a demonstration" route.
 2. Add screenshots: `static/img/projects/<slug>.webp` (1200×750), `<slug>-640.webp` (640×400) and `static/img/og/<slug>.jpg` (1200×630). Keep personal and client data out of screenshots.
 3. `npm test`. The build refuses: private or non-exact GitHub links in `publicSource`, unknown statuses, missing screenshots, and `type: "client"` entries without `clientApproved: true`.
 
@@ -59,9 +59,27 @@ The card, filters, case-study page, sitemap entry and social preview are generat
 
 ## Contact form
 
-`/contact/` posts to **Netlify Forms** (`name="jomovate-enquiry"`, honeypot `company-website`). The page shows success only when Netlify returns a 2xx response; otherwise it shows an error and keeps the visitor's answers. Without JavaScript the form posts normally and lands on `/contact/thanks/`.
+`/contact/` posts to **Netlify Forms** (`name="jomovate-enquiry"`, hidden `form-name`, honeypot `company-website`, plus Netlify's built-in spam filtering). It validates accessibly, shows a "Sending…" state, shows success only when Netlify returns a 2xx response, and otherwise shows an error with the email address while keeping the visitor's answers. Without JavaScript the form posts normally and lands on `/contact/thanks/`. Optional fields: organisation, budget, timeframe, "How did you hear about Jomovate?"; hidden campaign fields are described in `docs/MEASUREMENT.md`.
 
-**Form detection must be enabled** in Netlify (Project configuration → Forms → Enable form detection). As of 10 October 2026 it was *not* enabled and no forms were registered, so earlier submissions were never captured. Set up an email notification for the form after enabling it.
+**Form detection must be enabled** in Netlify (Project configuration → Forms), and an email notification set to `info@jomovate.com` (Project configuration → Notifications → Emails and webhooks → Form submission notifications).
+
+## WhatsApp (optional)
+
+Two independent settings; each button stays hidden until its own value is valid:
+
+| Setting | Shows |
+|---|---|
+| `WHATSAPP_NUMBER` | "Chat on WhatsApp" (wa.me link with a short draft message) on the contact page, footer, service pages and case studies |
+| `WHATSAPP_CHANNEL_URL` | "Follow Jomovate on WhatsApp" link in the footer and contact page |
+
+- **Local preview:** copy `.env.example` to `.env.local` (gitignored) and fill in the values, then `npm run build`.
+- **Live site:** add the same names in Netlify → Project configuration → Environment variables, then redeploy.
+
+The build prints only "enabled" or "hidden", never the number. A click-to-chat link is public: anyone can see the number in the page. Draft messages are fixed text (they never include form entries) and WhatsApp does not send anything until the visitor presses send.
+
+## Measurement
+
+No analytics or advertising tags are installed. Campaign attribution and the event hooks for adding Google Ads or GA4 later are documented in `docs/MEASUREMENT.md`. Issues found in separately hosted apps are listed in `docs/EXTERNAL_APP_ISSUES.md`.
 
 ## Deployment
 

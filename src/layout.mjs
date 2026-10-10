@@ -21,6 +21,8 @@ const NAV = [
   { href: '/insights/', label: 'Insights', key: 'insights' },
 ];
 
+import { waLink, DRAFTS } from './whatsapp.mjs';
+
 export const STATUS_LABELS = {
   live: 'Live',
   pilot: 'Pilot',
@@ -37,13 +39,50 @@ export const TYPE_LABELS = {
   concept: 'Concept',
 };
 
+// How a visitor can reach each portfolio entry. Shown on cards and case studies so nothing implies open access it doesn't have.
+export const ACCESS_LABELS = {
+  open: 'Open to try',
+  'demo-login': 'Demo sign-in provided',
+  'sign-in': 'Account sign-in required',
+  'invite-only': 'Invited pilot users only',
+  unavailable: 'Demo currently unavailable',
+};
+
+export function accessLabel(access) {
+  return html`<span class="access${access === 'open' ? ' access-open' : ''}">${esc(ACCESS_LABELS[access] || access)}</span>`;
+}
+
 export const icon = {
   arrow: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
   external: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>',
   code: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>',
   check: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
   mail: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>',
+  chat: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>',
+  bell: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>',
 };
+
+/** Email link with a click hook (a click is not an enquiry; see docs/MEASUREMENT.md). */
+export function emailLink(site, where, { iconFirst = false } = {}) {
+  return html`<a href="mailto:${site.email}" data-track="contact_click" data-method="email" data-location="${esc(where)}">${iconFirst ? `${icon.mail} ` : ''}${site.email}</a>`;
+}
+
+/**
+ * "Chat on WhatsApp" button. Renders nothing unless a valid business number is configured.
+ * The draft text is generic (never visitor input) and is only pre-filled — WhatsApp does not send it automatically.
+ */
+export function waChat(site, { message = DRAFTS.general, where, className = 'btn btn-whatsapp', note = false } = {}) {
+  const chat = site.whatsapp?.chat;
+  if (!chat) return '';
+  return html`<a class="${className}" href="${esc(waLink(chat.digits, message))}" rel="noopener" data-track="contact_click" data-method="whatsapp" data-location="${esc(where)}">${icon.chat} Chat on WhatsApp<span class="visually-hidden"> (opens WhatsApp with a draft message; nothing is sent until you press send)</span></a>${note ? html`<p class="wa-note">Opens WhatsApp with a short draft. Nothing is sent until you press send.</p>` : ''}`;
+}
+
+/** Secondary "follow" link for the WhatsApp channel. Renders nothing unless a valid channel URL is configured. */
+export function waChannel(site, where) {
+  const channel = site.whatsapp?.channel;
+  if (!channel) return '';
+  return html`<a class="channel-link" href="${esc(channel.url)}" rel="noopener" data-track="channel_click" data-method="whatsapp_channel" data-location="${esc(where)}">${icon.bell} Follow Jomovate on WhatsApp</a>`;
+}
 
 export function statusBadge(status) {
   return html`<span class="badge badge-${esc(status)}">${esc(STATUS_LABELS[status] || status)}</span>`;
@@ -54,7 +93,7 @@ export function picture(slug, alt, { eager = false, sizes = '(min-width: 1100px)
   return html`<img src="${base}-640.webp" srcset="${base}-640.webp 640w, ${base}.webp 1200w" sizes="${sizes}" width="1200" height="750" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"'}>`;
 }
 
-export function placeholder(title) {
+export function placeholder(title, reason = 'No public screenshot') {
   const initials = title
     .replace(/\(.*?\)/g, '')
     .split(/\s+/)
@@ -62,7 +101,7 @@ export function placeholder(title) {
     .slice(0, 2)
     .map((w) => w[0])
     .join('');
-  return html`<div class="shot-placeholder" aria-hidden="true"><span>${esc(initials)}</span><small>No public screenshot</small></div>`;
+  return html`<div class="shot-placeholder" role="img" aria-label="${esc(`${title}: ${reason}`)}"><span>${esc(initials)}</span><small>${esc(reason)}</small></div>`;
 }
 
 export function projectCard(p, categories, { headingLevel = 3 } = {}) {
@@ -70,24 +109,26 @@ export function projectCard(p, categories, { headingLevel = 3 } = {}) {
   const cats = p.categories.map((c) => categories[c]).join(' · ');
   const search = [p.title, p.summary, p.solution, p.features.join(' '), cats, p.tech.join(' '), TYPE_LABELS[p.type], STATUS_LABELS[p.status]].join(' ').toLowerCase();
   return html`<article class="project-card" data-categories="${esc(p.categories.join(' '))}" data-status="${esc(p.status)}" data-service="${esc(p.service)}" data-search="${esc(search)}">
-    <a class="project-card-media" href="/work/${p.slug}/" tabindex="-1" aria-hidden="true">${p.image ? picture(p.slug, '') : placeholder(p.title)}</a>
+    <a class="project-card-media" href="/work/${p.slug}/" tabindex="-1" aria-hidden="true">${p.image ? picture(p.slug, '') : placeholder(p.title, p.noImageReason)}</a>
     <div class="project-card-body">
       <div class="project-card-meta">${statusBadge(p.status)}<span class="kicker">${esc(cats)}</span></div>
       <${h} class="project-card-title"><a href="/work/${p.slug}/">${esc(p.title)}</a></${h}>
       <p>${esc(p.summary)}</p>
+      <p class="access-row">${accessLabel(p.access)}</p>
       <p class="project-card-type">${esc(TYPE_LABELS[p.type])}</p>
     </div>
   </article>`;
 }
 
-export function cta({ title = 'Have a project in mind?', text = 'Tell me what you need and where you are starting from. I will reply with questions or next steps — no obligation.', primary = ['Discuss your project', '/contact/'], secondary = ['Request a quote', '/contact/?type=quote'] } = {}) {
+export function cta({ title = 'Have a project in mind?', text = 'Tell me what you need and where you are starting from. I will reply with questions or next steps — no obligation.', primary = ['Discuss your project', '/contact/'], secondary = ['Request a quote', '/contact/?type=quote'], whatsapp = '' } = {}) {
   return html`<section class="cta-band" aria-labelledby="cta-title">
     <div>
       <h2 id="cta-title">${esc(title)}</h2>
       <p>${esc(text)}</p>
     </div>
     <div class="actions">
-      <a class="btn btn-primary" href="${primary[1]}">${esc(primary[0])}</a>
+      <a class="btn btn-primary" href="${primary[1]}" data-track="cta_click" data-location="cta-band">${esc(primary[0])}</a>
+      ${whatsapp}
       ${secondary ? html`<a class="btn btn-secondary" href="${secondary[1]}">${esc(secondary[0])}</a>` : ''}
     </div>
   </section>`;
@@ -130,9 +171,8 @@ ${noindex ? '<meta name="robots" content="noindex">' : ''}
 <meta name="theme-color" content="#f5ead8">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="preload" href="/fonts/figtree-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/caprasimo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${assets.css}">
 ${ld.map((obj) => html`<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>\n`)}
 <script type="module" src="${assets.js}"></script>
@@ -151,7 +191,7 @@ ${scripts.map((s) => html`<script type="module" src="${s}"></script>`)}
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>
         ${NAV.map((n) => html`<li><a href="${n.href}"${active === n.key ? ' aria-current="page"' : ''}>${n.label}</a></li>`)}
-        <li><a class="btn btn-primary btn-sm" href="/contact/"${active === 'contact' ? ' aria-current="page"' : ''}>Discuss your project</a></li>
+        <li><a class="btn btn-primary btn-sm" href="/contact/"${active === 'contact' ? ' aria-current="page"' : ''} data-track="cta_click" data-location="header">Discuss your project</a></li>
       </ul>
     </nav>
   </div>
@@ -164,7 +204,12 @@ ${body}
     <div>
       <p class="footer-brand">Jomovate Digital Labs</p>
       <p>Websites, practical applications and data analysis for UK organisations. Founder-led by ${esc(site.founder.name)}.</p>
-      <p><a href="mailto:${site.email}">${site.email}</a> · ${esc(site.country)}</p>
+      <div class="footer-contact">
+        ${emailLink(site, 'footer', { iconFirst: true })}
+        ${waChat(site, { where: 'footer', className: '' })}
+        ${site.whatsapp?.channel ? html`<span>${waChannel(site, 'footer')}<span class="wa-note"> — product updates and business news</span></span>` : ''}
+        <span>${esc(site.country)}</span>
+      </div>
     </div>
     <div>
       <p class="footer-heading">Services</p>
