@@ -170,3 +170,16 @@ test('the homepage features a limited selection, not every project', () => {
   const cards = (home.match(/class="project-card"/g) || []).length;
   assert.ok(cards >= 3 && cards <= 6, `homepage shows ${cards} project cards`);
 });
+
+test('every email address and mailto link uses the configured business email', () => {
+  const { email } = JSON.parse(readFileSync(join(root, 'content/site.json'), 'utf8'));
+  assert.equal(email, 'info@jomovate.com');
+  for (const f of htmlFiles) {
+    const html = readFileSync(f, 'utf8');
+    assert.ok(!/dju78@jomovate\.com/i.test(html), `old address in ${f}`);
+    for (const m of html.matchAll(/href="mailto:([^"?]+)/g)) assert.equal(m[1], email, `unexpected mailto in ${f}`);
+    for (const m of html.matchAll(/[\w.+-]+@jomovate\.com/gi)) assert.equal(m[0].toLowerCase(), email, `unexpected address ${m[0]} in ${f}`);
+  }
+  const ld = read('index.html').match(/"email":"([^"]+)"/);
+  assert.equal(ld?.[1], email, 'Organization JSON-LD email');
+});

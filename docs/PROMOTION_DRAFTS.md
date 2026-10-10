@@ -96,4 +96,4 @@ Use only for people you have a genuine connection with or a specific reason to c
 >
 > Best wishes,
 > Daramola Joseph Omoyele
-> Jomovate Digital Labs · dju78@jomovate.com
+> Jomovate Digital Labs · info@jomovate.com
