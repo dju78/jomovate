@@ -49,3 +49,6 @@ _site/
 
 # --- Unapproved client case studies and their screenshots (preview with npm run build:drafts) ---
 drafts/
+
+# --- Local settings template (tracked); .env.local holds real values and stays ignored ---
+!.env.example

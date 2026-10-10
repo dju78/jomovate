@@ -1,5 +1,6 @@
 // Page builders. Each returns { path, title, description, body, ... } for `page()` in layout.mjs.
-import { esc, html, icon, statusBadge, picture, placeholder, projectCard, cta, breadcrumbs, STATUS_LABELS, TYPE_LABELS } from './layout.mjs';
+import { esc, html, icon, statusBadge, picture, placeholder, projectCard, cta, breadcrumbs, STATUS_LABELS, TYPE_LABELS, ACCESS_LABELS, accessLabel, emailLink, waChat, waChannel } from './layout.mjs';
+import { DRAFTS } from './whatsapp.mjs';
 
 const PROCESS = [
   ['Discovery', 'A short conversation about what you need, who it is for and what you already have.'],
@@ -58,9 +59,9 @@ export function home({ site, projects, categories }) {
     <div class="hero-copy">
       <p class="eyebrow">Jomovate Digital Labs · United Kingdom</p>
       <h1>Professional websites, practical applications and clear data insights.</h1>
-      <p class="lead">I design and build websites and web applications that make everyday work easier, and turn spreadsheets and survey data into reports and dashboards people can act on.</p>
+      <p class="lead">Jomovate helps UK small businesses, charities and organisations get a website that brings in enquiries, a web tool that replaces a manual process, or clear answers from the data they already hold.</p>
       <div class="actions">
-        <a class="btn btn-primary btn-lg" href="/contact/">Discuss your project</a>
+        <a class="btn btn-primary btn-lg" href="/contact/" data-track="cta_click" data-location="home-hero">Discuss your project</a>
         <a class="btn btn-secondary btn-lg" href="/work/">View our work</a>
       </div>
       <p class="hero-note">${count} projects in the portfolio, each with its status stated plainly — live, pilot or prototype.</p>
@@ -68,6 +69,21 @@ export function home({ site, projects, categories }) {
     <div class="hero-visual" aria-hidden="true">
       <div class="hero-shot hero-shot-back">${picture('care-quality-intelligence', '', { sizes: '(min-width: 900px) 480px, 90vw' })}</div>
       <div class="hero-shot hero-shot-front">${picture('ukcalc', '', { eager: true, sizes: '(min-width: 900px) 480px, 90vw' })}</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Who Jomovate helps</p>
+      <h2>Practical help for organisations without an in-house team</h2>
+    </div>
+    <div class="audience-grid">
+      <div class="offer"><h3>Small businesses</h3><p>A professional website, online booking or quoting, and simple tools that save admin time.</p></div>
+      <div class="offer"><h3>Charities and community groups</h3><p>Websites that explain your work clearly and are easy for volunteers to keep up to date.</p></div>
+      <div class="offer"><h3>Care and service providers</h3><p>Reporting and dashboards that turn records you already keep into evidence you can use.</p></div>
+      <div class="offer"><h3>Teams with data to analyse</h3><p>Survey, sales or operational data cleaned, analysed and explained in plain English.</p></div>
     </div>
   </div>
 </section>
@@ -143,7 +159,7 @@ export function home({ site, projects, categories }) {
   </div>
 </section>
 
-<div class="container">${cta()}</div>
+<div class="container">${cta({ whatsapp: waChat(site, { where: 'home-cta' }) })}</div>
 `,
   };
 }
@@ -154,6 +170,14 @@ const SERVICES = {
     slug: 'web-development',
     title: 'Website and application development',
     short: 'Websites and applications',
+    headline: 'Websites and web applications that bring in enquiries and save time',
+    audience: ['Small businesses that need a professional website or online booking', 'Charities and community groups that want a site volunteers can keep up to date', 'Teams replacing spreadsheets, paper forms or email chains with a simple web tool'],
+    faq: [
+      ['How much does a website or application cost?', 'Every project is quoted in writing after a short discovery conversation. No fixed prices are published because scope varies widely, from a few pages to a full booking system.'],
+      ['How long will it take?', 'It depends on the scope. The timescale is agreed in the written scope before any work starts.'],
+      ['Can you improve my existing website instead of rebuilding it?', 'Yes. Share the address and what is not working; sometimes targeted improvements are better value than a rebuild.'],
+      ['What happens after launch?', 'You receive the files, access details and plain-English notes. Ongoing support, hosting help or updates are optional and agreed separately.'],
+    ],
     description: 'Business websites, booking systems, customer portals and workflow tools for UK organisations — accessible, fast and easy to maintain.',
     intro: 'Websites and web applications that do a clear job: explain what you offer, take bookings or enquiries, replace a paper or spreadsheet process, or give customers a secure place to see their information.',
     offers: [
@@ -171,6 +195,14 @@ const SERVICES = {
     slug: 'data-analysis',
     title: 'Data analysis and dashboards',
     short: 'Data analysis and dashboards',
+    headline: 'Data analysis and dashboards that answer your questions',
+    audience: ['Organisations with spreadsheets or exports nobody has time to analyse', 'Managers who need a regular report or dashboard they can trust', 'Teams with survey results to clean, analyse and write up'],
+    faq: [
+      ['What data can you work with?', 'Spreadsheets (Excel, CSV), database exports and survey-platform exports are typical. If you are unsure, describe what you have and I will tell you what is feasible.'],
+      ['How do you handle personal or sensitive data?', 'How data is shared and protected is agreed before anything is sent. Wherever possible I work with the minimum data needed or an anonymised extract.'],
+      ['Do I need Power BI or Tableau licences?', 'Not necessarily. Dashboards can be built in a tool your organisation already uses, in Excel, or as a web dashboard; licensing is your choice.'],
+      ['How much does it cost?', 'Every project is quoted in writing after a short discovery conversation. No fixed prices are published.'],
+    ],
     description: 'Data cleaning, analysis in SQL, R, Python or Excel, Power BI and Tableau dashboards, survey analysis and automated reporting for UK organisations.',
     intro: 'Turn data you already hold into clear answers. I clean and check it, analyse it with the right method, and present the results in a report or dashboard your team can use without a statistics degree.',
     offers: [
@@ -241,7 +273,7 @@ export function serviceDetail(key, { site, projects, categories }) {
   const crumbs = [{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: s.title, href: `/services/${s.slug}/` }];
   return {
     path: `/services/${s.slug}/`,
-    title: s.title,
+    title: `${s.title} for UK organisations`,
     description: s.description,
     active: 'services',
     ogImage: `/img/og/${related[0]?.slug || 'default'}.jpg`,
@@ -255,19 +287,31 @@ export function serviceDetail(key, { site, projects, categories }) {
         areaServed: 'GB',
         url: `${site.url}/services/${s.slug}/`,
       },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: s.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+      },
       crumbLd(site, crumbs),
     ],
     body: html`
 <section class="page-hero">
   <div class="container narrow">
     ${breadcrumbs([{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: s.title }])}
-    <p class="eyebrow">Service</p>
-    <h1>${s.title}</h1>
+    <p class="eyebrow">${s.title}</p>
+    <h1>${s.headline}</h1>
     <p class="lead">${s.intro}</p>
     <div class="actions">
-      <a class="btn btn-primary btn-lg" href="/contact/?service=${key}">Discuss your project</a>
+      <a class="btn btn-primary btn-lg" href="/contact/?service=${key}" data-track="cta_click" data-location="service-hero-${key}">Discuss your project</a>
+      ${waChat(site, { message: DRAFTS[key], where: `service-hero-${key}`, className: 'btn btn-whatsapp btn-lg' })}
       <a class="btn btn-secondary btn-lg" href="/contact/?service=${key}&amp;type=quote">Request a quote</a>
     </div>
+  </div>
+</section>
+<section class="section section-tight">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">Who it is for</p><h2>Is this right for you?</h2></div>
+    <ul class="ticks">${s.audience.map((a) => html`<li>${icon.check} ${a}</li>`)}</ul>
   </div>
 </section>
 <section class="section">
@@ -286,7 +330,7 @@ export function serviceDetail(key, { site, projects, categories }) {
 <section class="section">
   <div class="container">
     <div class="section-head section-head-row">
-      <div><p class="eyebrow">Evidence</p><h2>Related work</h2></div>
+      <div><p class="eyebrow">Examples</p><h2>Related work</h2><p class="section-intro">Real projects with their status shown: live, pilot or prototype.</p></div>
       <a class="btn btn-secondary" href="/work/?service=${key}">See all related work</a>
     </div>
     <div class="card-grid">${related.map((p) => projectCard(p, categories))}</div>
@@ -298,7 +342,13 @@ export function serviceDetail(key, { site, projects, categories }) {
     ${processList()}
   </div>
 </section>
-<div class="container">${cta({ secondary: ['Request a quote', `/contact/?service=${key}&type=quote`], primary: ['Discuss your project', `/contact/?service=${key}`] })}</div>
+<section class="section">
+  <div class="container">
+    <div class="section-head"><p class="eyebrow">Questions</p><h2>Frequently asked questions</h2></div>
+    <div class="faq">${s.faq.map(([q, a]) => html`<details><summary>${q}</summary><p>${a}</p></details>`)}</div>
+  </div>
+</section>
+<div class="container">${cta({ title: key === 'web' ? 'Ready to talk about your website?' : 'Have data you need to make sense of?', secondary: ['Request a quote', `/contact/?service=${key}&type=quote`], primary: ['Discuss your project', `/contact/?service=${key}`], whatsapp: waChat(site, { message: DRAFTS[key], where: `service-cta-${key}` }) })}</div>
 `,
   };
 }
@@ -329,7 +379,7 @@ export function workIndex({ site, projects, categories }) {
     ${breadcrumbs([{ label: 'Home', href: '/' }, { label: 'Work' }])}
     <p class="eyebrow">Work</p>
     <h1>Products, websites and research tools</h1>
-    <p class="lead">Everything here was designed and built by Jomovate's founder. Each entry states its status: <strong>live</strong> (publicly usable), <strong>pilot</strong> (in use by invited users), <strong>prototype</strong> (working but not a finished service), <strong>in development</strong> or <strong>archived</strong>.</p>
+    <p class="lead">Everything here was designed and built by Jomovate's founder. Each entry states its status: <strong>live</strong> (publicly available), <strong>pilot</strong> (in use by invited users), <strong>prototype</strong> (working but not a finished service), <strong>in development</strong> or <strong>archived</strong>. Some apps open at a sign-in page or are limited to invited pilot users; each entry says how it can be accessed.</p>
   </div>
 </section>
 <section class="section section-tight">
@@ -376,8 +426,18 @@ export function workIndex({ site, projects, categories }) {
 }
 
 // ---------------------------------------------------------------- Case study
+// Projects that are not openly usable get "Request a demonstration" rather than implying open access.
+export const wantsDemo = (p) => ['pilot', 'in-development'].includes(p.status) || ['sign-in', 'invite-only', 'unavailable', 'demo-login'].includes(p.access);
+
+const visitLabel = (p) =>
+  ({ 'sign-in': 'Open sign-in page', 'invite-only': 'Open pilot sign-in', 'demo-login': 'Open demo (sign-in)' })[p.access] ||
+  (p.status === 'archived' ? 'Visit archived site' : p.categories.includes('websites') ? 'Visit website' : 'Try it now');
+
 export function caseStudy(p, { site, projects, categories, checkedOn }) {
   const cats = p.categories.map((c) => categories[c]);
+  const demo = wantsDemo(p);
+  const svc = p.service === 'data' ? 'data' : 'web';
+  const enquiry = `/contact/?service=${svc}&ref=${p.slug}${demo ? '&type=demo' : ''}`;
   const related = (p.relatedTo || []).map((s) => projects.find((x) => x.slug === s)).filter(Boolean);
   const crumbs = [{ label: 'Home', href: '/' }, { label: 'Work', href: '/work/' }, { label: p.title, href: `/work/${p.slug}/` }];
   const appLd = {
@@ -409,12 +469,14 @@ export function caseStudy(p, { site, projects, categories, checkedOn }) {
         <h1>${esc(p.title)}</h1>
         <p class="lead">${esc(p.summary)}</p>
         <div class="actions">
-          ${p.liveUrl ? html`<a class="btn btn-primary" href="${esc(p.liveUrl)}" rel="noopener">Visit ${p.status === 'pilot' || p.status === 'in-development' ? 'site' : 'live site'} ${icon.external}<span class="visually-hidden"> (opens ${esc(new URL(p.liveUrl).hostname)})</span></a>` : ''}
+          ${p.liveUrl ? html`<a class="btn btn-primary" href="${esc(p.liveUrl)}" rel="noopener">${visitLabel(p)} ${icon.external}<span class="visually-hidden"> (opens ${esc(new URL(p.liveUrl).hostname)})</span></a>` : ''}
+          <a class="btn btn-secondary" href="${esc(enquiry)}" data-track="cta_click" data-location="case-hero">${demo ? 'Request a demonstration' : 'Discuss this project'}</a>
           ${p.publicSource ? html`<a class="btn btn-secondary" href="${esc(p.publicSource)}" rel="noopener">${icon.code} View source on GitHub</a>` : ''}
         </div>
       </div>
       <dl class="facts">
         <div><dt>Status</dt><dd>${statusBadge(p.status)} <span class="facts-note">${esc(p.statusNote)}</span></dd></div>
+        <div><dt>Access</dt><dd>${accessLabel(p.access)}</dd></div>
         <div><dt>Type</dt><dd>${esc(TYPE_LABELS[p.type])}</dd></div>
         <div><dt>Role</dt><dd>${esc(p.role)}</dd></div>
         <div><dt>Built with</dt><dd><ul class="chip-list">${p.tech.map((t) => html`<li>${esc(t)}</li>`)}</ul></dd></div>
@@ -445,12 +507,14 @@ ${p.image ? html`<section class="section section-tight">
       <h2>Results so far</h2>
       <p>${esc(p.outcomes)}</p>
       ${p.limitations.length ? html`<h2>Limitations and context</h2><ul class="plain-list">${p.limitations.map((l) => html`<li>${esc(l)}</li>`)}</ul>` : ''}
+      ${p.ownerNote ? html`<h2>Who to contact</h2><p>${esc(p.ownerNote)}</p>` : ''}
     </div>
     <aside class="case-aside" aria-label="Related">
       <div class="aside-card">
         <p class="kicker">Need something like this?</p>
         <p>${p.service === 'data' ? 'I build analysis tools and dashboards for organisations with their own data.' : 'I build websites and applications like this for businesses and organisations.'}</p>
-        <a class="btn btn-primary btn-block" href="/contact/?service=${p.service === 'data' ? 'data' : 'web'}&amp;ref=${p.slug}">Discuss your project</a>
+        <a class="btn btn-primary btn-block" href="/contact/?service=${svc}&amp;ref=${p.slug}" data-track="cta_click" data-location="case-aside">Discuss your project</a>
+        ${waChat(site, { message: DRAFTS.project(p.title), where: 'case-aside', className: 'btn btn-whatsapp btn-block' })}
         <a class="text-link" href="/services/${p.service === 'data' ? 'data-analysis' : 'web-development'}/">About this service ${icon.arrow}</a>
       </div>
       ${related.length ? html`<div class="aside-card"><p class="kicker">Related projects</p><ul class="plain-list">${related.map((r) => html`<li><a href="/work/${r.slug}/">${esc(r.title)}</a></li>`)}</ul></div>` : ''}
@@ -615,6 +679,9 @@ export function insightArticle(a, { site, projects }) {
 }
 
 // ---------------------------------------------------------------- Contact
+// Campaign parameters accepted from landing-page URLs and passed with an enquiry (see src/js/attribution.js).
+export const ATTRIBUTION_FIELDS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'landing_page'];
+
 export function contact({ site }) {
   return {
     path: '/contact/',
@@ -630,6 +697,7 @@ export function contact({ site }) {
     <p class="eyebrow">Contact</p>
     <h1>Discuss your project</h1>
     <p class="lead">A short description is enough to start. I will reply by email with questions or suggested next steps.</p>
+    <p class="quick-contact">Prefer not to use the form? Email ${emailLink(site, 'contact-top')}${site.whatsapp?.chat ? html` or ${waChat(site, { where: 'contact-top', className: 'text-link' })}` : ''}.</p>
   </div>
 </section>
 <section class="section section-tight">
@@ -641,6 +709,7 @@ export function contact({ site }) {
         <p class="visually-hidden" aria-hidden="true"><label>Leave this empty <input name="company-website" tabindex="-1" autocomplete="off"></label></p>
         <input type="hidden" name="enquiry-type" value="discussion" data-enquiry-type>
         <input type="hidden" name="referring-project" value="" data-referring-project>
+        ${ATTRIBUTION_FIELDS.map((f) => html`<input type="hidden" name="${f}" value="" data-attribution>`)}
         <div class="error-summary" data-error-summary tabindex="-1" hidden>
           <h2 class="h4">Please check the form</h2>
           <ul></ul>
@@ -700,16 +769,39 @@ export function contact({ site }) {
             </select>
           </div>
         </div>
-        <p class="hint">Your details are used only to reply to this enquiry. See the <a href="/privacy/">privacy notice</a>.</p>
+        <div class="field">
+          <label for="f-source">How did you hear about Jomovate? <span class="opt">(optional)</span></label>
+          <select class="input" id="f-source" name="enquiry-source">
+            <option value="">Prefer not to say</option>
+            <option>Search engine</option>
+            <option>Online advertisement</option>
+            <option>LinkedIn</option>
+            <option>WhatsApp</option>
+            <option>Recommendation or referral</option>
+            <option>Saw a Jomovate project</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <p class="hint">Your details are used only to reply to this enquiry. If you arrived from an advert, the campaign name in the link is sent with your enquiry. See the <a href="/privacy/">privacy notice</a>.</p>
         <button class="btn btn-primary btn-lg" type="submit" data-submit>Send enquiry</button>
       </form>
     </div>
     <aside class="contact-aside">
+      ${site.whatsapp?.chat ? html`<div class="aside-card">
+        <p class="kicker">Prefer WhatsApp?</p>
+        ${waChat(site, { where: 'contact', className: 'btn btn-whatsapp btn-block', note: true })}
+        <p class="wa-note">The link shows Jomovate's business number. Please do not send confidential or personal data about other people.</p>
+      </div>` : ''}
       <div class="aside-card">
         <p class="kicker">Prefer email?</p>
-        <p><a href="mailto:${site.email}">${icon.mail} ${site.email}</a></p>
+        <p>${emailLink(site, 'contact', { iconFirst: true })}</p>
         <p>Based in the ${esc(site.country)}.</p>
       </div>
+      ${site.whatsapp?.channel ? html`<div class="aside-card">
+        <p class="kicker">Stay up to date</p>
+        <p>${waChannel(site, 'contact')}</p>
+        <p class="wa-note">A WhatsApp channel for product updates and business news. Following it does not share your number with Jomovate.</p>
+      </div>` : ''}
       <div class="aside-card">
         <p class="kicker">What happens next</p>
         <ol class="mini-process">${PROCESS.map(([t, d]) => html`<li><strong>${t}.</strong> ${d}</li>`)}</ol>
@@ -749,11 +841,14 @@ export function privacy({ site }) {
       <h2>Who is responsible</h2>
       <p>This website is operated by ${esc(site.founder.name)} under the name Jomovate Digital Labs, in the ${esc(site.country)}. Contact: <a href="mailto:${site.email}">${site.email}</a>.</p>
       <h2>What is collected</h2>
-      <p>If you use the enquiry form, the details you enter: name, email address, and optionally your organisation, budget, timeframe and project brief. The site does not use advertising or analytics cookies.</p>
+      <p><strong>Enquiry form:</strong> the details you enter — name and email address, the service you are interested in and your project brief, and optionally your organisation, budget, timeframe and how you heard about Jomovate. If you reached the site from a link carrying campaign parameters (for example from an advert), those parameters (utm_source, utm_medium, utm_campaign, utm_term, utm_content and gclid) and the page you first landed on are sent with your enquiry so I can see which campaigns lead to enquiries. They are carried in the page address only; nothing is stored on your device.</p>
+      <p><strong>Email:</strong> messages you send to ${site.email}, which is hosted by Google Workspace.</p>
+      ${site.whatsapp?.chat || site.whatsapp?.channel ? html`<p><strong>WhatsApp:</strong> if you choose to message Jomovate on WhatsApp, your number and messages are handled by WhatsApp (Meta) under its own terms and privacy policy, and I see your number and what you send. The "Chat on WhatsApp" link opens WhatsApp with a short draft message; nothing is sent until you press send. Following the Jomovate WhatsApp channel does not share your phone number with Jomovate.</p>` : ''}
+      <p><strong>No tracking:</strong> the site does not use cookies, analytics, advertising pixels or third-party fonts. The website host, Netlify, processes technical data such as IP addresses to deliver and secure the site.</p>
       <h2>Why and on what basis</h2>
-      <p>Your details are used only to reply to your enquiry and, if you go ahead, to prepare a quote. The lawful basis is legitimate interests in responding to a request you made, or steps taken at your request before entering into a contract.</p>
+      <p>Your details are used only to reply to your enquiry and, if you go ahead, to prepare a quote. Campaign information is used only to understand which advertising and referral routes produce enquiries. The lawful basis is legitimate interests in responding to a request you made, or steps taken at your request before entering into a contract.</p>
       <h2>Where it is stored</h2>
-      <p>Form submissions are processed and stored by Netlify, the website host, and delivered by email. Netlify may process data outside the UK under its own safeguards.</p>
+      <p>Form submissions are processed and stored by Netlify and forwarded by email to ${site.email} (Google Workspace). Netlify and Google may process data outside the UK under their own safeguards.</p>
       <h2>How long it is kept</h2>
       <p>Enquiries are kept only as long as needed to respond and follow up. If work goes ahead, related records are kept as required for tax and accounting.</p>
       <h2>Your rights</h2>

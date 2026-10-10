@@ -1,4 +1,5 @@
 import { validateEnquiry, submitEnquiry } from './enquiry.js';
+import { pickAttribution, track } from './attribution.js';
 
 const form = document.querySelector('[data-enquiry-form]');
 if (form) {
@@ -11,13 +12,18 @@ if (form) {
   // Pre-fill from links such as /contact/?service=data&type=quote&ref=ukcalc
   const service = { web: 'Website or web application', data: 'Data analysis or dashboard' }[params.get('service')];
   if (service) form.elements.service.value = service;
-  if (params.get('type') === 'quote') {
-    form.querySelector('[data-enquiry-type]').value = 'quote';
-    submit.textContent = 'Request a quote';
-    document.querySelector('h1').textContent = 'Request a quote';
+  const mode = { quote: ['quote', 'Request a quote'], demo: ['demo', 'Request a demonstration'] }[params.get('type')];
+  if (mode) {
+    form.querySelector('[data-enquiry-type]').value = mode[0];
+    submit.textContent = mode[1];
+    document.querySelector('h1').textContent = mode[1];
   }
   const ref = params.get('ref');
   if (ref && /^[a-z0-9-]{1,80}$/.test(ref)) form.querySelector('[data-referring-project]').value = ref;
+
+  // Campaign attribution: only allow-listed, sanitised values (see attribution.js).
+  const attribution = pickAttribution(location.search);
+  for (const input of form.querySelectorAll('[data-attribution]')) input.value = attribution[input.name] || '';
 
   const fieldsWithErrors = new Set();
   const showError = (field, message) => {
@@ -39,11 +45,14 @@ if (form) {
   };
 
   const values = () => Object.fromEntries(new FormData(form));
+  let sending = false;
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (sending) return;
     clearErrors();
     status.innerHTML = '';
+    status.className = '';
     const errors = validateEnquiry(values());
     if (errors.length) {
       const seen = new Set();
@@ -65,10 +74,14 @@ if (form) {
       return;
     }
 
+    sending = true;
+    form.setAttribute('aria-busy', 'true');
     submit.disabled = true;
     const original = submit.textContent;
     submit.textContent = 'Sending…';
     const result = await submitEnquiry(fetch.bind(window), [...new FormData(form)]);
+    sending = false;
+    form.removeAttribute('aria-busy');
     submit.disabled = false;
     submit.textContent = original;
 
@@ -76,6 +89,8 @@ if (form) {
       form.hidden = true;
       status.className = 'form-status form-status-ok';
       status.innerHTML = '<h2>Thank you — your enquiry has been sent</h2><p>I will read it and reply by email. A copy of what you sent is not emailed to you, so keep a note if you need one.</p>';
+      // The only "lead" signal: fired after Netlify accepted the submission, never on a click.
+      track('enquiry_submitted', { service: form.elements.service.value, enquiry_type: form.querySelector('[data-enquiry-type]').value });
     } else {
       status.className = 'form-status form-status-error';
       status.innerHTML = '';
@@ -88,6 +103,7 @@ if (form) {
       a.textContent = email;
       p.append(a, ' directly.');
       status.append(h, p);
+      track('enquiry_failed', { status: result.status });
     }
     status.focus();
   });

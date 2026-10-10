@@ -1,5 +1,5 @@
 {
-  "_readme": "Single source of truth for every portfolio entry. Add a project by appending an object; the build creates its card, filters, case-study page, sitemap entry and social preview automatically. status: live | pilot | prototype | in-development | archived. type: own-product | research | client | community | concept. Set published:false to keep an entry out of the build. Never put a private repository in publicSource. Screenshot files live at static/img/projects/<slug>.webp (+ -640.webp) and static/img/og/<slug>.jpg.",
+  "_readme": "Single source of truth for every portfolio entry. Add a project by appending an object; the build creates its card, filters, case-study page, sitemap entry and social preview automatically. status: live | pilot | prototype | in-development | archived. type: own-product | research | client | community | concept. access: open | demo-login | sign-in | invite-only | unavailable (how a visitor can reach it). Set published:false to keep an entry out of the build. Never put a private repository in publicSource. Screenshot files live at static/img/projects/<slug>.webp (+ -640.webp) and static/img/og/<slug>.jpg.",
   "checkedOn": "2026-10-10",
   "categories": {
     "analytics": "Data & analytics",
@@ -18,8 +18,11 @@
       "featured": true,
       "status": "prototype",
       "statusNote": "Live research prototype (v0.2.0, experimental)",
+      "access": "open",
       "type": "research",
-      "categories": ["analytics"],
+      "categories": [
+        "analytics"
+      ],
       "service": "data",
       "summary": "An independent research prototype exploring how artificial intelligence could be identified and measured within UK National Accounts frameworks.",
       "audience": "Economists, statisticians and policy analysts interested in how AI activity shows up in economic statistics.",
@@ -33,7 +36,12 @@
         "Asset-boundary decision tool with worked case studies",
         "Method cards, data-quality scoring and a source register"
       ],
-      "tech": ["Next.js", "TypeScript", "Python data pipeline", "Vercel"],
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Python data pipeline",
+        "Vercel"
+      ],
       "outcomes": "Live and publicly browsable. The repository records 38 automated statistical tests and a documented route-by-route deployment check.",
       "limitations": [
         "Not an ONS product, not endorsed by ONS and does not produce official statistics.",
@@ -43,7 +51,9 @@
       "liveUrl": "https://ai-measurement.jomovate.com/",
       "liveCheck": "Loads with full content",
       "publicSource": "https://github.com/dju78/UK-AI-Economic-Measurement-Lab",
-      "repos": ["UK-AI-Economic-Measurement-Lab"],
+      "repos": [
+        "UK-AI-Economic-Measurement-Lab"
+      ],
       "image": true,
       "imageAlt": "UK AI Economic Measurement Lab overview page with navigation to each research module and a statistical safeguard notice",
       "caption": "Overview page. Every view carries the independence notice and treats product totals as candidate denominators, not AI output."
@@ -55,8 +65,11 @@
       "featured": true,
       "status": "prototype",
       "statusNote": "Live demo on Streamlit Community Cloud",
+      "access": "open",
       "type": "own-product",
-      "categories": ["analytics"],
+      "categories": [
+        "analytics"
+      ],
       "service": "data",
       "summary": "Upload an unfamiliar operational dataset and work through profiling, data-quality checks, KPI set-up, trends, root-cause exploration and exportable reporting.",
       "audience": "Operational managers, performance analysts and teams that receive spreadsheets in inconsistent formats.",
@@ -70,7 +83,16 @@
         "Statistical process control charts, comparisons and driver analysis",
         "Exports to PowerPoint, PDF, Excel and Markdown"
       ],
-      "tech": ["Python", "Streamlit", "pandas", "statsmodels", "Plotly", "python-pptx", "ReportLab", "pytest"],
+      "tech": [
+        "Python",
+        "Streamlit",
+        "pandas",
+        "statsmodels",
+        "Plotly",
+        "python-pptx",
+        "ReportLab",
+        "pytest"
+      ],
       "outcomes": "Working public demo. The repository includes an automated test suite and sample datasets across several sectors.",
       "limitations": [
         "Free hosting: the app can take a minute to wake after inactivity.",
@@ -79,7 +101,9 @@
       "liveUrl": "https://performance-insight-explorer.streamlit.app/",
       "liveCheck": "Loads; application interface renders",
       "publicSource": "https://github.com/dju78/performance_insight-_explorer",
-      "repos": ["performance_insight-_explorer"],
+      "repos": [
+        "performance_insight-_explorer"
+      ],
       "image": true,
       "imageAlt": "Performance Insight Explorer showing the workflow sidebar and the dataset upload stage",
       "caption": "The guided workflow: define the question, upload data, then move through quality checks, KPIs and findings."
@@ -91,8 +115,11 @@
       "featured": false,
       "status": "prototype",
       "statusNote": "Demo requires sign-in; the hosted demo predates the 1.0 build",
+      "access": "sign-in",
       "type": "own-product",
-      "categories": ["analytics"],
+      "categories": [
+        "analytics"
+      ],
       "service": "data",
       "summary": "Turns a messy price collection into a matched-model price index, a written method note, and a report and slide deck you can send on.",
       "audience": "Analysts and organisations who compile price data and need results they can defend.",
@@ -107,7 +134,14 @@
         "Role-based access and a hash-chained audit log",
         "Exports: Word report, slide deck, flagged data and configuration"
       ],
-      "tech": ["Python", "Streamlit", "SQLAlchemy", "Alembic", "Docker", "pytest"],
+      "tech": [
+        "Python",
+        "Streamlit",
+        "SQLAlchemy",
+        "Alembic",
+        "Docker",
+        "pytest"
+      ],
       "outcomes": "Repository-level capability: features above are implemented in the source. The public demo runs an earlier version.",
       "limitations": [
         "The hosted demo predates the 1.0 platform build and requires an account.",
@@ -116,9 +150,14 @@
       "liveUrl": "https://pricequalitylab.streamlit.app/",
       "liveCheck": "Loads to a sign-in page",
       "publicSource": "https://github.com/dju78/price_lab",
-      "repos": ["price_lab"],
-      "relatedTo": ["price-quality-explorer"],
-      "image": false
+      "repos": [
+        "price_lab"
+      ],
+      "relatedTo": [
+        "price-quality-explorer"
+      ],
+      "image": false,
+      "noImageReason": "Not shown: the demo opens at a sign-in page"
     },
     {
       "slug": "price-quality-explorer",
@@ -127,8 +166,11 @@
       "featured": false,
       "status": "prototype",
       "statusNote": "Live demo currently unavailable",
+      "access": "unavailable",
       "type": "research",
-      "categories": ["analytics"],
+      "categories": [
+        "analytics"
+      ],
       "service": "data",
       "summary": "A reproducible workflow for consumer-price data quality and matched-product index analysis, built on synthetic research data.",
       "audience": "Analysts working with consumer price microdata.",
@@ -142,7 +184,15 @@
         "Sensitivity checks against an alternative method",
         "Audience-tailored PDF, PowerPoint and Excel outputs"
       ],
-      "tech": ["Python", "Streamlit", "pandas", "Plotly", "ReportLab", "openpyxl", "python-pptx"],
+      "tech": [
+        "Python",
+        "Streamlit",
+        "pandas",
+        "Plotly",
+        "ReportLab",
+        "openpyxl",
+        "python-pptx"
+      ],
       "outcomes": "Methodology illustration on synthetic data. Results are not official estimates.",
       "limitations": [
         "Uses synthetic research data; not an official ONS product.",
@@ -151,8 +201,12 @@
       "liveUrl": null,
       "liveCheck": "Demo URL returns \"no access / does not exist\"",
       "publicSource": null,
-      "repos": ["Price_quality_explorer"],
-      "relatedTo": ["pricelab"],
+      "repos": [
+        "Price_quality_explorer"
+      ],
+      "relatedTo": [
+        "pricelab"
+      ],
       "image": true,
       "imageAlt": "Price Quality Explorer upload screen with workflow steps listed on the right",
       "caption": "Upload stage and the workflow from data acquisition to export."
@@ -164,8 +218,12 @@
       "featured": true,
       "status": "live",
       "statusNote": "Public demo with synthetic data",
+      "access": "demo-login",
       "type": "own-product",
-      "categories": ["analytics", "health"],
+      "categories": [
+        "analytics",
+        "health"
+      ],
       "service": "both",
       "summary": "A quality-monitoring platform for adult social care that turns incidents, complaints and feedback into fair staff-level insight, supervision packs and inspection evidence.",
       "audience": "Registered managers, directors and team leaders in residential, supported-living and outreach services.",
@@ -180,7 +238,16 @@
         "Role-based access, enforced by the API",
         "People supported identified only by reference codes"
       ],
-      "tech": ["React", "TypeScript", "Vite", "Tailwind CSS", "Recharts", "Zustand", "Express", "SQLite"],
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Recharts",
+        "Zustand",
+        "Express",
+        "SQLite"
+      ],
       "outcomes": "Working demo with 12 months of deterministic synthetic data across four fictitious services.",
       "limitations": [
         "Demo data is synthetic and does not represent real people or services.",
@@ -190,8 +257,13 @@
       "liveUrl": "https://cqi.carephrase.com/",
       "liveCheck": "Loads to sign-in page with published demo accounts",
       "publicSource": "https://github.com/dju78/Care-Quality-Intelligence",
-      "repos": ["Care-Quality-Intelligence"],
-      "relatedTo": ["carephrase", "carephrase-communication-academy"],
+      "repos": [
+        "Care-Quality-Intelligence"
+      ],
+      "relatedTo": [
+        "carephrase",
+        "carephrase-communication-academy"
+      ],
       "image": true,
       "imageAlt": "Care Quality Intelligence quality overview with indicator tiles and monthly incident charts",
       "caption": "Quality overview using synthetic demo data."
@@ -203,8 +275,11 @@
       "featured": true,
       "status": "live",
       "statusNote": "Live, free to use",
+      "access": "open",
       "type": "own-product",
-      "categories": ["finance"],
+      "categories": [
+        "finance"
+      ],
       "service": "web",
       "summary": "253 free UK calculators across 19 categories, from income tax and stamp duty to pensions, ISAs and everyday conversions.",
       "audience": "UK individuals, sole traders, homebuyers and analysts.",
@@ -217,7 +292,11 @@
         "Shared calculation engine with stated assumptions",
         "Benchmark fixtures to check results"
       ],
-      "tech": ["Next.js", "TypeScript", "Vercel"],
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Vercel"
+      ],
       "outcomes": "Live and publicly available; the calculator count is taken from the live site.",
       "limitations": [
         "General information only, not financial or tax advice.",
@@ -226,7 +305,9 @@
       "liveUrl": "https://ukcalc.jomovate.com/",
       "liveCheck": "Loads; lists 253 calculators",
       "publicSource": "https://github.com/dju78/UK-Calculator-Platform-Engineering-Foundation",
-      "repos": ["UK-Calculator-Platform-Engineering-Foundation"],
+      "repos": [
+        "UK-Calculator-Platform-Engineering-Foundation"
+      ],
       "image": true,
       "imageAlt": "UKCalc home page listing calculator categories and featured UK tax and mortgage calculators",
       "caption": "Category browser and featured calculators."
@@ -238,8 +319,11 @@
       "featured": true,
       "status": "pilot",
       "statusNote": "Pilot: sign-in for invited garages",
+      "access": "invite-only",
       "type": "own-product",
-      "categories": ["automotive"],
+      "categories": [
+        "automotive"
+      ],
       "service": "web",
       "summary": "A digital repair workflow for independent garages: vehicle check-in, inspection evidence, itemised estimates, customer approval links and an audit trail.",
       "audience": "Independent UK garages and mobile mechanics.",
@@ -253,7 +337,16 @@
         "Versioned, timestamped audit trail",
         "Staff invitations and per-garage data separation"
       ],
-      "tech": ["React", "TypeScript", "Vite", "Express", "Prisma", "Supabase auth", "Zod", "Vitest"],
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Express",
+        "Prisma",
+        "Supabase auth",
+        "Zod",
+        "Vitest"
+      ],
       "outcomes": "Pilot access in place for invited garages. No usage figures are published.",
       "limitations": [
         "Pilot only; sign-in required.",
@@ -262,7 +355,10 @@
       "liveUrl": "https://car.jomovate.com/",
       "liveCheck": "Loads to pilot sign-in",
       "publicSource": null,
-      "repos": ["car_garage", "car_-repair_clau"],
+      "repos": [
+        "car_garage",
+        "car_-repair_clau"
+      ],
       "image": true,
       "imageAlt": "GarageProof jobs overview with job counts and a list of recent repair jobs (demo data)",
       "caption": "Jobs overview with demo data: each job moves from check-in to customer approval and completion."
@@ -274,8 +370,12 @@
       "featured": true,
       "status": "live",
       "statusNote": "Live, free, no sign-up",
+      "access": "open",
       "type": "own-product",
-      "categories": ["health", "learning"],
+      "categories": [
+        "health",
+        "learning"
+      ],
       "service": "web",
       "summary": "A free coaching tool that helps care workers write clearer, more factual care notes without writing the note for them.",
       "audience": "UK healthcare assistants and support workers.",
@@ -289,7 +389,14 @@
         "Emergency call and interview practice",
         "Care vocabulary"
       ],
-      "tech": ["React", "TypeScript", "Vite", "Tailwind CSS", "Anthropic Claude API", "Vercel serverless functions"],
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Anthropic Claude API",
+        "Vercel serverless functions"
+      ],
       "outcomes": "Live and free to use without an account.",
       "limitations": [
         "A training aid, not clinical advice or an official care record.",
@@ -298,8 +405,13 @@
       "liveUrl": "https://carephrase.com/",
       "liveCheck": "Loads with full content",
       "publicSource": "https://github.com/dju78/carephrase",
-      "repos": ["carephrase"],
-      "relatedTo": ["carephrase-communication-academy", "care-quality-intelligence"],
+      "repos": [
+        "carephrase"
+      ],
+      "relatedTo": [
+        "carephrase-communication-academy",
+        "care-quality-intelligence"
+      ],
       "image": true,
       "imageAlt": "CarePhrase home page explaining the four-part care note framework",
       "caption": "Home page and the four-part care note framework."
@@ -311,8 +423,12 @@
       "featured": false,
       "status": "pilot",
       "statusNote": "MVP with pilot feedback; sign-in required",
+      "access": "sign-in",
       "type": "own-product",
-      "categories": ["health", "learning"],
+      "categories": [
+        "health",
+        "learning"
+      ],
       "service": "web",
       "summary": "Voice-based communication practice for care teams, with structured, scored feedback on handovers and other workplace scenarios.",
       "audience": "Care homes, home-care providers and training providers.",
@@ -326,7 +442,14 @@
         "Learner progress dashboard",
         "Email sign-in with row-level data security"
       ],
-      "tech": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "OpenAI Whisper and GPT-4o"],
+      "tech": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Supabase",
+        "OpenAI Whisper and GPT-4o"
+      ],
       "outcomes": "First module complete; further modules are scaffolded.",
       "limitations": [
         "Training tool only; not clinical advice and not a medical device.",
@@ -335,8 +458,12 @@
       "liveUrl": "https://comms.carephrase.com/",
       "liveCheck": "Loads with full content",
       "publicSource": "https://github.com/dju78/carephrase-communication-academy",
-      "repos": ["carephrase-communication-academy"],
-      "relatedTo": ["carephrase"],
+      "repos": [
+        "carephrase-communication-academy"
+      ],
+      "relatedTo": [
+        "carephrase"
+      ],
       "image": true,
       "imageAlt": "CarePhrase Communication Academy learner dashboard with scores and training modules",
       "caption": "Learner dashboard (developer test account; personal details removed)."
@@ -348,8 +475,11 @@
       "featured": false,
       "status": "prototype",
       "statusNote": "Working browser prototype",
+      "access": "open",
       "type": "own-product",
-      "categories": ["finance"],
+      "categories": [
+        "finance"
+      ],
       "service": "web",
       "summary": "Income and expense records for UK sole traders, with tax-year-aware summaries, kept entirely in the browser.",
       "audience": "UK sole traders and freelancers.",
@@ -363,7 +493,15 @@
         "JSON and CSV backup",
         "Accessible dialogs and forms"
       ],
-      "tech": ["React", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "Vitest", "Playwright"],
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Zustand",
+        "Vitest",
+        "Playwright"
+      ],
       "outcomes": "Calculations covered by unit tests; workflows covered by end-to-end tests in CI.",
       "limitations": [
         "Prototype: data is stored only in the browser, with no account or backup service.",
@@ -372,7 +510,9 @@
       "liveUrl": "https://taxmate.omoyelejd.co.uk/",
       "liveCheck": "Loads with full content",
       "publicSource": "https://github.com/dju78/taxmate-uk",
-      "repos": ["taxmate-uk"],
+      "repos": [
+        "taxmate-uk"
+      ],
       "image": true,
       "imageAlt": "TaxMate UK dashboard with income, expenses and an income-versus-expenses chart (demo data)",
       "caption": "Dashboard with demo records."
@@ -384,8 +524,11 @@
       "featured": false,
       "status": "live",
       "statusNote": "Live, free",
+      "access": "open",
       "type": "own-product",
-      "categories": ["learning"],
+      "categories": [
+        "learning"
+      ],
       "service": "web",
       "summary": "Structured speaking drills with a live transcript and feedback on pace, filler words and delivery.",
       "audience": "People preparing for interviews, presentations and workplace updates.",
@@ -398,13 +541,22 @@
         "Pace and filler-word tracking",
         "Practice timer"
       ],
-      "tech": ["React", "Vite", "Tailwind CSS", "Web Speech API"],
+      "tech": [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Web Speech API"
+      ],
       "outcomes": "Live and free to use.",
-      "limitations": ["Speech recognition quality depends on the browser; works best in Chrome or Edge."],
+      "limitations": [
+        "Speech recognition quality depends on the browser; works best in Chrome or Edge."
+      ],
       "liveUrl": "https://speech.omoyelejd.co.uk/",
       "liveCheck": "Loads with full content",
       "publicSource": "https://github.com/dju78/-speaking-trainer",
-      "repos": ["-speaking-trainer"],
+      "repos": [
+        "-speaking-trainer"
+      ],
       "image": true,
       "imageAlt": "Professional Speaking Trainer practice screen with drill options",
       "caption": "Drill selection and practice workspace."
@@ -416,23 +568,41 @@
       "featured": false,
       "status": "live",
       "statusNote": "Live",
+      "access": "open",
       "type": "community",
-      "categories": ["community", "learning"],
+      "categories": [
+        "community",
+        "learning"
+      ],
       "service": "web",
       "summary": "An interactive quiz game about the history, culture and traditions of Kogi State, Nigeria, with a community leaderboard.",
       "audience": "The Kogi diaspora, students and anyone curious about the region.",
       "problem": "Local history is often passed on informally. A game makes it easier to share and remember.",
       "role": "Designer and developer.",
       "solution": "A React quiz game with a secure leaderboard: players can read scores, but writes go through a single database function.",
-      "features": ["Quiz gameplay", "Leaderboard", "Achievements", "Question suggestions from players"],
-      "tech": ["React", "Vite", "Supabase", "Vitest"],
+      "features": [
+        "Quiz gameplay",
+        "Leaderboard",
+        "Achievements",
+        "Question suggestions from players"
+      ],
+      "tech": [
+        "React",
+        "Vite",
+        "Supabase",
+        "Vitest"
+      ],
       "outcomes": "Live on GitHub Pages.",
       "limitations": [],
       "liveUrl": "https://dju78.github.io/kogiqest/",
       "liveCheck": "Loads with full content",
       "publicSource": "https://github.com/dju78/kogiqest",
-      "repos": ["kogiqest"],
-      "relatedTo": ["takete-ide-amuro"],
+      "repos": [
+        "kogiqest"
+      ],
+      "relatedTo": [
+        "takete-ide-amuro"
+      ],
       "image": true,
       "imageAlt": "Kogi Quest start screen",
       "caption": "Start screen."
@@ -444,8 +614,12 @@
       "featured": false,
       "status": "live",
       "statusNote": "Live",
+      "access": "open",
       "type": "community",
-      "categories": ["community", "websites"],
+      "categories": [
+        "community",
+        "websites"
+      ],
       "service": "web",
       "summary": "A community website and heritage archive for Takete-Ide Amuro in Kogi State, Nigeria, with an admin area for updates.",
       "audience": "Residents, the diaspora and visitors interested in the community's history and development.",
@@ -459,17 +633,29 @@
         "Local weather with a fallback",
         "Honest empty states when content is not yet added"
       ],
-      "tech": ["Next.js", "React", "TypeScript", "Supabase", "Playwright"],
+      "tech": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Supabase",
+        "Playwright"
+      ],
       "outcomes": "Live public website.",
       "limitations": [],
       "liveUrl": "https://takete-ide.org/",
       "liveCheck": "Loads with full content",
       "publicSource": "https://github.com/dju78/takete_ide_amuro",
-      "repos": ["takete_ide_amuro", "takete-ide-reporting-hub"],
-      "relatedTo": ["kogi-quest"],
+      "repos": [
+        "takete_ide_amuro",
+        "takete-ide-reporting-hub"
+      ],
+      "relatedTo": [
+        "kogi-quest"
+      ],
       "image": true,
       "imageAlt": "Takete-Ide Amuro website home page with navigation and centenary celebration banner",
-      "caption": "Home page."
+      "caption": "Home page.",
+      "ownerNote": "Takete-Ide Amuro is a community organisation with its own website and contacts. For community matters, contact it through takete-ide.org — Jomovate built the site but does not speak for the community."
     },
     {
       "slug": "aldanat-match-predictor",
@@ -478,8 +664,12 @@
       "featured": false,
       "status": "archived",
       "statusNote": "Built for a single charity fixture (26 August 2026); site still online",
+      "access": "open",
       "type": "community",
-      "categories": ["community", "websites"],
+      "categories": [
+        "community",
+        "websites"
+      ],
       "service": "web",
       "summary": "A free score-prediction page and organiser desk console for a staff charity football match in aid of Cardiac Risk in the Young.",
       "audience": "Match attendees and the event organiser.",
@@ -492,7 +682,12 @@
         "Organiser desk console with CSV export",
         "Print-ready flyer with QR code"
       ],
-      "tech": ["HTML", "CSS", "JavaScript", "Vercel"],
+      "tech": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Vercel"
+      ],
       "outcomes": "Used as the entry point for the event. No figures are published.",
       "limitations": [
         "No stake, prize or payout; pledges are voluntary donations and no payment is processed by the app.",
@@ -501,10 +696,13 @@
       "liveUrl": "https://aldanat-match-predictor.vercel.app/",
       "liveCheck": "Loads with full content",
       "publicSource": "https://github.com/dju78/betting",
-      "repos": ["betting"],
+      "repos": [
+        "betting"
+      ],
       "image": true,
       "imageAlt": "Charity match predictor entry form for the Supported Living versus Residential fixture",
-      "caption": "Entry form."
+      "caption": "Entry form.",
+      "ownerNote": "The fixture, pledges and charity arrangements belong to the event organiser and Cardiac Risk in the Young. Jomovate built the prediction page only."
     },
     {
       "slug": "nairaguard",
@@ -513,16 +711,28 @@
       "featured": false,
       "status": "prototype",
       "statusNote": "Demo with simulated analysis",
+      "access": "open",
       "type": "concept",
-      "categories": ["finance"],
+      "categories": [
+        "finance"
+      ],
       "service": "web",
       "summary": "A mobile-first prototype showing how counterfeit Naira checks could work from a phone photo.",
       "audience": "People handling cash in everyday transactions in Nigeria.",
       "problem": "Counterfeit notes are hard to spot quickly at the point of sale.",
       "role": "Designer and developer.",
       "solution": "A single-file web app with camera capture, a reference gallery of note denominations, a learning section on security features and local scan history.",
-      "features": ["Camera capture and upload", "Denomination reference gallery", "Security-feature guide", "Offline support"],
-      "tech": ["HTML", "CSS", "JavaScript"],
+      "features": [
+        "Camera capture and upload",
+        "Denomination reference gallery",
+        "Security-feature guide",
+        "Offline support"
+      ],
+      "tech": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
       "outcomes": "Demonstrates the user journey only.",
       "limitations": [
         "Analysis is simulated; it does not detect counterfeit notes.",
@@ -531,7 +741,10 @@
       "liveUrl": "https://daramol.netlify.app/",
       "liveCheck": "Loads; displays its own demo-version notice",
       "publicSource": "https://github.com/dju78/Fake-money-detector-",
-      "repos": ["Fake-money-detector-", "Nairadetect"],
+      "repos": [
+        "Fake-money-detector-",
+        "Nairadetect"
+      ],
       "image": true,
       "imageAlt": "NairaGuard scanner screen with a notice that analysis is simulated",
       "caption": "Scanner screen. The app labels itself as a demo with simulated analysis."
@@ -543,16 +756,27 @@
       "featured": false,
       "status": "prototype",
       "statusNote": "Independent concept; onboarding screens only",
+      "access": "open",
       "type": "concept",
-      "categories": ["finance"],
+      "categories": [
+        "finance"
+      ],
       "service": "web",
       "summary": "An independent mobile-banking interface concept exploring fast onboarding and simple transfers.",
       "audience": "Young mobile-first banking customers (concept audience).",
       "problem": "A design exploration of how a bank app could feel as quick as fintech competitors.",
       "role": "Designer and front-end developer.",
       "solution": "A React prototype of a six-step onboarding flow and transfer screens.",
-      "features": ["Six-step onboarding flow", "Transfer screen designs", "Mobile-first dark interface"],
-      "tech": ["React", "Vite", "Supabase"],
+      "features": [
+        "Six-step onboarding flow",
+        "Transfer screen designs",
+        "Mobile-first dark interface"
+      ],
+      "tech": [
+        "React",
+        "Vite",
+        "Supabase"
+      ],
       "outcomes": "Interface concept only.",
       "limitations": [
         "Not affiliated with or endorsed by United Bank for Africa.",
@@ -561,7 +785,9 @@
       "liveUrl": "https://ubapulse.netlify.app/",
       "liveCheck": "Loads to onboarding step 1",
       "publicSource": "https://github.com/dju78/uba2",
-      "repos": ["uba2"],
+      "repos": [
+        "uba2"
+      ],
       "image": true,
       "imageAlt": "UBA Pulse concept onboarding screen asking for a phone number",
       "caption": "Onboarding concept, step one."
@@ -573,23 +799,40 @@
       "featured": false,
       "status": "in-development",
       "statusNote": "Early access behind sign-in",
+      "access": "sign-in",
       "type": "own-product",
-      "categories": ["finance"],
+      "categories": [
+        "finance"
+      ],
       "service": "web",
       "summary": "A compliance-support workspace for organisations' tax records and reporting, in early development.",
       "audience": "Pilot users during early development.",
       "problem": "Organisations need one place to keep tax records organised and see what is due.",
       "role": "Designer and developer.",
       "solution": "A React and Supabase application with sign-in; further detail will be published as development progresses.",
-      "features": ["Account sign-in", "Compliance dashboard (in development)"],
-      "tech": ["React", "TypeScript", "Vite", "Supabase", "Vitest"],
+      "features": [
+        "Account sign-in",
+        "Compliance dashboard (in development)"
+      ],
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Supabase",
+        "Vitest"
+      ],
       "outcomes": "In development.",
-      "limitations": ["Not regulated tax advice and no guarantee of compliance outcomes."],
+      "limitations": [
+        "Not regulated tax advice and no guarantee of compliance outcomes."
+      ],
       "liveUrl": "https://deaptaxcompliance.netlify.app/",
       "liveCheck": "Loads to sign-in page",
       "publicSource": "https://github.com/dju78/Tax-compliance",
-      "repos": ["Tax-compliance"],
-      "image": false
+      "repos": [
+        "Tax-compliance"
+      ],
+      "image": false,
+      "noImageReason": "Not shown: the app opens at a sign-in page"
     }
   ]
 }

@@ -18,7 +18,7 @@ let htmlFiles = [];
 const read = (rel) => readFileSync(join(out, rel), 'utf8');
 
 before(() => {
-  execFileSync(process.execPath, [join(root, 'scripts/build.mjs'), '--out', out], { stdio: 'pipe' });
+  execFileSync(process.execPath, [join(root, 'scripts/build.mjs'), '--out', out, '--no-local-env'], { stdio: 'pipe', env: { ...process.env, WHATSAPP_NUMBER: '', WHATSAPP_CHANNEL_URL: '' } });
   htmlFiles = walk(out).filter((f) => f.endsWith('.html'));
 });
 
@@ -182,4 +182,92 @@ test('every email address and mailto link uses the configured business email', (
   }
   const ld = read('index.html').match(/"email":"([^"]+)"/);
   assert.equal(ld?.[1], email, 'Organization JSON-LD email');
+});
+
+// ---- WhatsApp, access labels, attribution fields, fonts (added with the advertising-readiness work)
+
+const buildWith = (env) => {
+  const dir = mkdtempSync(join(tmpdir(), 'jomovate-wa-'));
+  const log = execFileSync(process.execPath, [join(root, 'scripts/build.mjs'), '--out', dir, '--no-local-env'], { env: { ...process.env, WHATSAPP_NUMBER: '', WHATSAPP_CHANNEL_URL: '', ...env }, encoding: 'utf8' });
+  return { dir, log, read: (rel) => readFileSync(join(dir, rel), 'utf8') };
+};
+// Ofcom reserved drama number; test-only.
+const TEST_NUMBER = '07700 900123';
+const TEST_CHANNEL = 'https://whatsapp.com/channel/0029TestOnlyChannelId00';
+
+test('default build publishes no WhatsApp links or placeholders', () => {
+  for (const f of htmlFiles) {
+    const html = readFileSync(f, 'utf8');
+    assert.ok(!/wa\.me|whatsapp\.com\/channel|Chat on WhatsApp|Follow Jomovate on WhatsApp/i.test(html), `WhatsApp link in ${f}`);
+  }
+});
+
+test('configured WhatsApp builds show chat buttons in the right places without logging the number', () => {
+  const b = buildWith({ WHATSAPP_NUMBER: TEST_NUMBER, WHATSAPP_CHANNEL_URL: TEST_CHANNEL });
+  assert.ok(!b.log.includes('7700'), 'build log must not contain the number');
+  assert.match(b.log, /WhatsApp chat button: enabled/);
+  const expect = (rel, text) => {
+    const html = b.read(rel);
+    const link = `https://wa.me/447700900123?text=${encodeURIComponent(text).replace(/'/g, '&#39;')}`;
+    assert.ok(html.includes(`href="${link}"`), `${rel} missing chat link for "${text}"`);
+  };
+  expect('contact/index.html', 'Hello Jomovate, I would like to discuss a project.');
+  expect('services/web-development/index.html', 'Hello Jomovate, I would like to discuss a website project.');
+  expect('services/data-analysis/index.html', 'Hello Jomovate, I would like to discuss a data analysis or dashboard project.');
+  expect('work/ukcalc/index.html', 'Hello Jomovate, I would like to discuss a project similar to UKCalc.');
+  const home = b.read('index.html');
+  assert.ok(home.includes('href="https://wa.me/447700900123'), 'footer chat link missing');
+  // Channel: footer and contact only, as a plain link (less prominent than the chat button).
+  const contact = b.read('contact/index.html');
+  assert.ok(contact.includes(`href="${TEST_CHANNEL}"`) && contact.includes('product updates and business news'));
+  assert.ok(home.includes(`href="${TEST_CHANNEL}"`));
+  assert.ok(!b.read('services/web-development/index.html').includes('Channel info'));
+  assert.doesNotMatch(contact, new RegExp(`class="btn[^"]*"[^>]*href="${TEST_CHANNEL}`), 'channel must not be styled as a primary button');
+  // No form values or personal data in any draft.
+  for (const m of contact.matchAll(/wa\.me\/\d+\?text=([^"]+)/g)) assert.ok(decodeURIComponent(m[1].replace(/&#39;/g, "'")).startsWith('Hello Jomovate'));
+  // Privacy notice describes WhatsApp only when it is offered.
+  assert.match(b.read('privacy/index.html'), /handled by WhatsApp \(Meta\)/);
+  assert.doesNotMatch(read('privacy/index.html'), /handled by WhatsApp/);
+});
+
+test('each WhatsApp value is independent and invalid values stay hidden', () => {
+  const chatOnly = buildWith({ WHATSAPP_NUMBER: TEST_NUMBER });
+  assert.ok(chatOnly.read('contact/index.html').includes('wa.me/447700900123'));
+  assert.ok(!chatOnly.read('contact/index.html').includes('whatsapp.com/channel'));
+  const bad = buildWith({ WHATSAPP_NUMBER: '07700 9001', WHATSAPP_CHANNEL_URL: 'https://example.com/channel/abc' });
+  assert.ok(!/wa\.me|whatsapp\.com\/channel/.test(bad.read('contact/index.html')));
+  assert.ok(!bad.log.includes('7700'));
+});
+
+test('portfolio entries state how they can be accessed, and gated apps offer a demonstration route', () => {
+  const work = read('work/index.html');
+  for (const p of published) {
+    const html = read(`work/${p.slug}/index.html`);
+    assert.match(html, /<dt>Access<\/dt>/, p.slug);
+    const gated = ['pilot', 'in-development'].includes(p.status) || p.access !== 'open';
+    assert.equal(html.includes('type=demo'), gated, `${p.slug} demo route`);
+    if (p.access !== 'open') assert.doesNotMatch(html, />Try it now /, `${p.slug} must not say "Try it now"`);
+  }
+  assert.ok((work.match(/class="access/g) || []).length >= published.length);
+  for (const slug of ['uba-pulse', 'nairaguard']) assert.match(read(`work/${slug}/index.html`), /Not affiliated|simulated/i);
+});
+
+test('enquiry form carries optional source and campaign fields in its static markup', () => {
+  const html = read('contact/index.html');
+  const form = html.slice(html.indexOf('<form'), html.indexOf('</form>'));
+  assert.match(form, /<select[^>]*name="enquiry-source"(?![^>]*required)/);
+  for (const f of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'landing_page']) {
+    assert.match(form, new RegExp(`<input type="hidden" name="${f}" value="" data-attribution>`), f);
+  }
+});
+
+test('fonts are self-hosted and no third-party scripts, pixels or font requests are loaded', () => {
+  for (const f of ['fonts/caprasimo-latin.woff2', 'fonts/figtree-latin-var.woff2']) assert.ok(existsSync(join(out, f)), f);
+  for (const f of htmlFiles) {
+    const html = readFileSync(f, 'utf8');
+    assert.ok(!/fonts\.googleapis|fonts\.gstatic|googletagmanager|google-analytics|connect\.facebook|gtag\(/.test(html), `third-party tag in ${f}`);
+    for (const m of html.matchAll(/<script[^>]*src="([^"]+)"/g)) assert.ok(m[1].startsWith('/'), `external script ${m[1]}`);
+  }
+  const toml = readFileSync(join(root, 'netlify.toml'), 'utf8');
+  assert.match(toml, /font-src 'self'/);
 });
