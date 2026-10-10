@@ -3,9 +3,16 @@
   "configurations": [
     {
       "name": "jomovate-static",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8123", "--directory", "Jomovate design system"],
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/serve.mjs", "8123"],
       "port": 8123
+    },
+    {
+      "name": "jomovate-forms-failing",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/serve.mjs", "8124"],
+      "env": { "FORMS": "fail" },
+      "port": 8124
     }
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "name": "Jomovate Digital Labs",
+  "shortName": "Jomovate",
+  "url": "https://jomovate.com",
+  "email": "dju78@jomovate.com",
+  "country": "United Kingdom",
+  "tagline": "Professional websites, practical applications and clear data insights.",
+  "founder": {
+    "name": "Daramola Joseph Omoyele",
+    "portfolio": "https://daramolajo.co.uk/",
+    "research": "https://omoyelejd.co.uk/",
+    "github": "https://github.com/dju78",
+    "orcid": "https://orcid.org/0009-0006-0347-0499"
+  },
+  "formName": "jomovate-enquiry"
+}

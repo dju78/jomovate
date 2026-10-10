@@ -1,0 +1,79 @@
+{
+  "_readme": "Articles are written in this file (body is an array of {h2} or {p} or {ul:[...]} blocks) and become /insights/<slug>/ pages. Publications link out to the original source.",
+  "articles": [
+    {
+      "slug": "fair-staff-metrics-in-care",
+      "title": "Counting fairly: why staff quality metrics need a denominator",
+      "date": "2026-10-10",
+      "summary": "Raw incident counts can make your most conscientious staff look like your biggest risk. A short note on the design choices behind Care Quality Intelligence.",
+      "project": "care-quality-intelligence",
+      "body": [
+        { "p": "When a care provider starts reviewing quality data at staff level, the first chart is usually a count: incidents per person, complaints per person. It is easy to produce and easy to misread." },
+        { "h2": "Counts reward the people who do less" },
+        { "p": "A support worker on four shifts a week will appear in more records than a colleague on one. Someone who reports concerns promptly will appear more often than someone who does not. A raw count mixes exposure, reporting culture and genuine risk into a single number." },
+        { "h2": "Three design rules" },
+        { "ul": [
+          "Always show a rate next to a count. In Care Quality Intelligence every staff-level figure is shown as a count and as a rate per 100 delivered support sessions.",
+          "Hold back judgement on small samples. Below a minimum number of sessions the system shows the data but does not rate the person.",
+          "Treat good reporting as a strength. Timely, complete reports are flagged positively rather than added to a risk score."
+        ] },
+        { "h2": "What this means for your own reporting" },
+        { "p": "You do not need special software to apply these rules. A spreadsheet or Power BI report can carry the denominator alongside every count, set a minimum sample before colouring anything red, and separate reporting behaviour from incident severity. The aim is a supervision conversation based on evidence that both sides recognise as fair." },
+        { "p": "The demo of Care Quality Intelligence uses synthetic data, so you can explore these rules without any real people's information." }
+      ]
+    },
+    {
+      "slug": "repair-dont-delete-price-data",
+      "title": "Repair, don't delete: handling errors in price collections",
+      "date": "2026-10-10",
+      "summary": "Deleting suspicious price quotes feels safe, but it quietly changes the index. Notes from building PriceLab and Price Quality Explorer.",
+      "project": "pricelab",
+      "body": [
+        { "p": "Every price collection contains mistakes: a price keyed in pence instead of pounds, a zero entered for an item that was out of stock, a seasonal product that disappears for half the year. The instinctive fix is to delete the odd rows. In a matched-item index that choice has consequences." },
+        { "h2": "Why deletion is not neutral" },
+        { "p": "A matched index compares the same items over time. Remove one observation and the item drops out of two comparisons, changing the sample silently. Remove several from one category and that category's movement can shift noticeably." },
+        { "h2": "A more transparent approach" },
+        { "ul": [
+          "Diagnose missing values by mechanism. Gaps that recur in the same months each year are seasonal; gaps that hit everything at once are collection failures. They need different treatments.",
+          "Repair clear unit errors. A price exactly one hundred times its item's usual level is almost certainly a unit slip; rescale it and keep a flag.",
+          "Never overwrite the original. Keep raw and analysis values side by side so every decision can be reviewed.",
+          "Write the decisions down. A method note that lists every adjustment makes the result auditable."
+        ] },
+        { "h2": "Where this applies" },
+        { "p": "The same principles apply to sales data, survey responses and operational records: decide what each error means before you decide what to do with it, and keep a record of what changed." }
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "title": "Dynamics of Foreign Direct Investment and Economic Growth in SADC Countries: A Panel Data Analysis",
+      "venue": "Journal of Cultural Analysis and Social Change, Vol. 11, Issue 2 (2026)",
+      "kind": "Peer-reviewed article",
+      "url": "https://doi.org/10.64753/jcasc.v11i2.4875"
+    },
+    {
+      "title": "Religion as an Economic Institution in Sub-Saharan Africa",
+      "venue": "World Journal of Advanced Research and Reviews (2026)",
+      "kind": "Peer-reviewed article",
+      "url": "https://doi.org/10.30574/wjarr.2026.29.1.0134"
+    },
+    {
+      "title": "Monetary Transmission Capacity and Inflation Dynamics in Sub-Saharan Africa",
+      "venue": "SSRN working paper (2026)",
+      "kind": "Working paper",
+      "url": "https://doi.org/10.2139/ssrn.6676279"
+    },
+    {
+      "title": "Response to the ICO consultation on automated decision-making and profiling (UK GDPR Article 22)",
+      "venue": "Consultation response",
+      "kind": "Policy submission",
+      "url": "https://daramolajo.co.uk/papers/ico-adm-article22-consultation-response.pdf"
+    },
+    {
+      "title": "Submission to HMRC on Making Tax Digital for Income Tax",
+      "venue": "Consultation submission",
+      "kind": "Policy submission",
+      "url": "https://daramolajo.co.uk/papers/hmrc-making-tax-digital-submission.pdf"
+    }
+  ]
+}
