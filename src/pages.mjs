@@ -19,7 +19,7 @@ const orgLd = (site) => ({
   name: site.name,
   alternateName: site.shortName,
   url: `${site.url}/`,
-  logo: `${site.url}/img/brand/jomovate-logo.webp`,
+  logo: `${site.url}/img/brand/jomovate-logo.png`,
   email: site.email,
   areaServed: 'GB',
   founder: { '@id': `${site.url}/#founder` },

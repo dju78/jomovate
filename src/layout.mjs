@@ -143,8 +143,7 @@ ${scripts.map((s) => html`<script type="module" src="${s}"></script>`)}
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/" aria-label="${esc(site.name)} home">
-      <img src="/img/brand/jomovate-icon.png" width="23" height="32" alt="">
-      <span>Jomovate</span>
+      <img src="/img/brand/jomovate-logo.webp" width="157" height="34" alt="Jomovate">
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>
       <span class="nav-toggle-bars" aria-hidden="true"></span><span class="visually-hidden">Menu</span>
