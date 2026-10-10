@@ -34,10 +34,6 @@ const personLd = (site) => ({
   url: `${site.url}/about/`,
   image: `${site.url}/img/founder.webp`,
   sameAs: [site.founder.portfolio, site.founder.research, site.founder.github, site.founder.orcid],
-  alumniOf: [
-    { '@type': 'CollegeOrUniversity', name: 'University of Essex' },
-    { '@type': 'CollegeOrUniversity', name: 'University of Ilorin' },
-  ],
 });
 
 const crumbLd = (site, items) => ({
@@ -140,7 +136,7 @@ export function home({ site, projects, categories }) {
     <div>
       <p class="eyebrow">Who you will work with</p>
       <h2>${esc(site.founder.name)}</h2>
-      <p>Jomovate is a founder-led studio. You work directly with Daramola — an economist and data analyst with an MSc from the University of Essex, years of public-sector data analysis, and a portfolio of web applications built and run end to end.</p>
+      <p>Jomovate is a founder-led studio. You work directly with Daramola — a data analyst and researcher with published work on economics and public policy, and a portfolio of web applications designed, built and run end to end.</p>
       <p>That mix means the analysis is statistically sound and the software is built around the people who will use it.</p>
       <a class="text-link" href="/about/">About Jomovate and its founder ${icon.arrow}</a>
     </div>
@@ -473,7 +469,7 @@ export function about({ site, projects }) {
   return {
     path: '/about/',
     title: 'About Jomovate and its founder',
-    description: `Jomovate Digital Labs is a founder-led UK studio run by ${site.founder.name}, an economist and data analyst who builds websites, web applications and dashboards.`,
+    description: `Jomovate Digital Labs is a founder-led UK studio run by ${site.founder.name}, a data analyst and researcher who builds websites, web applications and dashboards.`,
     active: 'about',
     ogType: 'profile',
     jsonLd: [orgLd(site), personLd(site), crumbLd(site, [{ label: 'Home', href: '/' }, { label: 'About', href: '/about/' }])],
@@ -492,8 +488,7 @@ export function about({ site, projects }) {
     <div class="prose">
       <p class="eyebrow">Founder</p>
       <h2>${esc(site.founder.name)}</h2>
-      <p>Daramola is an economist and data analyst. From 2014 to 2022 Daramola worked as a data analyst at the Nigerian Postal Service on operational insight, performance monitoring and forecasting, and currently works as a data and finance analyst alongside running Jomovate.</p>
-      <p>Daramola holds an MSc from the University of Essex (dissertation on foreign direct investment and economic growth across 39 Sub-Saharan African countries) and a first degree from the University of Ilorin, and publishes research on development economics, tax administration and digital governance.</p>
+      <p>Daramola is a data analyst and researcher who also designs and builds software. Published work covers development economics, tax administration and digital governance, including peer-reviewed articles and responses to UK consultations by the ICO and HMRC — see <a href="/insights/">Insights</a>.</p>
       <p>Alongside that work, Daramola has designed, built and deployed the web applications in the <a href="/work/">portfolio</a> — ${live} of them publicly live — covering care quality, UK finance, analytics, automotive repair and community heritage.</p>
       <div class="actions">
         <a class="btn btn-secondary" href="${site.founder.portfolio}" rel="me noopener">Founder portfolio ${icon.external}</a>
@@ -521,7 +516,7 @@ export function about({ site, projects }) {
     </div>
     <div>
       <h2 class="h3">Beyond the UK</h2>
-      <p>Some projects serve communities in Nigeria — a heritage website and quiz game for Kogi State, and research on digital identity and tax administration. They are included because they show the same care for real users, not because Jomovate's services focus there; commercial work is focused on UK organisations.</p>
+      <p>Some projects serve communities in Nigeria — a heritage website and quiz game for Kogi State, and published research on development economics. They are included because they show the same care for real users, not because Jomovate's services focus there; commercial work is focused on UK organisations.</p>
     </div>
   </div>
 </section>

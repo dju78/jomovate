@@ -45,7 +45,19 @@ npm run serve            # http://localhost:8123
 | Price Quality Explorer demo | Streamlit reports no access / app does not exist | "Demo currently unavailable" kept |
 | LinkedIn | Two different profile URLs in your materials (`daramola-joseph-omoyele` and `daramola-omoyele-bbb006244`) | No LinkedIn link added until you confirm which |
 | Founder photo | The portrait has a JOMOVATE wall sign that looks digitally composited | Used on Home/About only; replace with an unedited photo if you have one |
+| Employment history | daramolajo.co.uk lists a Nigerian Postal Service data analyst role (2014–2022) and a current data & finance analyst role. **You have said this conflicts with your actual history.** | All employment claims removed from the site. Note: the same text is live on daramolajo.co.uk, so correct it there too |
+| Education | daramolajo.co.uk lists an MSc (University of Essex, 2023) and a degree (University of Ilorin, 2006) | Removed from About, Home and structured data until you confirm |
 | Professional titles | omoyelejd.co.uk describes you as a Chartered Accountant; the awarding body isn't stated | Not used on the site |
+
+## 4a. Founder facts awaiting your confirmation
+
+The founder copy now states only what this audit could verify independently: the published articles and consultation responses (DOIs/PDFs on the Insights page) and the projects themselves (repositories and live sites). Please confirm or correct each item before it goes back on the site:
+
+- [ ] Description "data analyst and researcher" (Home, About, page description)
+- [ ] Any employment history you want shown (none is shown now)
+- [ ] Education (none is shown now)
+- [ ] Self-description on omoyelejd.co.uk as "economist" and "Chartered Accountant" (not used)
+- [ ] The two Insights articles, written in your voice
 
 ## 5. Configuration and permissions needed from you
 
