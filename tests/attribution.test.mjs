@@ -44,3 +44,9 @@ test('the parameter list matches the hidden form fields', async () => {
   const { ATTRIBUTION_FIELDS } = await import('../src/pages.mjs');
   assert.deepEqual(ATTRIBUTION_FIELDS, [...PARAMS, 'landing_page']);
 });
+
+test('landing directly on the contact page records that page as the landing page', async () => {
+  const src = (await import('node:fs')).readFileSync(new URL('../src/js/contact.js', import.meta.url), 'utf8');
+  assert.match(src, /pickAttribution\(location\.search, location\.pathname\)/);
+  assert.equal(pickAttribution('?utm_source=google', '/contact/').landing_page, '/contact/');
+});
