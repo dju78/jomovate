@@ -88,7 +88,7 @@ if (form) {
     if (result.ok) {
       form.hidden = true;
       status.className = 'form-status form-status-ok';
-      status.innerHTML = '<h2>Thank you — your enquiry has been sent</h2><p>I will read it and reply by email. A copy of what you sent is not emailed to you, so keep a note if you need one.</p>';
+      status.innerHTML = '<h2>Thank you. Your enquiry has been sent</h2><p>I will read it and reply by email. A copy of what you sent is not emailed to you, so keep a note if you need one.</p>';
       // The only "lead" signal: fired after Netlify accepted the submission, never on a click.
       track('enquiry_submitted', { service: form.elements.service.value, enquiry_type: form.querySelector('[data-enquiry-type]').value });
     } else {
@@ -97,7 +97,7 @@ if (form) {
       const h = document.createElement('h2');
       h.textContent = 'Your enquiry could not be sent';
       const p = document.createElement('p');
-      p.append('Nothing was lost — your answers are still in the form. Please try again, or email ');
+      p.append('Nothing was lost. Your answers are still in the form. Please try again, or email ');
       const a = document.createElement('a');
       a.href = `mailto:${email}`;
       a.textContent = email;

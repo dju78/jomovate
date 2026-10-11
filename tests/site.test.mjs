@@ -6,7 +6,8 @@ import { readFileSync, existsSync, readdirSync, statSync, mkdtempSync } from 'no
 import { join, resolve, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
-import { validateProjects, LEGACY_REDIRECTS } from '../scripts/build.mjs';
+import { validateProjects, LEGACY_REDIRECTS, REMOVED_PROJECT_REDIRECTS } from '../scripts/build.mjs';
+import { projectGroup } from '../src/layout.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const out = mkdtempSync(join(tmpdir(), 'jomovate-site-'));
@@ -145,6 +146,14 @@ test('legacy .dc.html URLs redirect to the new routes', () => {
   assert.ok(LEGACY_REDIRECTS.length >= 12);
 });
 
+test('withdrawn case studies 301 to the Work directory and are not built', () => {
+  const redirects = read('_redirects');
+  for (const [from, to] of REMOVED_PROJECT_REDIRECTS) {
+    assert.ok(redirects.split('\n').includes(`${from}  ${to}  301!`), `no redirect for ${from}`);
+    assert.ok(!existsSync(join(out, from, 'index.html')), `${from} still has a page`);
+  }
+});
+
 test('sitemap lists every indexable page and excludes noindex pages', () => {
   const sitemap = read('sitemap.xml');
   for (const p of published) assert.ok(sitemap.includes(`https://jomovate.com/work/${p.slug}/`));
@@ -270,4 +279,58 @@ test('fonts are self-hosted and no third-party scripts, pixels or font requests 
   }
   const toml = readFileSync(join(root, 'netlify.toml'), 'utf8');
   assert.match(toml, /font-src 'self'/);
+});
+
+test('portfolio lists data and research first, then applications, then websites', () => {
+  const rank = { analytics: 0, applications: 1, websites: 2 };
+  for (const file of ['work/index.html', 'index.html']) {
+    const slugs = [...read(file).matchAll(/project-card-title"><a href="\/work\/([^/]+)\//g)].map((m) => m[1]);
+    const ranks = slugs.map((s) => rank[projectGroup(published.find((p) => p.slug === s))]);
+    assert.deepEqual(ranks, [...ranks].sort((a, b) => a - b), `${file} order: ${slugs.join(', ')}`);
+  }
+});
+
+test('homepage sections run hero, services, featured projects, how we work, about, contact', () => {
+  const home = read('index.html');
+  const ids = ['hero-title', 'services-title', 'work-title', 'process-title', 'about-title', 'cta-title'].map((id) => home.indexOf(`id="${id}"`));
+  assert.ok(ids.every((i) => i > 0), 'a homepage section is missing');
+  assert.deepEqual(ids, [...ids].sort((a, b) => a - b));
+  const services = [...home.matchAll(/class="service-card">\s*<h3><a href="[^"]+">([^<]+)</g)].map((m) => m[1]);
+  assert.equal(services[0], 'Data Analytics &amp; Insights');
+  assert.equal(services.at(-1), 'Professional Websites');
+});
+
+test('client projects link only to their public site, in a new tab', () => {
+  for (const p of published.filter((x) => x.type === 'client')) {
+    const html = read(`work/${p.slug}/index.html`);
+    assert.doesNotMatch(html, /\/admin/, `${p.slug} links to an admin page`);
+    assert.match(html, new RegExp(`href="${p.liveUrl.replace(/[.?*+^$()|[\]\/]/g, '\$&')}" rel="noopener" target="_blank"`), `${p.slug} live link`);
+    assert.match(html, /Client project/);
+  }
+});
+
+test('every project card leads with Data & analytics, Applications or Websites', () => {
+  for (const file of ['work/index.html', 'index.html']) {
+    const labels = [...read(file).matchAll(/project-card-meta">.*?<span class="kicker">([^<]+)</g)].map((m) => m[1]);
+    assert.ok(labels.length > 0, `${file} has no cards`);
+    for (const l of labels) assert.match(l, /^(Data &amp; analytics|Applications|Websites)( · |$)/, `${file}: ${l}`);
+  }
+});
+
+test('page and social titles use "|" rather than an em dash', () => {
+  for (const f of htmlFiles) {
+    const html = readFileSync(f, 'utf8');
+    for (const m of html.matchAll(/<title>([^<]*)<\/title>|(?:og|twitter):title" content="([^"]*)"/g)) assert.ok(!(m[1] ?? m[2]).includes('—'), `${f}: ${m[1] ?? m[2]}`);
+  }
+});
+
+test('visible body text and form messages contain no em dashes', () => {
+  for (const f of htmlFiles) {
+    const body = readFileSync(f, 'utf8').split('<body>')[1].replace(/<script[\s\S]*?<\/script>/g, '');
+    const text = body.replace(/<[^>]+>/g, ' ');
+    const attrs = [...body.matchAll(/(?:alt|aria-label|title|placeholder)="([^"]*)"/g)].map((m) => m[1]).join(' ');
+    assert.ok(!(text + attrs).includes('—'), `em dash in ${f}`);
+  }
+  const js = readFileSync(join(root, 'src/js/contact.js'), 'utf8').split('\n').filter((l) => !l.trim().startsWith('//') && !l.trim().startsWith('*'));
+  assert.ok(!js.some((l) => /['"`][^'"`]*—/.test(l)), 'em dash in a contact form message');
 });

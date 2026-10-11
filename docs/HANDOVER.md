@@ -9,7 +9,7 @@ Branch: `feature/professional-upgrade`. Nothing has been merged to `main` or dep
 - **Central data:** `content/projects.json` drives cards, filters, case studies, sitemap, structured data and social previews.
 - **Removed:** fabricated Services dashboard (+$2.4M, 35%, 520 hrs), generic stock/AI imagery (team photo, branded office, insight illustrations), "Enterprise / small business / consumers" filler, the "we reply within two business days" promise.
 - **Accuracy fixes:** TaxMate UK relabelled Prototype (its README says prototype); Speaking Trainer no longer implies AI (no AI dependency in source); UBA Pulse and NairaGuard carry explicit not-affiliated / simulated notices; AI Lab, Price Quality Explorer and PriceLab keep their independent / not-ONS context; CQI, CarePhrase and the Academy state they are not CQC-endorsed or clinical tools.
-- **New entries:** UK AI Economic Measurement Lab, PriceLab, Takete-Ide community website, Aldanat Care FC Match Predictor, all with new screenshots.
+- **New entries:** UK AI Economic Measurement Lab, PriceLab, Takete-Ide community website, all with new screenshots.
 - **Enquiry form:** name, email, optional organisation, service, brief, optional budget and timeframe; accessible inline errors and error summary; honeypot; success shown only on a 2xx response; no-JS fallback page.
 - **SEO/sharing:** per-page titles, descriptions and canonicals in `<head>`; per-project 1200×630 social images; Organization, Person, Service, SoftwareApplication/WebSite, Article and BreadcrumbList JSON-LD; sitemap.xml; robots.txt; 301s from every old `.dc.html` URL.
 - **Security headers** and a strict Content-Security-Policy in `netlify.toml` (no inline scripts or styles on any page).

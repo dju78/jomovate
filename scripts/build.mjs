@@ -6,7 +6,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { page } from '../src/layout.mjs';
+import { page, byGroup } from '../src/layout.mjs';
 import * as P from '../src/pages.mjs';
 import { whatsappConfig } from '../src/whatsapp.mjs';
 
@@ -28,6 +28,11 @@ export const LEGACY_REDIRECTS = [
   ['/Insights.dc.html', '/insights/'], ['/insights.dc', '/insights/'],
   ['/Contact.dc.html', '/contact/'], ['/contact.dc', '/contact/'],
   ['/NavHeader.dc.html', '/'], ['/Footer.dc.html', '/'],
+];
+
+// Case studies that have been withdrawn from the site → the Work directory, so old links keep working.
+export const REMOVED_PROJECT_REDIRECTS = [
+  ['/work/aldanat-match-predictor/', '/work/'], ['/work/aldanat-match-predictor', '/work/'],
 ];
 
 const STATUSES = ['live', 'pilot', 'prototype', 'in-development', 'archived'];
@@ -56,9 +61,10 @@ export function validateProjects(data, { imageExists = () => true } = {}) {
   const slugs = new Set();
   for (const p of data.projects) {
     const where = `project "${p.slug || p.title}"`;
-    for (const k of ['slug', 'title', 'status', 'type', 'summary', 'problem', 'audience', 'role', 'solution', 'outcomes', 'statusNote', 'liveCheck', 'service']) {
+    for (const k of ['slug', 'title', 'status', 'type', 'summary', 'problem', 'audience', 'role', 'solution', 'statusNote', 'liveCheck', 'service']) {
       if (!p[k] || typeof p[k] !== 'string') errors.push(`${where}: missing ${k}`);
     }
+    if (p.outcomes !== undefined && (!p.outcomes || typeof p.outcomes !== 'string')) errors.push(`${where}: outcomes must be text when given`);
     if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(p.slug || '')) errors.push(`${where}: slug must be kebab-case`);
     if (slugs.has(p.slug)) errors.push(`${where}: duplicate slug`);
     slugs.add(p.slug);
@@ -109,7 +115,7 @@ async function main() {
     console.error(`Content errors:\n- ${errors.join('\n- ')}`);
     process.exit(1);
   }
-  const projects = all.filter((p) => p.published);
+  const projects = all.filter((p) => p.published).sort(byGroup);
   const { categories, checkedOn } = projectData;
 
   await rm(out, { recursive: true, force: true });
@@ -150,7 +156,7 @@ ${indexable.map((p) => `  <url><loc>${site.url}${p.path}</loc><lastmod>${checked
 </urlset>
 `);
   await writeFile(join(out, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${site.url}/sitemap.xml\n`);
-  await writeFile(join(out, '_redirects'), LEGACY_REDIRECTS.map(([from, to]) => `${from}  ${to}  301!`).join('\n') + '\n');
+  await writeFile(join(out, '_redirects'), [...LEGACY_REDIRECTS, ...REMOVED_PROJECT_REDIRECTS].map(([from, to]) => `${from}  ${to}  301!`).join('\n') + '\n');
 
   const files = await countFiles(out);
   console.log(`Built ${pages.length} pages (${projects.length} projects${withDrafts ? ', drafts included' : ''}) and ${files} files into ${out}`);
