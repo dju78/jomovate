@@ -73,7 +73,7 @@ export function home({ site, projects, categories }) {
         <a class="btn btn-primary btn-lg" href="/work/">Explore our work</a>
         <a class="btn btn-secondary btn-lg" href="/contact/" data-track="cta_click" data-location="home-hero">Discuss your project</a>
       </div>
-      <p class="hero-note">${count} projects in the portfolio, each with its status stated plainly — live, pilot or prototype.</p>
+      <p class="hero-note">${count} projects in the portfolio, each with its status stated plainly: live, pilot or prototype.</p>
     </div>
   </div>
 </section>
@@ -126,7 +126,7 @@ export function home({ site, projects, categories }) {
     <div>
       <p class="eyebrow">About Jomovate</p>
       <h2 id="about-title">${esc(site.founder.name)}</h2>
-      <p>Jomovate is a founder-led studio. You work directly with Daramola — a data analyst and researcher with published work on economics and public policy, and a portfolio of web applications designed, built and run end to end.</p>
+      <p>Jomovate is a founder-led studio. You work directly with Daramola, a data analyst and researcher with published work on economics and public policy, and a portfolio of web applications designed, built and run end to end.</p>
       <p>That mix means the analysis is statistically sound and the software is built around the people who will use it.</p>
       <p>Jomovate works with small businesses, charities and community groups, care and service providers, and teams with data they need to analyse. Typical projects range from survey analysis, reporting and dashboards to booking tools, client portals and websites that staff or volunteers can keep up to date.</p>
       <a class="text-link" href="/about/">About Jomovate and its founder ${icon.arrow}</a>
@@ -183,7 +183,7 @@ const SERVICES = {
     intro: 'Turn data you already hold into clear answers. I clean and check it, analyse it with the right method, and present the results in a report or dashboard your team can use without a statistics degree.',
     offers: [
       ['Data cleaning and quality checks', 'Find and fix duplicates, gaps, unit errors and inconsistent categories, with a record of every change.'],
-      ['Analysis', 'Descriptive and statistical analysis in SQL, R, Python or Excel — trends, comparisons, drivers and forecasts, with assumptions stated.'],
+      ['Analysis', 'Descriptive and statistical analysis in SQL, R, Python or Excel: trends, comparisons, drivers and forecasts, with assumptions stated.'],
       ['Dashboards', 'Power BI, Tableau or web dashboards built around the decisions your team makes each week.'],
       ['Survey analysis', 'Questionnaire data cleaned, weighted where appropriate, analysed and written up in plain English.'],
       ['Research and evaluation', 'Economic research and evaluation of outcomes and impact, with methods, assumptions and limitations stated.'],
@@ -239,7 +239,7 @@ export function servicesIndex({ site, projects, categories }) {
     <p class="note">Prices depend on scope and are given as a written quote after discovery. No fixed prices are published.</p>
   </div>
 </section>
-<div class="container">${cta({ title: 'Not sure which service you need?', text: 'Describe the problem in a few sentences. I will suggest the simplest way to solve it — which is sometimes a spreadsheet, not software.' })}</div>
+<div class="container">${cta({ title: 'Not sure which service you need?', text: 'Describe the problem in a few sentences. I will suggest the simplest way to solve it, which is sometimes a spreadsheet, not software.' })}</div>
 `,
   };
 }
@@ -356,7 +356,7 @@ export function workIndex({ site, projects, categories }) {
     ${breadcrumbs([{ label: 'Home', href: '/' }, { label: 'Work' }])}
     <p class="eyebrow">Work</p>
     <h1>Data tools, applications and websites</h1>
-    <p class="lead">Everything here was designed and built by Jomovate's founder. Data and research projects come first, then applications, then websites. Each entry states its status — <strong>live</strong> (publicly available), <strong>pilot</strong> (in use by invited users), <strong>prototype</strong> (working but not a finished service) or <strong>in development</strong> — and whether it is a client project, an independent product or a concept. Some apps open at a sign-in page or are limited to invited pilot users; each entry says how it can be accessed.</p>
+    <p class="lead">Everything here was designed and built by Jomovate's founder. Data and research projects come first, then applications, then websites. Each entry states whether it is a client project, an independent product or a concept, and its status: <strong>live</strong> (publicly available), <strong>pilot</strong> (in use by invited users), <strong>prototype</strong> (working but not a finished service) or <strong>in development</strong>. Some apps open at a sign-in page or are limited to invited pilot users; each entry says how it can be accessed.</p>
   </div>
 </section>
 <section class="section section-tight">
@@ -397,7 +397,7 @@ export function workIndex({ site, projects, categories }) {
     <p class="empty-state" data-empty hidden>No projects match those filters. <button type="button" class="link-button" data-clear>Clear filters</button></p>
   </div>
 </section>
-<div class="container">${cta({ title: 'Want something similar?', text: 'If one of these is close to what you need, mention it in your message — it helps me understand the scope quickly.' })}</div>
+<div class="container">${cta({ title: 'Want something similar?', text: 'If one of these is close to what you need, mention it in your message. It helps me understand the scope quickly.' })}</div>
 `,
   };
 }
@@ -529,8 +529,8 @@ export function about({ site, projects }) {
     <div class="prose">
       <p class="eyebrow">Founder</p>
       <h2>${esc(site.founder.name)}</h2>
-      <p>Daramola is a data analyst and researcher who also designs and builds software. Published work covers development economics, tax administration and digital governance, including peer-reviewed articles and responses to UK consultations by the ICO and HMRC — see <a href="/insights/">Insights</a>.</p>
-      <p>Alongside that work, Daramola has designed, built and deployed the web applications in the <a href="/work/">portfolio</a> — ${live} of them publicly live — covering care quality, UK finance, analytics, automotive repair and community heritage.</p>
+      <p>Daramola is a data analyst and researcher who also designs and builds software. Published work covers development economics, tax administration and digital governance, including peer-reviewed articles and responses to UK consultations by the ICO and HMRC. See <a href="/insights/">Insights</a>.</p>
+      <p>Alongside that work, Daramola has designed, built and deployed the web applications in the <a href="/work/">portfolio</a>, ${live} of them publicly live, covering care quality, UK finance, analytics, automotive repair and community heritage.</p>
       <div class="actions">
         <a class="btn btn-secondary" href="${site.founder.portfolio}" rel="me noopener">Founder portfolio ${icon.external}</a>
         <a class="btn btn-secondary" href="${site.founder.research}" rel="me noopener">Research and publications ${icon.external}</a>
@@ -557,7 +557,7 @@ export function about({ site, projects }) {
     </div>
     <div>
       <h2 class="h3">Beyond the UK</h2>
-      <p>Some projects serve communities in Nigeria — a heritage website and quiz game for Kogi State, and published research on development economics. They are included because they show the same care for real users, not because Jomovate's services focus there; commercial work is focused on UK organisations.</p>
+      <p>Some projects serve communities in Nigeria: a heritage website and quiz game for Kogi State, and published research on development economics. They are included because they show the same care for real users, not because Jomovate's services focus there; commercial work is focused on UK organisations.</p>
     </div>
   </div>
 </section>
@@ -645,7 +645,7 @@ export function insightArticle(a, { site, projects }) {
 <section class="section section-tight">
   <div class="container narrow prose">
     ${a.body.map((b) => (b.h2 ? html`<h2>${esc(b.h2)}</h2>` : b.ul ? html`<ul>${b.ul.map((li) => html`<li>${esc(li)}</li>`)}</ul>` : html`<p>${esc(b.p)}</p>`))}
-    ${proj ? html`<aside class="aside-card"><p class="kicker">Related project</p><p><a href="/work/${proj.slug}/">${esc(proj.title)}</a> — ${esc(proj.summary)}</p></aside>` : ''}
+    ${proj ? html`<aside class="aside-card"><p class="kicker">Related project</p><p><a href="/work/${proj.slug}/">${esc(proj.title)}</a>: ${esc(proj.summary)}</p></aside>` : ''}
     <p class="back-link"><a class="text-link" href="/insights/">← All insights</a></p>
   </div>
 </section>
@@ -797,7 +797,7 @@ export function contactThanks({ site }) {
     description: 'Thank you for your enquiry.',
     noindex: true,
     body: html`<section class="page-hero"><div class="container narrow">
-      <h1>Thank you — your enquiry has been sent</h1>
+      <h1>Thank you. Your enquiry has been sent</h1>
       <p class="lead">I will read it and reply by email. If you do not hear back, please write to <a href="mailto:${site.email}">${site.email}</a>.</p>
       <p><a class="btn btn-secondary" href="/work/">View our work</a></p>
     </div></section>`,
@@ -818,7 +818,7 @@ export function privacy({ site }) {
       <h2>Who is responsible</h2>
       <p>This website is operated by ${esc(site.founder.name)} under the name Jomovate Digital Labs, in the ${esc(site.country)}. Contact: <a href="mailto:${site.email}">${site.email}</a>.</p>
       <h2>What is collected</h2>
-      <p><strong>Enquiry form:</strong> the details you enter — name and email address, the service you are interested in and your project brief, and optionally your organisation, budget, timeframe and how you heard about Jomovate. If you reached the site from a link carrying campaign parameters (for example from an advert), those parameters (utm_source, utm_medium, utm_campaign, utm_term, utm_content and gclid) and the page you first landed on are sent with your enquiry so I can see which campaigns lead to enquiries. They are carried in the page address only; nothing is stored on your device.</p>
+      <p><strong>Enquiry form:</strong> the details you enter: name and email address, the service you are interested in and your project brief, and optionally your organisation, budget, timeframe and how you heard about Jomovate. If you reached the site from a link carrying campaign parameters (for example from an advert), those parameters (utm_source, utm_medium, utm_campaign, utm_term, utm_content and gclid) and the page you first landed on are sent with your enquiry so I can see which campaigns lead to enquiries. They are carried in the page address only; nothing is stored on your device.</p>
       <p><strong>Email:</strong> messages you send to ${site.email}, which is hosted by Google Workspace.</p>
       ${site.whatsapp?.chat || site.whatsapp?.channel ? html`<p><strong>WhatsApp:</strong> if you choose to message Jomovate on WhatsApp, your number and messages are handled by WhatsApp (Meta) under its own terms and privacy policy, and I see your number and what you send. The "Chat on WhatsApp" link opens WhatsApp with a short draft message; nothing is sent until you press send. Following the Jomovate WhatsApp channel does not share your phone number with Jomovate.</p>` : ''}
       <p><strong>No tracking:</strong> the site does not use cookies, analytics, advertising pixels or third-party fonts. The website host, Netlify, processes technical data such as IP addresses to deliver and secure the site, and records the IP address, browser details and referring page with each form submission to help filter spam.</p>

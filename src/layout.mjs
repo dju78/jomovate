@@ -133,7 +133,7 @@ export function projectCard(p, categories, { headingLevel = 3 } = {}) {
   </article>`;
 }
 
-export function cta({ title = 'Have a project in mind?', text = 'Tell me what you need and where you are starting from. I will reply with questions or next steps — no obligation.', primary = ['Discuss your project', '/contact/'], secondary = ['Request a quote', '/contact/?type=quote'], whatsapp = '' } = {}) {
+export function cta({ title = 'Have a project in mind?', text = 'Tell me what you need and where you are starting from. I will reply with questions or next steps. No obligation.', primary = ['Discuss your project', '/contact/'], secondary = ['Request a quote', '/contact/?type=quote'], whatsapp = '' } = {}) {
   return html`<section class="cta-band" aria-labelledby="cta-title">
     <div>
       <h2 id="cta-title">${esc(title)}</h2>
@@ -220,7 +220,7 @@ ${body}
       <div class="footer-contact">
         ${emailLink(site, 'footer', { iconFirst: true })}
         ${waChat(site, { where: 'footer', className: '' })}
-        ${site.whatsapp?.channel ? html`<span>${waChannel(site, 'footer')}<span class="wa-note"> — product updates and business news</span></span>` : ''}
+        ${site.whatsapp?.channel ? html`<span>${waChannel(site, 'footer')}<span class="wa-note">: product updates and business news</span></span>` : ''}
         <span>${esc(site.country)}</span>
       </div>
     </div>

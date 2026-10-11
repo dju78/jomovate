@@ -323,3 +323,14 @@ test('page and social titles use "|" rather than an em dash', () => {
     for (const m of html.matchAll(/<title>([^<]*)<\/title>|(?:og|twitter):title" content="([^"]*)"/g)) assert.ok(!(m[1] ?? m[2]).includes('—'), `${f}: ${m[1] ?? m[2]}`);
   }
 });
+
+test('visible body text and form messages contain no em dashes', () => {
+  for (const f of htmlFiles) {
+    const body = readFileSync(f, 'utf8').split('<body>')[1].replace(/<script[\s\S]*?<\/script>/g, '');
+    const text = body.replace(/<[^>]+>/g, ' ');
+    const attrs = [...body.matchAll(/(?:alt|aria-label|title|placeholder)="([^"]*)"/g)].map((m) => m[1]).join(' ');
+    assert.ok(!(text + attrs).includes('—'), `em dash in ${f}`);
+  }
+  const js = readFileSync(join(root, 'src/js/contact.js'), 'utf8').split('\n').filter((l) => !l.trim().startsWith('//') && !l.trim().startsWith('*'));
+  assert.ok(!js.some((l) => /['"`][^'"`]*—/.test(l)), 'em dash in a contact form message');
+});
