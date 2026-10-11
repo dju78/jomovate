@@ -312,8 +312,7 @@
       ],
       "outcomes": "Live and open to try. No performance figures are published.",
       "limitations": [
-        "The staff admin portal is private and is not shown here.",
-        "Figures shown on the client’s own site (such as events hosted and ratings) are the client’s and have not been verified by Jomovate."
+        "The staff admin portal is private and is not shown here."
       ],
       "liveUrl": "https://layo-alaga.vercel.app/",
       "liveNewTab": true,

@@ -128,6 +128,7 @@ export function home({ site, projects, categories }) {
       <h2 id="about-title">${esc(site.founder.name)}</h2>
       <p>Jomovate is a founder-led studio. You work directly with Daramola — a data analyst and researcher with published work on economics and public policy, and a portfolio of web applications designed, built and run end to end.</p>
       <p>That mix means the analysis is statistically sound and the software is built around the people who will use it.</p>
+      <p>Jomovate works with small businesses, charities and community groups, care and service providers, and teams with data they need to analyse. Typical projects range from survey analysis, reporting and dashboards to booking tools, client portals and websites that staff or volunteers can keep up to date.</p>
       <a class="text-link" href="/about/">About Jomovate and its founder ${icon.arrow}</a>
     </div>
   </div>
