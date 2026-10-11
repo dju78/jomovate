@@ -658,53 +658,6 @@
       "ownerNote": "Takete-Ide Amuro is a community organisation with its own website and contacts. For community matters, contact it through takete-ide.org — Jomovate built the site but does not speak for the community."
     },
     {
-      "slug": "aldanat-match-predictor",
-      "title": "Aldanat Care FC Match Predictor",
-      "published": true,
-      "featured": false,
-      "status": "archived",
-      "statusNote": "Built for a single charity fixture (26 August 2026); site still online",
-      "access": "open",
-      "type": "community",
-      "categories": [
-        "community",
-        "websites"
-      ],
-      "service": "web",
-      "summary": "A free score-prediction page and organiser desk console for a staff charity football match in aid of Cardiac Risk in the Young.",
-      "audience": "Match attendees and the event organiser.",
-      "problem": "The organiser needed a simple way to take predictions and track voluntary pledges on the day, without handling money in the app.",
-      "role": "Designer and developer, including the organiser pack and reconciliation workbook.",
-      "solution": "A dependency-free single-page app with transparent scoring rules, plus a desk console to record entries and pledges, publish the result and export a CSV for reconciliation.",
-      "features": [
-        "Free entry with optional voluntary pledge",
-        "Published scoring and tie-break rules",
-        "Organiser desk console with CSV export",
-        "Print-ready flyer with QR code"
-      ],
-      "tech": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Vercel"
-      ],
-      "outcomes": "Used as the entry point for the event. No figures are published.",
-      "limitations": [
-        "No stake, prize or payout; pledges are voluntary donations and no payment is processed by the app.",
-        "Each device keeps its own copy of entries; designed around one desk device."
-      ],
-      "liveUrl": "https://aldanat-match-predictor.vercel.app/",
-      "liveCheck": "Loads with full content",
-      "publicSource": "https://github.com/dju78/betting",
-      "repos": [
-        "betting"
-      ],
-      "image": true,
-      "imageAlt": "Charity match predictor entry form for the Supported Living versus Residential fixture",
-      "caption": "Entry form.",
-      "ownerNote": "The fixture, pledges and charity arrangements belong to the event organiser and Cardiac Risk in the Young. Jomovate built the prediction page only."
-    },
-    {
       "slug": "nairaguard",
       "title": "NairaGuard",
       "published": true,

@@ -30,6 +30,11 @@ export const LEGACY_REDIRECTS = [
   ['/NavHeader.dc.html', '/'], ['/Footer.dc.html', '/'],
 ];
 
+// Case studies that have been withdrawn from the site → the Work directory, so old links keep working.
+export const REMOVED_PROJECT_REDIRECTS = [
+  ['/work/aldanat-match-predictor/', '/work/'], ['/work/aldanat-match-predictor', '/work/'],
+];
+
 const STATUSES = ['live', 'pilot', 'prototype', 'in-development', 'archived'];
 const ACCESS = ['open', 'demo-login', 'sign-in', 'invite-only', 'unavailable'];
 
@@ -150,7 +155,7 @@ ${indexable.map((p) => `  <url><loc>${site.url}${p.path}</loc><lastmod>${checked
 </urlset>
 `);
   await writeFile(join(out, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${site.url}/sitemap.xml\n`);
-  await writeFile(join(out, '_redirects'), LEGACY_REDIRECTS.map(([from, to]) => `${from}  ${to}  301!`).join('\n') + '\n');
+  await writeFile(join(out, '_redirects'), [...LEGACY_REDIRECTS, ...REMOVED_PROJECT_REDIRECTS].map(([from, to]) => `${from}  ${to}  301!`).join('\n') + '\n');
 
   const files = await countFiles(out);
   console.log(`Built ${pages.length} pages (${projects.length} projects${withDrafts ? ', drafts included' : ''}) and ${files} files into ${out}`);

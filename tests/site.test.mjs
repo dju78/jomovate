@@ -6,7 +6,7 @@ import { readFileSync, existsSync, readdirSync, statSync, mkdtempSync } from 'no
 import { join, resolve, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
-import { validateProjects, LEGACY_REDIRECTS } from '../scripts/build.mjs';
+import { validateProjects, LEGACY_REDIRECTS, REMOVED_PROJECT_REDIRECTS } from '../scripts/build.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const out = mkdtempSync(join(tmpdir(), 'jomovate-site-'));
@@ -143,6 +143,14 @@ test('legacy .dc.html URLs redirect to the new routes', () => {
     assert.ok(existsSync(join(out, target, 'index.html')), `${legacy} redirects to missing ${target}`);
   }
   assert.ok(LEGACY_REDIRECTS.length >= 12);
+});
+
+test('withdrawn case studies 301 to the Work directory and are not built', () => {
+  const redirects = read('_redirects');
+  for (const [from, to] of REMOVED_PROJECT_REDIRECTS) {
+    assert.ok(redirects.split('\n').includes(`${from}  ${to}  301!`), `no redirect for ${from}`);
+    assert.ok(!existsSync(join(out, from, 'index.html')), `${from} still has a page`);
+  }
 });
 
 test('sitemap lists every indexable page and excludes noindex pages', () => {
