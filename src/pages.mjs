@@ -3,12 +3,20 @@ import { esc, html, icon, statusBadge, picture, placeholder, projectCard, cta, b
 import { DRAFTS } from './whatsapp.mjs';
 
 const PROCESS = [
-  ['Discovery', 'A short conversation about what you need, who it is for and what you already have.'],
-  ['Scope and quote', 'A written scope with deliverables, timings and a quote, agreed before work starts.'],
-  ['Design or analysis', 'Wireframes and a working build, or data preparation and analysis, shared as it progresses.'],
-  ['Review', 'You test and comment. Changes within the agreed scope are made before sign-off.'],
-  ['Delivery', 'Launch, handover of files and access, and short documentation so you are not dependent on me.'],
-  ['Support', 'Optional ongoing help with updates, fixes, hosting or refreshed reports, agreed separately.'],
+  ['Understand', 'Clarify the problem, users and desired outcomes.'],
+  ['Plan', 'Define the requirements, data needs and project scope.'],
+  ['Build and validate', 'Develop the solution and check it against agreed requirements.'],
+  ['Launch and support', 'Prepare handover and agree any ongoing support.'],
+];
+
+// Homepage service grid, in priority order: data services first, websites last.
+const HOME_SERVICES = [
+  ['Data Analytics & Insights', 'Turn raw data into useful evidence through data cleaning, statistical analysis, trend analysis and clear reporting.', 'data-analysis'],
+  ['Dashboards & Business Intelligence', 'Track performance with interactive dashboards, KPI monitoring and automated reports that support everyday decisions.', 'data-analysis'],
+  ['Research & Evaluation', 'Answer important questions through survey analysis, economic research and evaluation of outcomes and impact.', 'data-analysis'],
+  ['Web & Mobile Applications', 'Develop custom web tools for desktop and mobile, including client portals, reporting systems, calculators, booking tools and business applications.', 'web-development'],
+  ['Workflow Automation & Integration', 'Reduce repetitive administration, streamline data collection and connect tools to improve everyday workflows.', 'web-development'],
+  ['Professional Websites', 'Create clear, accessible, mobile friendly websites that communicate services and help customers take action.', 'web-development'],
 ];
 
 const processList = () => html`<ol class="process">${PROCESS.map(([t, d], i) => html`<li><span class="process-step" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><h3>${t}</h3><p>${d}</p></li>`)}</ol>`;
@@ -49,85 +57,51 @@ export function home({ site, projects, categories }) {
   const count = projects.length;
   return {
     path: '/',
-    title: 'Jomovate Digital Labs — Websites, applications and data insight',
-    description: 'Professional websites, practical web applications and clear data analysis for UK organisations. Founder-led studio with live products in care, finance, analytics and automotive.',
+    title: 'Jomovate Digital Labs — Data analytics & digital product studio',
+    description: 'Data analysis, dashboards and research, plus custom web applications, workflow automation and websites. A founder-led UK studio helping businesses and organisations turn data into decisions.',
     active: 'home',
     jsonLd: [orgLd(site), personLd(site)],
     body: html`
-<section class="hero">
-  <div class="container hero-grid">
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container">
     <div class="hero-copy">
       <p class="eyebrow">Jomovate Digital Labs · United Kingdom</p>
-      <h1>Professional websites, practical applications and clear data insights.</h1>
-      <p class="lead">Jomovate helps UK small businesses, charities and organisations get a website that brings in enquiries, a web tool that replaces a manual process, or clear answers from the data they already hold.</p>
+      <p class="hero-descriptor">Data Analytics &amp; Digital Product Studio</p>
+      <h1 id="hero-title"><span>Data insights.</span> <span>Web &amp; mobile applications.</span> <span>Digital solutions that work.</span></h1>
+      <p class="lead">We help businesses and organisations turn data into informed decisions and ideas into useful digital products. Our services span data analysis, interactive dashboards, custom applications, workflow automation and professional websites.</p>
       <div class="actions">
-        <a class="btn btn-primary btn-lg" href="/contact/" data-track="cta_click" data-location="home-hero">Discuss your project</a>
-        <a class="btn btn-secondary btn-lg" href="/work/">View our work</a>
+        <a class="btn btn-primary btn-lg" href="/work/">Explore our work</a>
+        <a class="btn btn-secondary btn-lg" href="/contact/" data-track="cta_click" data-location="home-hero">Discuss your project</a>
       </div>
       <p class="hero-note">${count} projects in the portfolio, each with its status stated plainly — live, pilot or prototype.</p>
     </div>
-    <div class="hero-visual" aria-hidden="true">
-      <div class="hero-shot hero-shot-back">${picture('care-quality-intelligence', '', { sizes: '(min-width: 900px) 480px, 90vw' })}</div>
-      <div class="hero-shot hero-shot-front">${picture('ukcalc', '', { eager: true, sizes: '(min-width: 900px) 480px, 90vw' })}</div>
-    </div>
   </div>
 </section>
 
-<section class="section section-tight">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Who Jomovate helps</p>
-      <h2>Practical help for organisations without an in-house team</h2>
-    </div>
-    <div class="audience-grid">
-      <div class="offer"><h3>Small businesses</h3><p>A professional website, online booking or quoting, and simple tools that save admin time.</p></div>
-      <div class="offer"><h3>Charities and community groups</h3><p>Websites that explain your work clearly and are easy for volunteers to keep up to date.</p></div>
-      <div class="offer"><h3>Care and service providers</h3><p>Reporting and dashboards that turn records you already keep into evidence you can use.</p></div>
-      <div class="offer"><h3>Teams with data to analyse</h3><p>Survey, sales or operational data cleaned, analysed and explained in plain English.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">What I do</p>
-      <h2>Two services, one practical approach</h2>
-    </div>
-    <div class="grid-2">
-      <article class="service-card">
-        <h3><a href="/services/web-development/">Websites and applications</a></h3>
-        <p>Business websites, booking and enquiry systems, customer portals and internal workflow tools — built to be fast, accessible and easy to maintain.</p>
-        <ul class="ticks">
-          <li>${icon.check} Business and organisation websites</li>
-          <li>${icon.check} Booking, quoting and approval workflows</li>
-          <li>${icon.check} Customer portals and dashboards</li>
-          <li>${icon.check} Support, hosting help and updates</li>
-        </ul>
-        <a class="text-link" href="/services/web-development/">Website and application development ${icon.arrow}</a>
-      </article>
-      <article class="service-card">
-        <h3><a href="/services/data-analysis/">Data analysis and dashboards</a></h3>
-        <p>Clean, analyse and explain your data: from a one-off survey analysis to a dashboard your team checks every week.</p>
-        <ul class="ticks">
-          <li>${icon.check} Data cleaning and quality checks</li>
-          <li>${icon.check} Analysis in SQL, R, Python or Excel</li>
-          <li>${icon.check} Power BI and Tableau dashboards</li>
-          <li>${icon.check} Survey analysis and automated reports</li>
-        </ul>
-        <a class="text-link" href="/services/data-analysis/">Data analysis and dashboards ${icon.arrow}</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section section-tint">
+<section class="section section-tint" aria-labelledby="services-title">
   <div class="container">
     <div class="section-head section-head-row">
       <div>
-        <p class="eyebrow">Selected work</p>
-        <h2>Real products, real screenshots</h2>
-        <p class="section-intro">A selection of live products, pilots and research tools. Every entry links to the working site where one is available.</p>
+        <p class="eyebrow">Services</p>
+        <h2 id="services-title">From data to working software</h2>
+        <p class="section-intro">Analysis and research come first. Applications and websites are built on the same evidence-led approach.</p>
+      </div>
+      <a class="btn btn-secondary" href="/services/">All services</a>
+    </div>
+    <div class="service-grid">${HOME_SERVICES.map(([t, d, slug]) => html`<article class="service-card">
+      <h3><a href="/services/${slug}/">${esc(t)}</a></h3>
+      <p>${esc(d)}</p>
+    </article>`)}</div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="work-title">
+  <div class="container">
+    <div class="section-head section-head-row">
+      <div>
+        <p class="eyebrow">Featured projects</p>
+        <h2 id="work-title">Real products, real screenshots</h2>
+        <p class="section-intro">Data and research tools first, then applications. Every entry states its status and links to the working site where one is available.</p>
       </div>
       <a class="btn btn-secondary" href="/work/">View all ${count} projects</a>
     </div>
@@ -135,23 +109,23 @@ export function home({ site, projects, categories }) {
   </div>
 </section>
 
-<section class="section">
+<section class="section section-tint" aria-labelledby="process-title">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">How a project runs</p>
-      <h2>Clear steps, agreed in writing</h2>
+      <p class="eyebrow">How we work</p>
+      <h2 id="process-title">Four clear stages</h2>
       <p class="section-intro">Every engagement follows the same simple process, scaled to the size of the job.</p>
     </div>
     ${processList()}
   </div>
 </section>
 
-<section class="section section-tint">
+<section class="section" aria-labelledby="about-title">
   <div class="container founder">
     <img class="founder-photo" src="/img/founder-480.webp" srcset="/img/founder-480.webp 480w, /img/founder.webp 900w" sizes="(min-width: 800px) 320px, 70vw" width="480" height="480" alt="Daramola Joseph Omoyele" loading="lazy" decoding="async">
     <div>
-      <p class="eyebrow">Who you will work with</p>
-      <h2>${esc(site.founder.name)}</h2>
+      <p class="eyebrow">About Jomovate</p>
+      <h2 id="about-title">${esc(site.founder.name)}</h2>
       <p>Jomovate is a founder-led studio. You work directly with Daramola — a data analyst and researcher with published work on economics and public policy, and a portfolio of web applications designed, built and run end to end.</p>
       <p>That mix means the analysis is statistically sound and the software is built around the people who will use it.</p>
       <a class="text-link" href="/about/">About Jomovate and its founder ${icon.arrow}</a>
@@ -159,7 +133,7 @@ export function home({ site, projects, categories }) {
   </div>
 </section>
 
-<div class="container">${cta({ whatsapp: waChat(site, { where: 'home-cta' }) })}</div>
+<div class="container" id="contact">${cta({ whatsapp: waChat(site, { where: 'home-cta' }) })}</div>
 `,
   };
 }
@@ -168,9 +142,9 @@ export function home({ site, projects, categories }) {
 const SERVICES = {
   web: {
     slug: 'web-development',
-    title: 'Website and application development',
-    short: 'Websites and applications',
-    headline: 'Websites and web applications that bring in enquiries and save time',
+    title: 'Application and website development',
+    short: 'Applications and websites',
+    headline: 'Web applications, automation and websites that save time',
     audience: ['Small businesses that need a professional website or online booking', 'Charities and community groups that want a site volunteers can keep up to date', 'Teams replacing spreadsheets, paper forms or email chains with a simple web tool'],
     faq: [
       ['How much does a website or application cost?', 'Every project is quoted in writing after a short discovery conversation. No fixed prices are published because scope varies widely, from a few pages to a full booking system.'],
@@ -178,13 +152,14 @@ const SERVICES = {
       ['Can you improve my existing website instead of rebuilding it?', 'Yes. Share the address and what is not working; sometimes targeted improvements are better value than a rebuild.'],
       ['What happens after launch?', 'You receive the files, access details and plain-English notes. Ongoing support, hosting help or updates are optional and agreed separately.'],
     ],
-    description: 'Business websites, booking systems, customer portals and workflow tools for UK organisations — accessible, fast and easy to maintain.',
-    intro: 'Websites and web applications that do a clear job: explain what you offer, take bookings or enquiries, replace a paper or spreadsheet process, or give customers a secure place to see their information.',
+    description: 'Custom web applications that work on desktop and mobile, workflow automation, booking systems, client portals and professional websites for UK organisations.',
+    intro: 'Web applications and websites that do a clear job: replace a paper or spreadsheet process, take bookings or enquiries, give customers a secure place to see their information, or explain what you offer. Applications are built for the web and work on desktop and mobile.',
     offers: [
-      ['Business websites', 'A clear, fast website that explains your services and turns visitors into enquiries. Mobile-friendly, accessible and set up for search engines.'],
+      ['Web and mobile applications', 'Custom web tools that work on desktop and mobile: client portals, reporting systems, calculators, booking tools and business applications.'],
+      ['Workflow automation and integration', 'Replace spreadsheets, email chains and paper forms with a single process, streamline data collection and connect the tools you already use.'],
       ['Booking and enquiry systems', 'Online booking, availability checks, quotes and approvals, with notifications and an admin area for your team.'],
       ['Customer portals', 'Secure sign-in areas where customers can see quotes, documents, progress or results.'],
-      ['Workflow tools', 'Internal applications that replace spreadsheets, email chains and paper forms with a single, auditable process.'],
+      ['Professional websites', 'A clear, fast website that explains your services and helps customers take action. Mobile-friendly, accessible and set up for search engines.'],
       ['Support and improvements', 'Updates, fixes, hosting help and small improvements after launch, agreed separately.'],
     ],
     deliverables: ['Agreed sitemap or feature list', 'Responsive design tested on phone and desktop', 'Accessibility checks against WCAG 2.2 AA', 'Page titles, descriptions and social previews', 'Analytics or form handling where needed', 'Handover notes and all access credentials'],
@@ -193,9 +168,9 @@ const SERVICES = {
   },
   data: {
     slug: 'data-analysis',
-    title: 'Data analysis and dashboards',
+    title: 'Data analysis, dashboards and research',
     short: 'Data analysis and dashboards',
-    headline: 'Data analysis and dashboards that answer your questions',
+    headline: 'Data analysis, dashboards and research that answer your questions',
     audience: ['Organisations with spreadsheets or exports nobody has time to analyse', 'Managers who need a regular report or dashboard they can trust', 'Teams with survey results to clean, analyse and write up'],
     faq: [
       ['What data can you work with?', 'Spreadsheets (Excel, CSV), database exports and survey-platform exports are typical. If you are unsure, describe what you have and I will tell you what is feasible.'],
@@ -203,13 +178,14 @@ const SERVICES = {
       ['Do I need Power BI or Tableau licences?', 'Not necessarily. Dashboards can be built in a tool your organisation already uses, in Excel, or as a web dashboard; licensing is your choice.'],
       ['How much does it cost?', 'Every project is quoted in writing after a short discovery conversation. No fixed prices are published.'],
     ],
-    description: 'Data cleaning, analysis in SQL, R, Python or Excel, Power BI and Tableau dashboards, survey analysis and automated reporting for UK organisations.',
+    description: 'Data cleaning, analysis in SQL, R, Python or Excel, Power BI and Tableau dashboards, survey analysis, research and evaluation, and automated reporting for UK organisations.',
     intro: 'Turn data you already hold into clear answers. I clean and check it, analyse it with the right method, and present the results in a report or dashboard your team can use without a statistics degree.',
     offers: [
       ['Data cleaning and quality checks', 'Find and fix duplicates, gaps, unit errors and inconsistent categories, with a record of every change.'],
       ['Analysis', 'Descriptive and statistical analysis in SQL, R, Python or Excel — trends, comparisons, drivers and forecasts, with assumptions stated.'],
       ['Dashboards', 'Power BI, Tableau or web dashboards built around the decisions your team makes each week.'],
       ['Survey analysis', 'Questionnaire data cleaned, weighted where appropriate, analysed and written up in plain English.'],
+      ['Research and evaluation', 'Economic research and evaluation of outcomes and impact, with methods, assumptions and limitations stated.'],
       ['Reporting automation', 'Recurring reports produced automatically from your data, so the numbers are consistent every month.'],
     ],
     deliverables: ['A short data-quality summary', 'Analysis with methods and assumptions stated', 'Charts that follow accessibility good practice', 'A written summary for non-specialists', 'Reusable code, queries or workbook', 'A walkthrough session on request'],
@@ -224,7 +200,7 @@ export function servicesIndex({ site, projects, categories }) {
   return {
     path: '/services/',
     title: 'Services',
-    description: 'Website and application development, and data analysis and dashboards, for UK organisations. Clear scope, written quotes and direct contact with the founder.',
+    description: 'Data analysis, dashboards and research, and application and website development, for UK organisations. Clear scope, written quotes and direct contact with the founder.',
     active: 'services',
     jsonLd: [crumbLd(site, [{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }])],
     body: html`
@@ -232,13 +208,13 @@ export function servicesIndex({ site, projects, categories }) {
   <div class="container narrow">
     ${breadcrumbs([{ label: 'Home', href: '/' }, { label: 'Services' }])}
     <p class="eyebrow">Services</p>
-    <h1>Websites, applications and data analysis</h1>
+    <h1>Data analysis, applications and websites</h1>
     <p class="lead">Two core services, both delivered directly by the founder. You get a written scope and quote before any work starts, and the files and access at the end.</p>
   </div>
 </section>
 <section class="section">
   <div class="container">
-    ${[['web', webWork], ['data', dataWork]].map(([k, work]) => {
+    ${[['data', dataWork], ['web', webWork]].map(([k, work]) => {
       const s = SERVICES[k];
       return html`<article class="service-overview">
         <div>
@@ -360,7 +336,7 @@ export function workIndex({ site, projects, categories }) {
   return {
     path: '/work/',
     title: 'Work and products',
-    description: `${projects.length} websites, applications and data tools by Jomovate Digital Labs — searchable by sector and status, with honest live, pilot and prototype labels.`,
+    description: `${projects.length} data tools, applications and websites by Jomovate Digital Labs — searchable by sector and status, with honest live, pilot and prototype labels.`,
     active: 'work',
     scripts: ['/js/work-filter.js'],
     jsonLd: [
@@ -378,8 +354,8 @@ export function workIndex({ site, projects, categories }) {
   <div class="container narrow">
     ${breadcrumbs([{ label: 'Home', href: '/' }, { label: 'Work' }])}
     <p class="eyebrow">Work</p>
-    <h1>Products, websites and research tools</h1>
-    <p class="lead">Everything here was designed and built by Jomovate's founder. Each entry states its status: <strong>live</strong> (publicly available), <strong>pilot</strong> (in use by invited users), <strong>prototype</strong> (working but not a finished service), <strong>in development</strong> or <strong>archived</strong>. Some apps open at a sign-in page or are limited to invited pilot users; each entry says how it can be accessed.</p>
+    <h1>Data tools, applications and websites</h1>
+    <p class="lead">Everything here was designed and built by Jomovate's founder. Data and research projects come first, then applications, then websites. Each entry states its status — <strong>live</strong> (publicly available), <strong>pilot</strong> (in use by invited users), <strong>prototype</strong> (working but not a finished service) or <strong>in development</strong> — and whether it is a client project, an independent product or a concept. Some apps open at a sign-in page or are limited to invited pilot users; each entry says how it can be accessed.</p>
   </div>
 </section>
 <section class="section section-tight">
@@ -408,8 +384,8 @@ export function workIndex({ site, projects, categories }) {
           <label for="service">Service</label>
           <select id="service" name="service" class="input">
             <option value="">Any service</option>
-            <option value="web">Websites &amp; applications</option>
             <option value="data">Data analysis &amp; dashboards</option>
+            <option value="web">Applications &amp; websites</option>
           </select>
         </div>
         <button type="reset" class="btn btn-secondary">Clear filters</button>
@@ -469,7 +445,7 @@ export function caseStudy(p, { site, projects, categories, checkedOn }) {
         <h1>${esc(p.title)}</h1>
         <p class="lead">${esc(p.summary)}</p>
         <div class="actions">
-          ${p.liveUrl ? html`<a class="btn btn-primary" href="${esc(p.liveUrl)}" rel="noopener">${visitLabel(p)} ${icon.external}<span class="visually-hidden"> (opens ${esc(new URL(p.liveUrl).hostname)})</span></a>` : ''}
+          ${p.liveUrl ? html`<a class="btn btn-primary" href="${esc(p.liveUrl)}" rel="noopener"${p.liveNewTab ? ' target="_blank"' : ''}>${visitLabel(p)} ${icon.external}<span class="visually-hidden"> (opens ${esc(new URL(p.liveUrl).hostname)}${p.liveNewTab ? ' in a new tab' : ''})</span></a>` : ''}
           <a class="btn btn-secondary" href="${esc(enquiry)}" data-track="cta_click" data-location="case-hero">${demo ? 'Request a demonstration' : 'Discuss this project'}</a>
           ${p.publicSource ? html`<a class="btn btn-secondary" href="${esc(p.publicSource)}" rel="noopener">${icon.code} View source on GitHub</a>` : ''}
         </div>
@@ -480,7 +456,7 @@ export function caseStudy(p, { site, projects, categories, checkedOn }) {
         <div><dt>Type</dt><dd>${esc(TYPE_LABELS[p.type])}</dd></div>
         <div><dt>Role</dt><dd>${esc(p.role)}</dd></div>
         <div><dt>Built with</dt><dd><ul class="chip-list">${p.tech.map((t) => html`<li>${esc(t)}</li>`)}</ul></dd></div>
-        <div><dt>Link checked</dt><dd>${esc(p.liveCheck)} <span class="facts-note">(${esc(formatDate(checkedOn))})</span></dd></div>
+        <div><dt>Link checked</dt><dd>${esc(p.liveCheck)} <span class="facts-note">(${esc(formatDate(p.checkedOn || checkedOn))})</span></dd></div>
       </dl>
     </div>
   </div>
@@ -504,6 +480,7 @@ ${p.image ? html`<section class="section section-tight">
       <p>${esc(p.solution)}</p>
       <h3>Key features</h3>
       <ul class="ticks">${p.features.map((f) => html`<li>${icon.check} ${esc(f)}</li>`)}</ul>
+      ${p.usersCan ? html`<h2>What users can do</h2><ul class="ticks">${p.usersCan.map((u) => html`<li>${icon.check} ${esc(u)}</li>`)}</ul>` : ''}
       <h2>Results so far</h2>
       <p>${esc(p.outcomes)}</p>
       ${p.limitations.length ? html`<h2>Limitations and context</h2><ul class="plain-list">${p.limitations.map((l) => html`<li>${esc(l)}</li>`)}</ul>` : ''}
@@ -512,7 +489,7 @@ ${p.image ? html`<section class="section section-tight">
     <aside class="case-aside" aria-label="Related">
       <div class="aside-card">
         <p class="kicker">Need something like this?</p>
-        <p>${p.service === 'data' ? 'I build analysis tools and dashboards for organisations with their own data.' : 'I build websites and applications like this for businesses and organisations.'}</p>
+        <p>${p.service === 'data' ? 'I build analysis tools and dashboards for organisations with their own data.' : 'I build applications and websites like this for businesses and organisations.'}</p>
         <a class="btn btn-primary btn-block" href="/contact/?service=${svc}&amp;ref=${p.slug}" data-track="cta_click" data-location="case-aside">Discuss your project</a>
         ${waChat(site, { message: DRAFTS.project(p.title), where: 'case-aside', className: 'btn btn-whatsapp btn-block' })}
         <a class="text-link" href="/services/${p.service === 'data' ? 'data-analysis' : 'web-development'}/">About this service ${icon.arrow}</a>
@@ -533,7 +510,7 @@ export function about({ site, projects }) {
   return {
     path: '/about/',
     title: 'About Jomovate and its founder',
-    description: `Jomovate Digital Labs is a founder-led UK studio run by ${site.founder.name}, a data analyst and researcher who builds websites, web applications and dashboards.`,
+    description: `Jomovate Digital Labs is a founder-led UK studio run by ${site.founder.name}, a data analyst and researcher who builds dashboards, web applications and websites.`,
     active: 'about',
     ogType: 'profile',
     jsonLd: [orgLd(site), personLd(site), crumbLd(site, [{ label: 'Home', href: '/' }, { label: 'About', href: '/about/' }])],
@@ -543,7 +520,7 @@ export function about({ site, projects }) {
     ${breadcrumbs([{ label: 'Home', href: '/' }, { label: 'About' }])}
     <p class="eyebrow">About</p>
     <h1>A small studio with a research habit</h1>
-    <p class="lead">Jomovate Digital Labs is a founder-led studio based in the United Kingdom. It builds its own products and takes on website, application and data projects for other organisations.</p>
+    <p class="lead">Jomovate Digital Labs is a founder-led studio based in the United Kingdom. It builds its own products and takes on data, application and website projects for other organisations.</p>
   </div>
 </section>
 <section class="section">

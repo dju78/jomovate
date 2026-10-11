@@ -3,10 +3,12 @@
   "checkedOn": "2026-10-10",
   "categories": {
     "analytics": "Data & analytics",
+    "applications": "Applications",
     "health": "Health & care",
     "finance": "Finance & tax",
     "automotive": "Automotive",
     "learning": "Learning & communication",
+    "bookings": "Bookings",
     "community": "Community",
     "websites": "Websites"
   },
@@ -269,6 +271,63 @@
       "caption": "Quality overview using synthetic demo data."
     },
     {
+      "slug": "alaga-alayo",
+      "title": "Alaga Alayo events and bookings platform",
+      "published": true,
+      "featured": true,
+      "clientApproved": true,
+      "status": "live",
+      "statusNote": "Public site live; the staff admin portal is private",
+      "access": "open",
+      "type": "client",
+      "categories": [
+        "applications",
+        "bookings"
+      ],
+      "service": "web",
+      "summary": "A booking website and admin portal for a professional Alaga and event rentals business, covering enquiries, quotations, payments, inventory, staff and calendar in one place.",
+      "audience": "Customers planning traditional weddings, engagements and other celebrations in Lagos and nationwide, and the business’s own staff.",
+      "problem": "An Alaga Iduro, Alaga Ijoko, MC and event rentals business serving Lagos and nationwide needed to move away from manual booking by phone and WhatsApp.",
+      "role": "Designer and full-stack developer.",
+      "solution": "A public site with services, rentals, an availability checker, a booking tracker, a gallery, testimonials and WhatsApp contact, plus a staff admin portal with a dashboard, bookings, customers, quotations, payments, services, inventory, staff, calendar, reports and settings.",
+      "usersCan": [
+        "Customers can check availability, book and track their event.",
+        "Staff can manage bookings, quotes, payments and resources in one system."
+      ],
+      "features": [
+        "Availability checker and online booking",
+        "Booking tracker for customers",
+        "Services and rentals catalogue, gallery and testimonials",
+        "WhatsApp contact",
+        "Staff portal for bookings, customers, quotations and payments",
+        "Inventory, staff, calendar and reports"
+      ],
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Prisma",
+        "Tailwind CSS",
+        "Zod",
+        "Vercel"
+      ],
+      "outcomes": "Live and open to try. No performance figures are published.",
+      "limitations": [
+        "The staff admin portal is private and is not shown here.",
+        "Figures shown on the client’s own site (such as events hosted and ratings) are the client’s and have not been verified by Jomovate."
+      ],
+      "liveUrl": "https://layo-alaga.vercel.app/",
+      "liveNewTab": true,
+      "liveCheck": "Loads with full content",
+      "checkedOn": "2026-10-11",
+      "repos": [
+        "layo_alaga"
+      ],
+      "image": true,
+      "imageAlt": "Alaga Alayo Events & Rentals public home page, with Book Your Event and Explore Services buttons",
+      "caption": "Public home page.",
+      "ownerNote": "Bookings, prices and event arrangements are handled by Alaga Alayo Events & Rentals through its own website. Jomovate built the platform but does not take bookings."
+    },
+    {
       "slug": "ukcalc",
       "title": "UKCalc",
       "published": true,
@@ -316,7 +375,7 @@
       "slug": "garageproof-uk",
       "title": "GarageProof UK",
       "published": true,
-      "featured": true,
+      "featured": false,
       "status": "pilot",
       "statusNote": "Pilot: sign-in for invited garages",
       "access": "invite-only",

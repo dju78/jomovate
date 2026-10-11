@@ -34,10 +34,16 @@ export const STATUS_LABELS = {
 export const TYPE_LABELS = {
   'own-product': 'Own product',
   research: 'Independent research',
-  client: 'Client work',
+  client: 'Client project',
   community: 'Community project',
   concept: 'Concept',
 };
+
+// Portfolio order: data and research first, then applications, then websites (stable within each group).
+export const GROUPS = ['analytics', 'applications', 'websites'];
+export const projectGroup = (p) =>
+  p.categories.includes('analytics') || p.type === 'research' ? 'analytics' : p.categories.includes('websites') ? 'websites' : 'applications';
+export const byGroup = (a, b) => GROUPS.indexOf(projectGroup(a)) - GROUPS.indexOf(projectGroup(b));
 
 // How a visitor can reach each portfolio entry. Shown on cards and case studies so nothing implies open access it doesn't have.
 export const ACCESS_LABELS = {
@@ -107,8 +113,10 @@ export function placeholder(title, reason = 'No public screenshot') {
 export function projectCard(p, categories, { headingLevel = 3 } = {}) {
   const h = `h${headingLevel}`;
   const cats = p.categories.map((c) => categories[c]).join(' · ');
+  // The group is added to the filter categories so the "Applications" pill finds every application, not only those labelled with it.
+  const filterCats = [...new Set([...p.categories, projectGroup(p)])];
   const search = [p.title, p.summary, p.solution, p.features.join(' '), cats, p.tech.join(' '), TYPE_LABELS[p.type], STATUS_LABELS[p.status]].join(' ').toLowerCase();
-  return html`<article class="project-card" data-categories="${esc(p.categories.join(' '))}" data-status="${esc(p.status)}" data-service="${esc(p.service)}" data-search="${esc(search)}">
+  return html`<article class="project-card" data-categories="${esc(filterCats.join(' '))}" data-status="${esc(p.status)}" data-service="${esc(p.service)}" data-search="${esc(search)}">
     <a class="project-card-media" href="/work/${p.slug}/" tabindex="-1" aria-hidden="true">${p.image ? picture(p.slug, '') : placeholder(p.title, p.noImageReason)}</a>
     <div class="project-card-body">
       <div class="project-card-meta">${statusBadge(p.status)}<span class="kicker">${esc(cats)}</span></div>
@@ -203,7 +211,7 @@ ${body}
   <div class="container footer-grid">
     <div>
       <p class="footer-brand">Jomovate Digital Labs</p>
-      <p>Websites, practical applications and data analysis for UK organisations. Founder-led by ${esc(site.founder.name)}.</p>
+      <p>Data insights, practical applications and websites for UK organisations. Founder-led by ${esc(site.founder.name)}.</p>
       <div class="footer-contact">
         ${emailLink(site, 'footer', { iconFirst: true })}
         ${waChat(site, { where: 'footer', className: '' })}
@@ -214,8 +222,8 @@ ${body}
     <div>
       <p class="footer-heading">Services</p>
       <ul>
-        <li><a href="/services/web-development/">Websites &amp; applications</a></li>
         <li><a href="/services/data-analysis/">Data analysis &amp; dashboards</a></li>
+        <li><a href="/services/web-development/">Applications &amp; websites</a></li>
         <li><a href="/contact/?type=quote">Request a quote</a></li>
       </ul>
     </div>

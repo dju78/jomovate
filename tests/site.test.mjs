@@ -7,6 +7,7 @@ import { join, resolve, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { validateProjects, LEGACY_REDIRECTS, REMOVED_PROJECT_REDIRECTS } from '../scripts/build.mjs';
+import { projectGroup } from '../src/layout.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const out = mkdtempSync(join(tmpdir(), 'jomovate-site-'));
@@ -278,4 +279,32 @@ test('fonts are self-hosted and no third-party scripts, pixels or font requests 
   }
   const toml = readFileSync(join(root, 'netlify.toml'), 'utf8');
   assert.match(toml, /font-src 'self'/);
+});
+
+test('portfolio lists data and research first, then applications, then websites', () => {
+  const rank = { analytics: 0, applications: 1, websites: 2 };
+  for (const file of ['work/index.html', 'index.html']) {
+    const slugs = [...read(file).matchAll(/project-card-title"><a href="\/work\/([^/]+)\//g)].map((m) => m[1]);
+    const ranks = slugs.map((s) => rank[projectGroup(published.find((p) => p.slug === s))]);
+    assert.deepEqual(ranks, [...ranks].sort((a, b) => a - b), `${file} order: ${slugs.join(', ')}`);
+  }
+});
+
+test('homepage sections run hero, services, featured projects, how we work, about, contact', () => {
+  const home = read('index.html');
+  const ids = ['hero-title', 'services-title', 'work-title', 'process-title', 'about-title', 'cta-title'].map((id) => home.indexOf(`id="${id}"`));
+  assert.ok(ids.every((i) => i > 0), 'a homepage section is missing');
+  assert.deepEqual(ids, [...ids].sort((a, b) => a - b));
+  const services = [...home.matchAll(/class="service-card">\s*<h3><a href="[^"]+">([^<]+)</g)].map((m) => m[1]);
+  assert.equal(services[0], 'Data Analytics &amp; Insights');
+  assert.equal(services.at(-1), 'Professional Websites');
+});
+
+test('client projects link only to their public site, in a new tab', () => {
+  for (const p of published.filter((x) => x.type === 'client')) {
+    const html = read(`work/${p.slug}/index.html`);
+    assert.doesNotMatch(html, /\/admin/, `${p.slug} links to an admin page`);
+    assert.match(html, new RegExp(`href="${p.liveUrl.replace(/[.?*+^$()|[\]\/]/g, '\$&')}" rel="noopener" target="_blank"`), `${p.slug} live link`);
+    assert.match(html, /Client project/);
+  }
 });

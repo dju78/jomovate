@@ -6,7 +6,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { page } from '../src/layout.mjs';
+import { page, byGroup } from '../src/layout.mjs';
 import * as P from '../src/pages.mjs';
 import { whatsappConfig } from '../src/whatsapp.mjs';
 
@@ -114,7 +114,7 @@ async function main() {
     console.error(`Content errors:\n- ${errors.join('\n- ')}`);
     process.exit(1);
   }
-  const projects = all.filter((p) => p.published);
+  const projects = all.filter((p) => p.published).sort(byGroup);
   const { categories, checkedOn } = projectData;
 
   await rm(out, { recursive: true, force: true });
