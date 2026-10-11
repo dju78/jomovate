@@ -1,5 +1,5 @@
 // Page builders. Each returns { path, title, description, body, ... } for `page()` in layout.mjs.
-import { esc, html, icon, statusBadge, picture, placeholder, projectCard, cta, breadcrumbs, STATUS_LABELS, TYPE_LABELS, ACCESS_LABELS, accessLabel, emailLink, waChat, waChannel } from './layout.mjs';
+import { esc, html, icon, projectLabels, statusBadge, picture, placeholder, projectCard, cta, breadcrumbs, STATUS_LABELS, TYPE_LABELS, ACCESS_LABELS, accessLabel, emailLink, waChat, waChannel } from './layout.mjs';
 import { DRAFTS } from './whatsapp.mjs';
 
 const PROCESS = [
@@ -57,7 +57,7 @@ export function home({ site, projects, categories }) {
   const count = projects.length;
   return {
     path: '/',
-    title: 'Jomovate Digital Labs — Data analytics & digital product studio',
+    title: 'Jomovate Digital Labs | Data analytics & digital product studio',
     description: 'Data analysis, dashboards and research, plus custom web applications, workflow automation and websites. A founder-led UK studio helping businesses and organisations turn data into decisions.',
     active: 'home',
     jsonLd: [orgLd(site), personLd(site)],
@@ -411,7 +411,7 @@ const visitLabel = (p) =>
   (p.status === 'archived' ? 'Visit archived site' : p.categories.includes('websites') ? 'Visit website' : 'Try it now');
 
 export function caseStudy(p, { site, projects, categories, checkedOn }) {
-  const cats = p.categories.map((c) => categories[c]);
+  const cats = projectLabels(p, categories);
   const demo = wantsDemo(p);
   const svc = p.service === 'data' ? 'data' : 'web';
   const enquiry = `/contact/?service=${svc}&ref=${p.slug}${demo ? '&type=demo' : ''}`;
@@ -429,7 +429,7 @@ export function caseStudy(p, { site, projects, categories, checkedOn }) {
   };
   return {
     path: `/work/${p.slug}/`,
-    title: `${p.title} — case study`,
+    title: `${p.title} | case study`,
     description: p.summary,
     active: 'work',
     ogType: 'article',
@@ -482,8 +482,7 @@ ${p.image ? html`<section class="section section-tight">
       <h3>Key features</h3>
       <ul class="ticks">${p.features.map((f) => html`<li>${icon.check} ${esc(f)}</li>`)}</ul>
       ${p.usersCan ? html`<h2>What users can do</h2><ul class="ticks">${p.usersCan.map((u) => html`<li>${icon.check} ${esc(u)}</li>`)}</ul>` : ''}
-      <h2>Results so far</h2>
-      <p>${esc(p.outcomes)}</p>
+      ${p.outcomes ? html`<h2>Results so far</h2><p>${esc(p.outcomes)}</p>` : ''}
       ${p.limitations.length ? html`<h2>Limitations and context</h2><ul class="plain-list">${p.limitations.map((l) => html`<li>${esc(l)}</li>`)}</ul>` : ''}
       ${p.ownerNote ? html`<h2>Who to contact</h2><p>${esc(p.ownerNote)}</p>` : ''}
     </div>
@@ -663,7 +662,7 @@ export const ATTRIBUTION_FIELDS = ['utm_source', 'utm_medium', 'utm_campaign', '
 export function contact({ site }) {
   return {
     path: '/contact/',
-    title: 'Contact — discuss your project',
+    title: 'Contact | discuss your project',
     description: 'Tell Jomovate about your website, application or data project. Share a short brief and receive questions or a written quote.',
     active: 'contact',
     scripts: ['/js/contact.js'],

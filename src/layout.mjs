@@ -44,6 +44,11 @@ export const GROUPS = ['analytics', 'applications', 'websites'];
 export const projectGroup = (p) =>
   p.categories.includes('analytics') || p.type === 'research' ? 'analytics' : p.categories.includes('websites') ? 'websites' : 'applications';
 export const byGroup = (a, b) => GROUPS.indexOf(projectGroup(a)) - GROUPS.indexOf(projectGroup(b));
+// Labels shown on cards and case studies: the primary group ("Data & analytics", "Applications" or "Websites"), then the project's sectors.
+export const projectLabels = (p, categories) => {
+  const group = projectGroup(p);
+  return [group, ...p.categories.filter((c) => c !== group)].map((c) => categories[c]);
+};
 
 // How a visitor can reach each portfolio entry. Shown on cards and case studies so nothing implies open access it doesn't have.
 export const ACCESS_LABELS = {
@@ -112,7 +117,7 @@ export function placeholder(title, reason = 'No public screenshot') {
 
 export function projectCard(p, categories, { headingLevel = 3 } = {}) {
   const h = `h${headingLevel}`;
-  const cats = p.categories.map((c) => categories[c]).join(' · ');
+  const cats = projectLabels(p, categories).join(' · ');
   // The group is added to the filter categories so the "Applications" pill finds every application, not only those labelled with it.
   const filterCats = [...new Set([...p.categories, projectGroup(p)])];
   const search = [p.title, p.summary, p.solution, p.features.join(' '), cats, p.tech.join(' '), TYPE_LABELS[p.type], STATUS_LABELS[p.status]].join(' ').toLowerCase();

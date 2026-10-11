@@ -61,9 +61,10 @@ export function validateProjects(data, { imageExists = () => true } = {}) {
   const slugs = new Set();
   for (const p of data.projects) {
     const where = `project "${p.slug || p.title}"`;
-    for (const k of ['slug', 'title', 'status', 'type', 'summary', 'problem', 'audience', 'role', 'solution', 'outcomes', 'statusNote', 'liveCheck', 'service']) {
+    for (const k of ['slug', 'title', 'status', 'type', 'summary', 'problem', 'audience', 'role', 'solution', 'statusNote', 'liveCheck', 'service']) {
       if (!p[k] || typeof p[k] !== 'string') errors.push(`${where}: missing ${k}`);
     }
+    if (p.outcomes !== undefined && (!p.outcomes || typeof p.outcomes !== 'string')) errors.push(`${where}: outcomes must be text when given`);
     if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(p.slug || '')) errors.push(`${where}: slug must be kebab-case`);
     if (slugs.has(p.slug)) errors.push(`${where}: duplicate slug`);
     slugs.add(p.slug);

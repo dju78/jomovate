@@ -308,3 +308,18 @@ test('client projects link only to their public site, in a new tab', () => {
     assert.match(html, /Client project/);
   }
 });
+
+test('every project card leads with Data & analytics, Applications or Websites', () => {
+  for (const file of ['work/index.html', 'index.html']) {
+    const labels = [...read(file).matchAll(/project-card-meta">.*?<span class="kicker">([^<]+)</g)].map((m) => m[1]);
+    assert.ok(labels.length > 0, `${file} has no cards`);
+    for (const l of labels) assert.match(l, /^(Data &amp; analytics|Applications|Websites)( · |$)/, `${file}: ${l}`);
+  }
+});
+
+test('page and social titles use "|" rather than an em dash', () => {
+  for (const f of htmlFiles) {
+    const html = readFileSync(f, 'utf8');
+    for (const m of html.matchAll(/<title>([^<]*)<\/title>|(?:og|twitter):title" content="([^"]*)"/g)) assert.ok(!(m[1] ?? m[2]).includes('—'), `${f}: ${m[1] ?? m[2]}`);
+  }
+});
