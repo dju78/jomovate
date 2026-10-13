@@ -255,6 +255,9 @@ ${body}
     <p>© ${new Date().getFullYear()} Jomovate Digital Labs. Independent products and prototypes are not endorsed by any regulator or public body unless stated.</p>
   </div>
 </footer>
+<!-- Cloudflare Web Analytics -->
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a3ff77447f8642ec9cad8b0c828d1aa1"}'></script>
+<!-- End Cloudflare Web Analytics -->
 </body>
 </html>
 `;
