@@ -897,7 +897,9 @@ export function books({ site }) {
 </div></section>
 <section class="section section-tint" id="purchase" aria-labelledby="purchase-title"><div class="container narrow">
   <p class="eyebrow">Book availability</p><h2 id="purchase-title">Amazon publication in progress.</h2>
-  <p>The book has been submitted to Amazon and its listing is being processed. A purchase link will appear here when the listing is live.</p>
+  <p class="lead"><strong>Planned direct ebook price: £9.99 GBP</strong></p>
+  <p>A practical investment in your Power BI skills, with free companion datasets and learning resources.</p>
+  <p>The book has been submitted to Amazon and its listing is being processed. A purchase link will appear here when the listing is live. Amazon sets its displayed price separately.</p>
   <p>Direct website orders are not open yet. No payment is collected on this page.</p>
   <div class="actions"><a class="btn btn-secondary" href="mailto:${esc(site.email)}?subject=Power%20BI%20book%20enquiry">Ask about the book</a><a class="text-link" href="${hub}">Start with the free resources ${icon.arrow}</a></div>
 </div></section>
