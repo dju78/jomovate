@@ -134,6 +134,7 @@ async function main() {
   const ctx = { site, projects, categories, checkedOn, insights };
   const pages = [
     P.home(ctx),
+    P.books(ctx),
     P.servicesIndex(ctx),
     P.serviceDetail('web', ctx),
     P.serviceDetail('data', ctx),
