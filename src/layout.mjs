@@ -19,6 +19,8 @@ const NAV = [
   { href: '/services/', label: 'Services', key: 'services' },
   { href: '/about/', label: 'About', key: 'about' },
   { href: '/insights/', label: 'Insights', key: 'insights' },
+  { href: '/books/', label: 'Books', key: 'books' },
+  { href: 'https://learn.jomovate.com/power-bi-book/', label: 'Learning Hub', key: 'learning' },
 ];
 
 import { waLink, DRAFTS } from './whatsapp.mjs';
@@ -238,6 +240,8 @@ ${body}
         <li><a href="/work/">Work</a></li>
         <li><a href="/about/">About</a></li>
         <li><a href="/insights/">Insights</a></li>
+        <li><a href="/books/">Books</a></li>
+        <li><a href="https://learn.jomovate.com/power-bi-book/">Learning Hub &amp; book resources</a></li>
         <li><a href="/contact/">Contact</a></li>
       </ul>
     </div>
