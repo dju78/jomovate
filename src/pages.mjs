@@ -78,6 +78,15 @@ export function home({ site, projects, categories }) {
   </div>
 </section>
 
+<section class="section book-feature" aria-labelledby="book-feature-title">
+  <div class="container">
+    <p class="eyebrow">Jomovate Learning · New book</p>
+    <h2 id="book-feature-title">Build your Power BI skills with practical projects.</h2>
+    <p class="section-intro"><strong>Power BI for Business Intelligence and Data Analytics</strong> by Daramola Joseph Omoyele. Work through data preparation, modelling, DAX, survey analysis and performance reporting, with free companion exercise files.</p>
+    <div class="actions"><a class="btn btn-primary" href="/books/">Explore the book</a><a class="btn btn-secondary" href="https://learn.jomovate.com/power-bi-book/">Open the Learning Hub</a></div>
+  </div>
+</section>
+
 <section class="section section-tint" aria-labelledby="services-title">
   <div class="container">
     <div class="section-head section-head-row">
@@ -854,4 +863,50 @@ export function notFound() {
 
 export function formatDate(iso) {
   return new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+}
+
+// Book purchase status is deliberately explicit while the Amazon listing is processing.
+export function books({ site }) {
+  const hub = 'https://learn.jomovate.com/power-bi-book/';
+  return {
+    path: '/books/', active: 'books',
+    title: 'Power BI for Business Intelligence and Data Analytics',
+    description: 'A practical Power BI book by Daramola Joseph Omoyele, with nine chapters, original synthetic datasets and free companion learning resources.',
+    jsonLd: [{ '@context': 'https://schema.org', '@type': 'Book', name: 'Power BI for Business Intelligence and Data Analytics', author: { '@type': 'Person', name: site.founder.name }, inLanguage: 'en', url: site.url + '/books/' }],
+    body: html`
+<section class="hero book-hero"><div class="container narrow">
+  <p class="eyebrow">Jomovate Learning Edition</p>
+  <h1>Power BI for Business Intelligence and Data Analytics</h1>
+  <p class="lead">From raw data to professional dashboards. Learn the analytical workflow through practical exercises, clear business questions and projects you can explain.</p>
+  <p>By <strong>${esc(site.founder.name)}</strong></p>
+  <div class="actions"><a class="btn btn-primary" href="#purchase">Book availability</a><a class="btn btn-secondary" href="${hub}">Free companion resources</a></div>
+</div></section>
+<section class="section section-tint"><div class="container">
+  <p class="eyebrow">Learn · Build · Explain</p><h2>Follow the complete analytical workflow.</h2>
+  <div class="service-grid">
+    <article class="service-card"><h3>Prepare and model</h3><p>Define KPIs, clean messy data with Power Query, create relationships and build a reliable data model.</p></article>
+    <article class="service-card"><h3>Analyse and report</h3><p>Build DAX measures, sales dashboards, survey analysis and financial and operational reports.</p></article>
+    <article class="service-card"><h3>Communicate and progress</h3><p>Explain findings, document limitations and develop portfolio projects for professional conversations.</p></article>
+  </div>
+</div></section>
+<section class="section"><div class="container narrow">
+  <h2>Practice with original companion resources.</h2>
+  <p>The book contains nine chapters. Northstar Retail, Riverton College and Cedarbridge provide independent case studies. Brightway Home provides a continuing workshop across the learning journey.</p>
+  <p>The Learning Hub offers nine download packs, including synthetic practice datasets, answer keys and optional communication and portfolio toolkits. The companion resources are free to access.</p>
+  <a class="btn btn-primary" href="${hub}">Browse datasets and chapter downloads</a>
+</div></section>
+<section class="section section-tint" id="purchase" aria-labelledby="purchase-title"><div class="container narrow">
+  <p class="eyebrow">Book availability</p><h2 id="purchase-title">Amazon publication in progress.</h2>
+  <p>The book has been submitted to Amazon and its listing is being processed. A purchase link will appear here when the listing is live.</p>
+  <p>Direct website orders are not open yet. No payment is collected on this page.</p>
+  <div class="actions"><a class="btn btn-secondary" href="mailto:${esc(site.email)}?subject=Power%20BI%20book%20enquiry">Ask about the book</a><a class="text-link" href="${hub}">Start with the free resources ${icon.arrow}</a></div>
+</div></section>
+<section class="section"><div class="container narrow"><h2>Reader questions</h2>
+  <h3>Who is this book for?</h3><p>Learners and analysts who want to connect Power BI techniques to business questions, research and performance reporting.</p>
+  <h3>What software do I need?</h3><p>Use Power BI Desktop on Windows for the exercises. Some optional publishing exercises require the Power BI service and suitable permissions.</p>
+  <h3>Do the free resources include the full book?</h3><p>No. The Learning Hub provides companion datasets and toolkits for practising alongside the book.</p>
+  <h3>How do I get help or report a correction?</h3><p>Email <a href="mailto:${esc(site.email)}?subject=Power%20BI%20book%20support">${esc(site.email)}</a> and include the chapter, exercise and a description of the issue.</p>
+  <p class="hero-note">Independent educational publication. Not endorsed by Microsoft.</p>
+</div></section>`,
+  };
 }
