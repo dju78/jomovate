@@ -879,7 +879,7 @@ export function books({ site }) {
   <h1>Power BI for Business Intelligence and Data Analytics</h1>
   <p class="lead">From raw data to professional dashboards. Learn the analytical workflow through practical exercises, clear business questions and projects you can explain.</p>
   <p>By <strong>${esc(site.founder.name)}</strong></p>
-  <div class="actions"><a class="btn btn-primary" href="#publication">Publication status</a><a class="btn btn-secondary" href="${hub}">Free companion resources</a></div>
+  <div class="actions"><a class="btn btn-primary" href="#publication">See Amazon UK editions</a><a class="btn btn-secondary" href="${hub}">Free companion resources</a></div>
 </div></section>
 <section class="section section-tint"><div class="container">
   <p class="eyebrow">Learn · Build · Explain</p><h2>Follow the complete analytical workflow.</h2>
@@ -896,9 +896,9 @@ export function books({ site }) {
   <a class="btn btn-primary" href="${hub}">Browse datasets and chapter downloads</a>
 </div></section>
 <section class="section section-tint" id="publication" aria-labelledby="publication-title"><div class="container narrow">
-  <p class="eyebrow">Publication update</p><h2 id="publication-title">Amazon publication in progress.</h2>
-  <p>The book has been submitted to Amazon and is currently being processed. In the meantime, explore the free companion datasets and learning resources.</p>
-  <div class="actions"><a class="btn btn-secondary" href="mailto:${esc(site.email)}?subject=Power%20BI%20book%20enquiry">Ask about the book</a><a class="text-link" href="${hub}">Start with the free resources ${icon.arrow}</a></div>
+  <h2 id="publication-title">Available on Amazon UK</h2>
+  <p>Choose the Kindle edition or the 442-page paperback. See Amazon for current pricing and delivery options.</p>
+  <div class="actions"><a class="btn btn-primary" href="https://www.amazon.co.uk/dp/B0HRCGMWMF">Paperback on Amazon UK</a><a class="btn btn-secondary" href="https://www.amazon.co.uk/dp/B0HRCSL4DX">Kindle on Amazon UK</a></div>
 </div></section>
 <section class="section"><div class="container narrow"><h2>Reader questions</h2>
   <h3>Who is this book for?</h3><p>Learners and analysts who want to connect Power BI techniques to business questions, research and performance reporting.</p>
