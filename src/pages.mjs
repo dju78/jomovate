@@ -479,6 +479,15 @@ ${p.image ? html`<section class="section section-tight">
     </figure>
   </div>
 </section>` : ''}
+${p.methodologyImageAlt ? html`<section class="section section-tight">
+  <div class="container">
+    <h2>Methodology and data quality</h2>
+    <figure class="case-figure">
+      ${picture(p.slug + '-methodology', p.methodologyImageAlt, { sizes: '(min-width: 1200px) 1100px, 100vw' })}
+      <figcaption>${esc(p.methodologyCaption)}</figcaption>
+    </figure>
+  </div>
+</section>` : ''}
 <section class="section">
   <div class="container prose-grid">
     <div class="prose">

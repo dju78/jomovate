@@ -104,12 +104,13 @@
     "audience": "Operations managers and performance analysts responsible for service delivery.",
     "problem": "A region can have many late deliveries because it handles a large volume of mail. Teams need to consider both the volume and the rate of late deliveries when assigning support.",
     "role": "Dashboard design and analysis by Daramola Joseph Omoyele.",
-    "solution": "Designed an executive overview, a staffing support decision page and a methodology and data quality page.",
+    "solution": "Built an executive overview, a staffing support decision page and a methodology and data quality page. Used Power Query to join operations, staffing and finance records by month and reporting area, and checked for duplicate keys, missing values and unmatched records on refresh.",
     "features": [
       "Delivery volume, on-time rate and cost per eligible item",
       "Monthly actual versus planned volumes",
       "Zone and state comparisons",
-      "Staffing context for the support decision"
+      "Staffing context for the support decision",
+      "Refresh-time data quality checks and a documented correction log"
     ],
     "tech": [
       "Power BI"
@@ -120,8 +121,11 @@
     ],
     "liveCheck": "Portfolio case study",
     "repos": [],
-    "image": false,
-    "noImageReason": "Case study overview"
+    "image": true,
+    "imageAlt": "Power BI executive overview with delivery KPIs, monthly trends and comparisons across six zones.",
+    "caption": "Executive overview for Q4 2018 across all six zones. The monthly trend charts cover 2016 to 2018.",
+    "methodologyImageAlt": "Power BI methodology page with data provenance, refresh-time quality checks and a correction log.",
+    "methodologyCaption": "Methodology and data quality page showing the source extracts, validation checks and documented corrections."
   },
   {
     "slug": "donation-trends-dashboard",
