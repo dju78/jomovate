@@ -13,6 +13,188 @@
     "websites": "Websites"
   },
   "projects": [
+  {
+    "slug": "brightway-sales-dashboard",
+    "title": "Brightway Sales Performance Dashboard",
+    "published": true,
+    "featured": false,
+    "status": "prototype",
+    "statusNote": "Portfolio case study",
+    "access": "unavailable",
+    "type": "concept",
+    "categories": [
+      "analytics"
+    ],
+    "service": "data",
+    "summary": "An Excel dashboard tracking six months of retail sales across stores, product categories and online channels.",
+    "audience": "Retail managers and analysts reviewing sales across channels.",
+    "problem": "Monthly sales files need consistent categories and revenue definitions before stores and channels can be compared.",
+    "role": "Dashboard design and analysis by Daramola Joseph Omoyele.",
+    "solution": "Used Power Query to prepare monthly files and built a dashboard with connected slicers and pivot charts.",
+    "features": [
+      "Month, store, sales channel and category slicers",
+      "Gross sales, net revenue, orders and average order value",
+      "Return and discount rates",
+      "Monthly trends and comparisons by product, store and channel"
+    ],
+    "tech": [
+      "Microsoft Excel"
+    ],
+    "outcomes": "The fictional dataset shows £1.62m in net revenue from April to September 2025, with website sales contributing just over half.",
+    "limitations": [
+      "The portfolio presents a dashboard screenshot."
+    ],
+    "liveCheck": "Portfolio case study",
+    "repos": [],
+    "image": true,
+    "imageAlt": "Brightway Excel dashboard with seven sales KPIs, four slicers and six charts.",
+    "caption": "April to September 2025 sales dashboard using fictional Brightway retail data."
+  },
+  {
+    "slug": "business-performance-dashboard",
+    "title": "Business Performance Dashboard",
+    "published": true,
+    "featured": false,
+    "status": "prototype",
+    "statusNote": "Portfolio case study",
+    "access": "unavailable",
+    "type": "concept",
+    "categories": [
+      "analytics"
+    ],
+    "service": "data",
+    "summary": "An executive dashboard for comparing revenue, profit, orders and performance against target.",
+    "audience": "Managers reviewing sales and profitability across regions.",
+    "problem": "Executives need an overview of sales and profitability with clear routes into more detailed analysis.",
+    "role": "Dashboard design and analysis by Daramola Joseph Omoyele.",
+    "solution": "Designed an executive overview with summary cards, monthly trends, regional comparisons and navigation to supporting analysis pages.",
+    "features": [
+      "Revenue, profit, order, customer and margin KPIs",
+      "Year and regional filters",
+      "Product and category comparisons",
+      "Order status breakdown and revenue versus target"
+    ],
+    "tech": [
+      "Microsoft Excel"
+    ],
+    "outcomes": "The dashboard brings performance trends, regional differences and target tracking into one view.",
+    "limitations": [
+      "The portfolio presents a dashboard screenshot."
+    ],
+    "liveCheck": "Portfolio case study",
+    "repos": [],
+    "image": true,
+    "imageAlt": "Executive dashboard excerpt showing performance KPIs, filters and revenue and profit charts.",
+    "caption": "Executive overview excerpt showing the KPI cards, regional filters and trend charts."
+  },
+  {
+    "slug": "regional-mail-delivery-dashboard",
+    "title": "Regional Mail Delivery Performance",
+    "published": true,
+    "featured": false,
+    "status": "prototype",
+    "statusNote": "Portfolio case study",
+    "access": "unavailable",
+    "type": "concept",
+    "categories": [
+      "analytics"
+    ],
+    "service": "data",
+    "summary": "A Power BI case study on regional delivery performance and the allocation of temporary delivery support.",
+    "audience": "Operations managers and performance analysts responsible for service delivery.",
+    "problem": "A region can have many late deliveries because it handles a large volume of mail. Teams need to consider both the volume and the rate of late deliveries when assigning support.",
+    "role": "Dashboard design and analysis by Daramola Joseph Omoyele.",
+    "solution": "Designed an executive overview, a staffing support decision page and a methodology and data quality page.",
+    "features": [
+      "Delivery volume, on-time rate and cost per eligible item",
+      "Monthly actual versus planned volumes",
+      "Zone and state comparisons",
+      "Staffing context for the support decision"
+    ],
+    "tech": [
+      "Power BI"
+    ],
+    "outcomes": "The report gives decision-makers a way to compare workload, delivery reliability and staffing context before allocating support.",
+    "limitations": [
+      "This case study describes the reporting method and the decision it was designed to support."
+    ],
+    "liveCheck": "Portfolio case study",
+    "repos": [],
+    "image": false,
+    "noImageReason": "Case study overview"
+  },
+  {
+    "slug": "donation-trends-dashboard",
+    "title": "Donation Trends Dashboard",
+    "published": true,
+    "featured": false,
+    "status": "prototype",
+    "statusNote": "Portfolio case study",
+    "access": "unavailable",
+    "type": "concept",
+    "categories": [
+      "analytics"
+    ],
+    "service": "data",
+    "summary": "A report that tracks monthly donations and compares the same months across two years.",
+    "audience": "Fundraising teams and finance staff reviewing monthly income.",
+    "problem": "Annual totals can hide seasonal peaks and changes in the timing of donations.",
+    "role": "Dashboard design and analysis by Daramola Joseph Omoyele.",
+    "solution": "Built monthly trend charts and a side-by-side comparison of 2024 and 2025.",
+    "features": [
+      "Two-year monthly donation trend",
+      "Monthly donation totals",
+      "Same-month comparison across years"
+    ],
+    "tech": [
+      "Power BI"
+    ],
+    "outcomes": "The comparison makes it easier to spot the months that contributed most to changes in donation income.",
+    "limitations": [
+      "The portfolio presents a dashboard screenshot."
+    ],
+    "liveCheck": "Portfolio case study",
+    "repos": [],
+    "image": true,
+    "imageAlt": "Power BI line and bar charts showing monthly donation totals and comparing 2024 with 2025.",
+    "caption": "Monthly donation trends and year-over-year comparisons."
+  },
+  {
+    "slug": "pizza-sales-dashboard",
+    "title": "Pizza Sales Dashboard",
+    "published": true,
+    "featured": false,
+    "status": "prototype",
+    "statusNote": "Portfolio case study",
+    "access": "unavailable",
+    "type": "concept",
+    "categories": [
+      "analytics"
+    ],
+    "service": "data",
+    "summary": "A Power BI report comparing order trends and ranking products by revenue, quantity and order frequency.",
+    "audience": "Restaurant operators and analysts reviewing sales and menu performance.",
+    "problem": "The products that sell the most units can differ from the ones that bring in the most revenue.",
+    "role": "Dashboard design and analysis by Daramola Joseph Omoyele.",
+    "solution": "Built a sales overview with date and category filters and a dedicated page for best and worst sellers.",
+    "features": [
+      "Daily and monthly order patterns",
+      "Revenue by pizza size and category",
+      "Top and bottom products by revenue, quantity and orders"
+    ],
+    "tech": [
+      "Power BI"
+    ],
+    "outcomes": "The report lets users compare product rankings across three measures and identify which menu items merit a closer look.",
+    "limitations": [
+      "The portfolio presents a dashboard screenshot."
+    ],
+    "liveCheck": "Portfolio case study",
+    "repos": [],
+    "image": true,
+    "imageAlt": "Power BI bar charts comparing best- and worst-selling pizzas by revenue, quantity and orders.",
+    "caption": "Product ranking charts from the best and worst sellers page."
+  },
     {
       "slug": "uk-ai-economic-measurement-lab",
       "title": "UK AI Economic Measurement Lab",
